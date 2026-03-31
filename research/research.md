@@ -14,6 +14,10 @@ Annotated links from research sessions. Organized by topic. Each entry includes 
 6. [News Consumption Landscape](#6-news-consumption-landscape)
 7. [Gamification & Civic Engagement](#7-gamification--civic-engagement)
 8. [Competitive Landscape](#8-competitive-landscape)
+9. [Social Media Fatigue & Platform Trust Crisis](#9-social-media-fatigue--platform-trust-crisis)
+10. [Perceived vs. Actual Polarization (False Polarization)](#10-perceived-vs-actual-polarization-false-polarization)
+11. [Tribalism, Out-Group Humor, and Real Connection](#11-tribalism-out-group-humor-and-real-connection)
+12. [Vicious vs. Virtuous Cycles in Social Systems](#12-vicious-vs-virtuous-cycles-in-social-systems)
 
 ---
 
@@ -339,5 +343,162 @@ https://www.moreincommon.com
 
 ---
 
-*Last updated: 2026-03-30*
-*Sessions: Ground News deep dive (Nov 2024), Platform strategy (Nov 2024), Cross-viewpoint research, Community Notes deep dive, Prediction markets research (Mar 2026)*
+## 9. Social Media Fatigue & Platform Trust Crisis
+
+### Key finding
+Social media use peaked in 2022 and is in measurable decline — especially among the young. The primary drivers are not addiction fatigue but *political toxicity, divisiveness, and inauthenticity*. This is a market signal, not a moral panic. Critically: awareness of harm does not automatically create demand for an alternative platform — the conversion gap must be designed around.
+
+### Generational adoption thesis (hypothesis, not yet validated)
+Millennials born ~1982–1990 are "online-native but not phone-native" — they experienced the internet as a chosen activity at a desk, not a continuous ambient environment. This likely produces more calibrated awareness of platform harms than younger cohorts. When this group has children, urgency around information quality escalates. Hypothesis: younger users (Gen Z) will join RadMo for *genuine connection*; older Millennials+ will join for *credibility and information quality*. If younger users lead adoption, parents follow to understand why — a classic platform adoption dynamic (parents join Facebook to see what kids are doing).
+
+---
+
+**'Quiet revolution': Why young people are swapping social media — CNBC**
+https://www.cnbc.com/2026/02/07/young-people-quiet-revolution-social-media.html
+> February 2026. 2025 Deloitte survey: nearly a third of Gen Zers deleted a social media app in the past year. Global time-on-social peaked in 2022, down ~10% since. The decline is most pronounced among teens and 20-somethings. Cited reason: increased "nastiness and divisiveness" online, including from political leaders, driving young people away as they seek greater control of their lives.
+> **RadMo relevance:** Confirmed market pull signal. The "why" is political toxicity, not screen fatigue per se — which is directly what RadMo addresses.
+
+---
+
+**Shifts in U.S. Social Media Use, 2020–2024: Decline, Fragmentation, Polarization — arXiv**
+https://arxiv.org/abs/2510.25417
+> October 2025. Nationally representative ANES data. Overall platform use declining; youngest and oldest Americans increasingly abstaining entirely. Facebook, YouTube, Twitter/X losing ground. Political posting remains tightly linked to affective polarization — the most partisan users are the most active. Twitter/X has flipped ~50 percentage points from Democratic to Republican posting.
+> **RadMo relevance:** The active posters on current platforms are the most polarized. The quieter majority is already partially exiting. This is the Quiet Majority in behavioral form.
+
+---
+
+**Social Media and Teens' Mental Health — Pew Research Center**
+https://www.pewresearch.org/internet/2025/04/22/teens-social-media-and-mental-health/
+> April 2025, n=1,391 U.S. teens and parents. 48% of teens now believe social media has a negative impact on people their age (up from 32% in 2022). 44% have tried to cut back on social media use. Fewer teens now credit social media as a support system (52% in 2024 vs. 67% in 2022).
+> **RadMo relevance:** Self-awareness of harm is growing rapidly among the core target demographic. The awareness gap is closing. The open question is whether this converts to platform-switching demand.
+
+---
+
+**How Parents Manage Screen Time for Kids — Pew Research Center**
+https://www.pewresearch.org/internet/2025/10/08/how-parents-manage-screen-time-for-kids/
+> October 2025. 86% of parents say managing child screen time is a day-to-day priority; 42% call it one of their biggest priorities. The U.S. Surgeon General's 2024 advisory specifically cited mounting parental stress around screens.
+> **RadMo relevance:** Parental urgency is extremely high. Millennial parents are the primary concerned-parent segment. Platform adoption logic: if younger users lead, parents follow — and may discover the platform serves their own informational needs.
+
+---
+
+**Gen Z Digital Exhaustion 2025 — Human8**
+https://www.wearehuman8.com/blog/gen-z-in-2025-navigating-digital-exhaustion-in-a-digitally-native-world/
+> 62% of Gen Z globally struggles to build meaningful relationships. The desire for real offline connections is more prevalent among Gen Z than older generations — direct result of growing up with online communication as the default. Brands that prioritize real-world connection are resonating strongly.
+> **RadMo relevance:** "Real connection" is the unmet need, not just "less screen time." This is the design target.
+
+---
+
+**Gen Z Media Consumption 2026 — Attest**
+https://www.askattest.com/blog/research/gen-z-media-consumption
+> Gen Z is not overwhelmed by content — they're selective about what feels *real*. Human credibility is becoming a competitive advantage. Platforms rise and fall in relevance within months as trust dynamics shift.
+> **RadMo relevance:** Authenticity and human credibility are the vectors of platform differentiation for this cohort. Behavioral credibility scores align with this demand.
+
+---
+
+## 10. Perceived vs. Actual Polarization (False Polarization)
+
+### Key finding
+Americans dramatically overestimate how different the other side is from themselves — and this misperception, not actual ideological distance, drives most of the hostility. The gap between perceived and actual partisan difference is largest on the most emotionally salient issues. Media and social platforms actively widen this gap. Showing people their common ground causally reduces hostility.
+
+---
+
+**Generically partisan: Polarization in political communication — PNAS**
+https://pmc.ncbi.nlm.nih.gov/articles/PMC10666007/
+> Three studies, n=1,767. Generic language ("Democrats want to defund the police") exaggerates party differences by encouraging broad conclusions that ignore within-party variation. People estimated 39% of Democrats are union members (actual: 10%) and 38% of Republicans earn over $250K/year (actual: 2%). These biases are more prevalent among strong partisans and associated with increased hostility.
+> **RadMo relevance:** The language of political discourse is systematically distorting perception. RadMo's is/ought separation and source diversity features directly counteract this by surfacing within-party variation.
+
+---
+
+**Issue Salience and Political Stereotypes — NBER**
+https://www.nber.org/system/files/working_papers/w27194/w27194.pdf
+> The gap between perceived and actual partisan differences is *largest* on issues that feel most important. People's beliefs about political groups shift dramatically even when underlying partisan differences change little — perception is more volatile than reality.
+> **RadMo relevance:** The most emotionally charged topics are where misperception is worst. RadMo's cooling period and is/ought scoring are most valuable precisely on these topics.
+
+---
+
+**Exaggerated ingroup norm perception drives affective polarization — PNAS Nexus**
+https://academic.oup.com/pnasnexus/article/3/10/pgae286/7821164
+> October 2024. Partisans perceive their own group's hostility toward the other side as *more extreme than it actually is* — and then conform to this exaggerated norm. This creates a self-reinforcing feedback loop: perceived norm → behavior conforms → average attitude drifts more negative → norm gets worse. Both Democrats and Republicans show this pattern.
+> **RadMo relevance:** This is the vicious cycle at the core of polarization. The platform can interrupt it by showing users actual ingroup norms ("most people in your group feel less strongly about this than you think").
+
+---
+
+**Perceiving Affective Polarization: How Social Media Shape Meta-Perceptions — SAGE**
+https://journals.sagepub.com/doi/10.1177/20563051241232662
+> 2024. Experiment shows that *unifying* media content — content portraying interpartisan relations as less hostile — leads to measurable depolarization through corrected meta-perceptions. Divisive content had no significant effect on meta-perceptions, suggesting asymmetry: showing people things are better reduces hostility, but showing things are worse doesn't reliably increase it.
+> **RadMo relevance:** Strongest single source for the "Someone Unlike You with Similar Views" feature. The mechanism is through meta-perception correction, not just content exposure. This is a specific, testable feature mechanic.
+
+---
+
+**Misunderstood Differences: Perception, Media, and Out-Group Animosity in Thailand — Cambridge Core**
+https://www.cambridge.org/core/journals/journal-of-east-asian-studies/article/misunderstood-differences-perception-media-and-outgroup-animosity/8191807838450A92356E62F234D0B17C
+> December 2025. Cross-national validation (Thailand) showing misperceptions, not actual ideological differences, drive out-group animosity. Echo chambers amplify perceived ideological distance. Perceived polarization is more strongly associated with hostility than actual distance.
+> **RadMo relevance:** Cross-cultural validation that the false polarization mechanism is not U.S.-specific. RadMo's international expansion thesis is supported.
+
+---
+
+## 11. Tribalism, Out-Group Humor, and Real Connection
+
+### Key finding
+Out-group mockery (memes, political jokes at the other side's expense) is a genuine and functional social bonding mechanism — not just a bad habit. It activates the same reward circuitry as in-group solidarity and builds real cohesion. This means RadMo cannot and should not ask users to stop doing it — it must *redirect* the tribal bonding instinct toward something that provides equal or superior reward with less downstream harm. The design task is substitution, not suppression.
+
+---
+
+**The Neuroscience of Tribalism — Psychology Today**
+https://www.psychologytoday.com/us/blog/brain-reboot/202307/the-neuroscience-of-tribalism
+> Jay Van Bavel's research: perceiving others as part of our group activates the brain's reward system (ventral striatum, ventromedial prefrontal cortex). Oxytocin increases trust and cooperation within the in-group while simultaneously strengthening out-group bias. In-group belonging is neurologically rewarding.
+> **RadMo relevance:** Tribalism is not a flaw to be corrected — it's a feature of human neurology. RadMo must redirect this reward circuitry, not fight it.
+
+---
+
+**Team Humor and Cohesion — NASA / SIOP**
+https://ntrs.nasa.gov/api/citations/20220015846/downloads/FINAL_Humor%20and%20Team%20Cohesion%20SIOP.pdf
+> Humor directed *outside* a team increases internal cohesion by emphasizing in-group differences from the out-group and lowering out-group status. This is the mechanism behind political meme-sharing in group chats — it builds solidarity through shared mockery.
+> **RadMo relevance:** Confirms that the group chat meme loop is doing real social work. The bonding is genuine. The substitute RadMo offers must hit the same reward.
+
+---
+
+**Why Be Funny: Social Norms and the Functions of Humor — PMC**
+https://pmc.ncbi.nlm.nih.gov/articles/PMC11771211/
+> Humor reinforces group hierarchy and social norms simultaneously. "Laughing at those who violate norms motivates all to conform to them." Out-group mockery signals in-group membership, reinforces shared values, and punishes norm violations — it's simultaneously bonding and controlling.
+> **RadMo relevance:** This dynamic can be redirected: RadMo's badge system and credibility scoring create an alternative norm structure where intellectual honesty is the in-group value being enforced and rewarded through social recognition.
+
+---
+
+## 12. Vicious vs. Virtuous Cycles in Social Systems
+
+### Key finding
+The polarization feedback loop (perceive extreme norm → conform → norm gets more extreme → repeat) is a textbook vicious cycle. The same mechanism that creates vicious cycles can be flipped: if the platform norm shifts toward intellectual honesty and cross-viewpoint respect, users conform to that norm instead. The intervention point is the *perceived ingroup norm*, not individual attitudes. Research shows that correcting perceived ingroup norms — showing people their group is less hostile than they think — causally reduces their own hostility.
+
+---
+
+**Regulating moral behaviors: Turning vicious cycles into virtuous cycles — SAGE**
+https://journals.sagepub.com/doi/10.1177/13684302231159577
+> 2024. Experimental work showing that highlighting shared moral ideals or norms (rather than shaming violations) can flip negative compliance loops into positive ones. Key finding: telling people what their group *actually values* produces better norm-following than punishment for violations.
+> **RadMo relevance:** Direct design implication. Credibility badges and scores should surface and celebrate what the RadMo community values — not punish bad behavior. The reward architecture should make the virtuous norm feel like the in-group default.
+
+---
+
+**Exaggerated ingroup norm perception — PNAS Nexus (cross-reference)**
+https://academic.oup.com/pnasnexus/article/3/10/pgae286/7821164
+> (See Section 10.) The vicious cycle of polarization runs through perceived — not actual — ingroup norms. Correcting these perceptions breaks the cycle. This is the single most precise mechanism for platform-level intervention.
+> **RadMo relevance:** Feature hypothesis: surfacing actual aggregate community sentiment ("most people in this discussion feel X, not Y") directly interrupts the polarization feedback loop.
+
+---
+
+**Virtuous Cycle — Sustainability Directory**
+https://lifestyle.sustainability-directory.com/term/virtuous-cycle/
+> Academic synthesis of virtuous cycle mechanisms across psychology, sociology, and economics. Key elements: operant conditioning (positive reinforcement), norm diffusion, network effects (more participants makes the behavior more normal and easier to adopt), and collective identity formation around shared practices.
+> **RadMo relevance:** The credibility score + badge system is a virtuous cycle engine by design. As more users earn status through intellectual honesty, the norm diffuses — making it feel normal to update positions and cite cross-viewpoint sources.
+
+---
+
+**Cycles of truth, deception, and social trust — Medium / synthesis**
+https://medium.com/@freeasabird7774/the-cycles-of-truth-and-deception-virtuous-and-vicious-feedback-loops-in-relationships-f4f7d9cc3aa7
+> Psychological, neurological, and historical synthesis. Deception breeds suspicion breeds factionalism breeds more deception (vicious). Properly structured positive incentives for honesty produce the inverse: trust → openness → cooperation → stronger trust. Punishment-based approaches backfire; reward-based approaches work.
+> **RadMo relevance:** Core design principle validation. RadMo is explicitly a reward-based system (credibility scores, badges, status) rather than a punishment-based one (shadowbanning, content removal). This aligns with the research on what actually works.
+
+---
+
+*Last updated: 2026-03-31*
+*Sessions: Ground News deep dive (Nov 2024), Platform strategy (Nov 2024), Cross-viewpoint research, Community Notes deep dive, Prediction markets research (Mar 2026), Social media fatigue / false polarization / tribalism / virtuous cycles (Mar 2026)*
