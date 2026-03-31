@@ -4,7 +4,24 @@ Research and strategy repository for the Radical Moderate platform.
 
 ## What This Is
 
-A hybrid social media and news consumption platform designed to reduce political polarization by rewarding cross-viewpoint and cross-cultural interaction. The core thesis: the incentive structure of existing platforms is the root problem, and it can be inverted.
+RadMo is a hybrid social media and news consumption platform built on a single thesis: **the problem with media and political discourse isn't human nature — it's that existing platforms have weaponized human nature against us.** The solution isn't to lecture people into being better. It's to redesign the incentive structure so that epistemically healthy behavior is also the most rewarding behavior.
+
+The platform is built around a core identity: **the Radical Moderate** — the quiet majority who are exhausted by outrage and tribal loyalty tests, reframed not as weak centrists but as the only people actually thinking clearly. Moderation as rebellion.
+
+## Where We Are Now
+
+The project has evolved significantly from its original framing. Key concepts now driving design:
+
+- **Redirect, don't resist** — work with human psychology (status-seeking, dopamine, social proof), not against it
+- **Credibility as status** — epistemic quality tied to social standing as a dopamine substitute for outrage engagement
+- **Is/Ought separation** — measurable product feature distinguishing factual claims from value judgments
+- **Cooling period** — deliberate friction (24–72hr reaction delay) that makes the platform intentionally less addictive than the competition
+- **Cross-ideological citation bonuses** — same-lean citations weighted less; rewarding intellectual range
+- **Proof of humanity** — behavioral credibility score as evidence you're talking to real people, not synthetic content
+- **Time to insight** — the core loss function: minimize friction between opening the app and reaching a genuine understanding
+- **Community Notes as foundation** — building on the bridging algorithm's proven logic while escaping its binary left/right ceiling
+
+See [`strategy/evolution.md`](strategy/evolution.md) for a full account of how the project thinking has developed.
 
 ## Repo Structure
 
@@ -13,13 +30,10 @@ radMo/
 ├── research/
 │   ├── README.md          ← Master research index
 │   └── trends/            ← One file per documented trend
-├── product/               ← Feature design and decisions (TBD)
-└── strategy/              ← Positioning, messaging, competitive (TBD)
+├── product/               ← Feature design and decisions
+└── strategy/
+    └── evolution.md       ← How the project thinking has evolved
 ```
 
-## Current Focus
-
-Phase 1: Build an evidence base for the core trends underlying the platform's thesis. Each trend document includes sourced claims, caveats, and strategic relevance to RadMo.
-
 ---
-*Last updated: 2026-03-21*
+*Last updated: 2026-03-31*
