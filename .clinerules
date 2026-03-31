@@ -1,0 +1,139 @@
+# RadMo .clinerules
+
+## Project Intelligence & Patterns
+
+### Communication Style
+
+**Tone Model:** Tim Urban (Waitbutwhy)
+- Accessible and humorous without being reductive
+- Pattern-recognizing over moralistic
+- Challenge elitism, preach-iness; accessibility is non-negotiable
+- Use specific examples over abstract frameworks (though named concepts are strong)
+
+**Artifact Quality:** Production-grade UI
+- Prefer elegant, refined design over quickly-built mockups
+- Use Tailwind CSS core utilities (no custom compilers)
+- Multi-dimensional visualizations (radar/spider charts > bar charts)
+- Responsive design mindset even in prototype phase
+
+**Documentation:** Concrete > abstract
+- Named frameworks over prose (Silence Tax > "the quiet majority problem")
+- Code comments should explain *why*, not *what*
+- Decision logs capture tradeoffs and constraints
+- Avoid long essays; prefer bullet-point specs
+
+### Developer Preferences
+
+**Collaboration Style:**
+- Sean drives strategy; Claude is collaborative builder across all phases (vision → design → code)
+- Expect challenge and pushback on elitism or accessibility failures
+- Strong opinions on incentive design; not arbitrary on this
+- Rapid iteration through artifacts; feedback loops are tight
+
+**Code Organization:**
+- React components live in artifacts for rapid feedback
+- GitHub commits bundle conceptually-related changes
+- Stub commits + full commits pattern (prototype → finalize)
+- JSX files should be readable in one scroll (keep <200 lines)
+
+**Research Approach:**
+- Deep-dive references (Community Notes source, sentiment analysis models) happen in focused sessions
+- Always cite the actual source (github.com/twitter/communitynotes) not summarized versions
+- Validate hypotheses with examples from competitive landscape (Ground News, Reddit, X)
+
+### Technical Patterns
+
+**Credibility Score Design:**
+- Always 30/30/25/15 weighting unless explicitly changed (is/ought, cross-viewpoint, source diversity, consistency)
+- Visualization should make weighting transparent to users
+- Radar charts preferred for multi-dimensional display (clearer hierarchy than bars)
+
+**Is/Ought Separation:**
+- Letter-by-letter gradient approach: green (is) → yellow (mixed) → red (ought)
+- Currently visual design; next phase is algorithmic operationalization
+- This is a measurable, differentiating feature—not abstract philosophy
+
+**Cooling Period:**
+- 24-72 hour configurable delay before reactions visible
+- Deliberately less addictive; friction is a feature
+- UX must make users aware of delay without creating friction
+
+**Behavioral Credibility:**
+- Account legitimacy + consistency + cross-viewpoint engagement + prediction accuracy
+- Reddit bot-checking behavior shows users want this; make it transparent
+- Avoid gaming via multi-signal approach; single metrics are exploitable
+
+### Design Decisions (Do Not Reverse)
+
+**Binary Left-Right Model:** RadMo intentionally goes beyond it
+- Community Notes proved binary bridging works
+- RadMo's evolution to multi-dimensional/cross-cultural is genuine product advantage
+- Do not regress to simpler binary model
+
+**Original Content Over Aggregation:**
+- Moderation burden accepted as tradeoff
+- Differentiation requires community-generated content
+- This is a deliberate choice, not a constraint
+
+**Incentive Alignment Over Morality:**
+- Platform succeeds by making epistemic quality the path of least resistance
+- Do not frame features as "be a better person"
+- Reframe as status-seeking, dopamine substitutes, intellectual rebellion
+
+**Transparency as Differentiation:**
+- Explicit business model (subscription, no engagement-driven ads) is a trust signal
+- Do not hide monetization strategy
+- Make it part of the value proposition
+
+### Open Questions & Constraints
+
+**Highest Risk:** Dopamine gap
+- Why stay on RadMo if cooling period removes reward loop?
+- Credibility status + insight velocity are hypothesized substitutes
+- Must validate before MVP; may require user testing
+
+**Design Unresolved:** "Someone Like You / Someone Unlike You" popup
+- Four open questions: signals, trigger timing, opt-in vs. proactive, interaction depth
+- This feature touches core value prop; design decision is critical
+
+**Validation Needed:**
+- Behavioral credibility signal weighting (how much account age vs. consistency?)
+- Prediction market monetary design (how to balance accuracy vs. participation?)
+- Content moderation strategy (human + algorithmic hybrid?)
+
+### Red Flags / What Not to Do
+
+- ❌ Don't reduce credibility to a single metric (exploitable)
+- ❌ Don't frame features moralistically ("be open-minded"; instead "status + insight")
+- ❌ Don't return to binary left-right framing (Community Notes' known weakness)
+- ❌ Don't prioritize time-on-app over time-to-insight
+- ❌ Don't let "better information environment" stay abstract (operationalize it)
+
+### Tools & Workflow
+
+**GitHub MCP:** Available on Windows desktop
+- Fine-grained PAT (Contents read/write, Metadata read-only)
+- Use for commits, branch management, source code review
+- Check structure regularly; keep organized
+
+**React Artifacts:** Primary prototyping tool
+- Rapid iteration → stakeholder feedback → finalization
+- Commit full versions (not stubs) to repo
+- Use Tailwind core utilities; prefer semantic HTML
+
+**Research Sessions:** Focused deep-dives
+- Community Notes algorithm study → architecture implications
+- Sentiment analysis tool evaluation → bias detection approach
+- Prediction market design → monetary incentive structure
+
+**Memory Bank Updates:** After significant decisions or design changes
+- Update activeContext.md and progress.md frequently
+- Update systemPatterns.md when patterns change
+- Review all files monthly for consistency
+
+---
+
+**Project Owner:** Sean  
+**Architecture Lead:** Claude (collaborative)  
+**Repository:** radModUnTribe/radMo  
+**Last Updated:** Initial setup
