@@ -55,3 +55,33 @@ Younger voters (2020+) showing:
 - Comfort with nuance and conditional thinking
 - Skepticism toward institutional narratives
 - Validation for RadMo's positioning
+
+## Preference Falsification Frameworks
+
+Three named concepts for the phenomenon where people publicly hold positions they don't privately believe due to social pressure:
+
+- **The Silence Tax** — the individual cost of conforming publicly to positions you don't hold privately
+- **The Cost of Conformity** — the aggregate societal cost of widespread preference falsification
+- **The Quiet Majority** — the community identity for those who hold moderate views but stay silent; RadMo's core addressable population
+
+These emerged from Tim Kuran's work on preference falsification and are central to RadMo's value proposition: giving the Quiet Majority a tribe, a voice, and social permission to say what they actually think.
+
+## Gamification & Badges
+
+Badges tied to **intellectual honesty and epistemic behavior**, not engagement volume. Examples:
+- Acknowledging a good point from the opposing viewpoint
+- Updating a stated position based on new evidence
+- Citing cross-ideological sources
+- Maintaining consistent positions over time (claim consistency)
+
+Badges are a status mechanism — the dopamine substitute that replaces likes/retweets with credibility signals. The goal: make intellectual honesty feel like winning.
+
+## Thinker Typology (Tim Urban Framework)
+
+Reference model for audience framing and tone:
+- **Scientists** — follow evidence wherever it leads; update on new information
+- **Lawyers** — argue for a predetermined conclusion; cherry-pick supporting evidence
+- **Sports fans** — tribal loyalty to a team; outcome-driven, not truth-driven
+- **Zealots** — ideological absolutists; identity fused with belief
+
+RadMo is built for scientists and aspiring scientists. The platform mechanics should reward scientist behavior and make lawyer/sports fan/zealot behavior costly in status terms.
