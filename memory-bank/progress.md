@@ -12,22 +12,26 @@
 - **Market pull confirmed:** Social media use peaked 2022 and declining, driven by political toxicity and desire for authenticity — not just screen fatigue
 
 ### Design Patterns
-- **Credibility scoring framework:** 30/30/25/15 weighting feels coherent (is/ought, cross-viewpoint, source diversity, consistency)
-- **Is/ought visualization:** Letter-by-letter gradient effectively shows bias hiding in text
+- **Credibility scoring framework:** 30/30/25/15 weighting feels coherent (is/ought, cross-viewpoint, source diversity, consistency); cross-viewpoint may warrant elevation to 40%
+- **Is/ought visualization:** Letter-by-letter gradient effectively shows bias hiding in text; sequencing-based scoring flagged for rethink — intent is connection quality, not ordering
 - **Cooling period concept:** User research insight suggests friction is a feature, not a bug
 - **Behavioral credibility:** Account legitimacy as credibility signal aligns with actual user behavior (Reddit bot-checking)
+- **Engagement signal display:** Avg reposter cred score on 0–100 scale + viewpoint reach bar; reposter pool weighted over liker pool (higher conviction signal)
+- **Perspective check panels:** "Someone unlike you / someone like you" shown below each post as cross-viewpoint exposure mechanism; framing validated by meta-perception correction research
+- **Badges introduced:** Bridge Builder (cross-viewpoint), First Principles (is/ought), Wide Lens (source diversity) — design spec pending
 
 ### Technical Execution
 - React artifacts for rapid UI iteration working smoothly
 - Artifact quality sufficient for stakeholder feedback
-- Component design patterns emerging (radar chart > bar chart for multi-dimensional data)
+- Component design patterns established: radar chart, arc gauge, viewpoint bar, rater cards, perspective panels
 
 ## What's Left to Build
 
 ### Critical Path (MVP Readiness)
-- [ ] **[ELEVATED PRIORITY] Design "Someone Like You / Someone Unlike You" popup** — research confirms this is a causal depolarization mechanism via meta-perception correction; four open design questions still to resolve (signals, trigger, opt-in vs. proactive, passive vs. interactive)
+- [ ] **Resolve is/ought scoring intent** — not sequencing order but connection quality between factual grounding and normative claims; needs algorithmic spec
+- [ ] **Badge system design** — Bridge Builder, First Principles, Wide Lens named; earn conditions, visual design, and placement not yet specced
+- [ ] **Poster UI** (deferred) — engagement signal display for the original poster's own view of how their post is performing; reader view built first
 - [ ] Finalize credibility score visual (v2 radar preferred; needs A/B clarity)
-- [ ] Operationalize is/ought scoring (spec, not just visual)
 - [ ] Cooling period UX (where/how user sees countdown)
 - [ ] Backend architecture (API design, database schema)
 - [ ] Content submission flow (how do users add posts?)
@@ -40,20 +44,21 @@
 - [ ] Multi-dimensional viewpoint mapping (beyond left-right binary)
 - [ ] Mobile-first design (currently desktop-focused)
 - [ ] Ingroup norm surfacing feature ("most people in this discussion feel X" — interrupts polarization feedback loop)
+- [ ] Source credibility rating methodology — research needed; Ground News and AllSides as reference points; bias rating landscape to be documented
 
 ### Research & Documentation
-- [ ] `product/features.md` formal specs
 - [ ] Decision log for design tradeoffs
 - [ ] Testing strategy (unit, integration, A/B)
 - [ ] Community Notes code walkthrough (`matrix_factorization.py`, `scoring.py`)
+- [ ] News outlet bias rating landscape — collect and compare existing methodologies (Ground News, AllSides, Ad Fontes, others)
 
 ## Current Status
 
 **Phase:** Design & Prototyping
 
-**Completion:** ~25% (conceptual framework + UI mockups; backend/integration 0%)
+**Completion:** ~30% (conceptual framework + UI mockup suite; backend/integration 0%)
 
-**Blockers:** None critical; design questions are clarification, not showstoppers
+**Blockers:** None critical
 
 **Risk Level:** Low (validating concepts before heavy engineering)
 
@@ -65,55 +70,57 @@
    - *Validation needed:* User testing, behavioral model research
    - *Timeline:* Must solve before MVP launch
 
-2. **Generational adoption strategy:** Different primary motives by cohort
+2. **Is/Ought scoring rethink:** Ordering-based scoring is a weak proxy for the real intent
+   - *Current weakness:* A normative claim that comes before evidence isn't inherently less credible than one that comes after
+   - *Better intent:* How well does the user demonstrate the connection between factual grounding and normative conclusions?
+   - *Needs:* Algorithmic spec, potentially NLP-based claim extraction
+
+3. **Generational adoption strategy:** Different primary motives by cohort
    - *Hypothesis:* Gen Z joins for genuine connection; older Millennials+ join for credibility and information quality
-   - *Adoption mechanic:* Younger users lead → parents follow to understand the platform → parents discover it serves their own informational needs (mirrors Facebook parent-adoption dynamic)
+   - *Adoption mechanic:* Younger users lead → parents follow
    - *Validation needed:* User interviews across cohorts
 
-3. **First-Party Content Moderation:** Original submissions create moderation burden
-   - *Trade-off:* Aggregation (like Ground News) vs. Community-generated (like Reddit)
-   - *Current stance:* Original content necessary for differentiation; moderation team scales as needed
-
-4. **Behavioral Credibility Signals:** How do we prevent gaming? (Account age can be bought)
+4. **Behavioral Credibility Signals:** How do we prevent gaming?
    - *Hypothesis:* Multi-signal approach (age + consistency + cross-viewpoint validation + prediction accuracy)
    - *Validation needed:* Gaming simulation, adversarial testing
 
 ### Medium Priority
 5. **Prediction Market Incentives:** Monetary design is complex game theory
-   - *Research needed:* How do successful prediction markets (Polymarket, PredictIt) balance accuracy vs. participation?
-   - *Cost implications:* Subsidizing early users vs. organic adoption
-
 6. **Scale & Moderation:** How to maintain quality at scale?
-   - *Reference:* Ground News solved via curation; RadMo's community model may require different approach
-   - *Timeline:* Post-MVP, but architecture choices made now matter
-
-7. **"Why open RadMo?"** — Motivation to switch from incumbent platforms unclear
-   - *Current hypothesis:* Credibility status + insider position (early community) + honest business model
-   - *Validation needed:* Messaging A/B test, user interviews
+7. **"Why open RadMo?"** — primary motivation to switch from incumbent platforms still needs design work
 
 ## Evolution of Key Decisions
 
-### Credibility Score Weighting (30/30/25/15)
-- **Original:** Even split across all dimensions
-- **Refined:** Is/ought + cross-viewpoint validation elevated (epistemic quality)
-- **Rationale:** Distinguish RadMo from engagement-driven platforms; quality beats consensus
+### Credibility Score Weighting
+- **Original:** Even split across dimensions
+- **Refined:** 30/30/25/15 (is/ought, cross-viewpoint, source diversity, consistency)
+- **In discussion:** Cross-viewpoint elevation to 40% — most aligned with platform's core depolarization goal
 
-### Cooling Period Implementation (24-72hr)
-- **Original:** Flat 48-hour delay
-- **Refined:** Configurable range based on post sensitivity/topic
-- **Rationale:** Allows customization; hot-button topics get longer cooling
+### Is/Ought Scoring Intent
+- **Original:** Sequencing — normative claims follow factual grounding
+- **Flagged weakness:** Ordering is a weak proxy; a hot take isn't less credible because it came first
+- **Revised intent:** Quality of connection between is and ought — does the user show their reasoning?
+- **Status:** Needs redesign before operationalization
+
+### Engagement Signal Display
+- **Decision:** Show reposter avg cred (not liker avg) — reposting puts reputation on the line
+- **Scale:** 0–100 (not 0–1)
+- **Focal point:** Viewpoint reach (cross-viewpoint diversity of who engaged) over raw cred aggregate
+- **Working toward:** Single composite engagement quality score; experimenting first with separate signals
+- **Deferred:** Poster-facing UI (how the poster sees their own post's performance)
+
+### Perspective Check Panels
+- **Mechanism:** Meta-perception correction via vicarious contact (research-grounded)
+- **Two panels:** "Someone unlike you" (different background, same conclusion) + "Someone like you" (same background, different conclusion)
+- **Four design questions still open:** Signals defining like/unlike, trigger conditions, opt-in vs. proactive, passive vs. interactive
+- **Status:** First mockup built; design decisions pending
 
 ### Community Notes Integration
 - **Original:** Direct fork of X algorithm
-- **Refined:** Fork + evolve to multi-dimensional instead of binary
-- **Rationale:** Addresses known limitation; cross-cultural framing more ambitious than left-right
-
-### "Someone Unlike You" Feature Priority
-- **Original:** Listed as open design question with four unresolved sub-questions
-- **Elevated:** Now top of critical path based on research confirming causal depolarization mechanism
-- **Research basis:** Unifying content (showing shared views across partisan lines) causally reduces hostility through meta-perception correction — not just exposure. Feature is mechanistically grounded.
+- **Refined:** Fork + evolve to multi-dimensional instead of binary left/right
+- **Rationale:** Addresses known limitation; cross-cultural framing more ambitious
 
 ---
 
-**Last Updated:** 2026-03-31
-**Next Review:** After "Someone Like You" design decision
+**Last Updated:** 2026-04-01
+**Next Review:** Badge system design; is/ought scoring redesign; dopamine gap
