@@ -7,8 +7,8 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 ## Design Decisions Needed (high priority)
 
 - [ ] **Is/ought scoring redesign** — current sequencing-based approach is a weak proxy; real intent is quality of connection between factual grounding and normative claims, not ordering; needs algorithmic spec before operationalization
-- [ ] **Viewpoint diversity reach display** — deciding between Option 1 (similarity index / single score) and Option 3 (cluster count / 2D scatter); polarized case exposes key tradeoff: Option 1 can't distinguish polarized agreement from genuine broad reach; Option 3 preserves the shape of diversity but requires more user education
-- [ ] **Badge system** — Bridge Builder (cross-viewpoint), First Principles (is/ought sequencing), Wide Lens (source diversity) are established default features; earn conditions, visual design, placement, and gamification mechanics not yet specced
+- [ ] **Viewpoint diversity reach display** — TABLED; Option 1 (similarity index) and Option 3 (cluster count) both explored and visualized; polarized case exposes key limitation of Option 1; decision deferred until further iteration
+- [ ] **Badge system** — Bridge Builder, First Principles, Wide Lens documented in `product/badges.md`; earn conditions are drafts; visual design, placement, and gamification mechanics not yet specced
 - [ ] **CrossViewpoint dimension weight** — user instinct is 40% (up from 30%); evaluate tradeoffs with other weights before finalizing
 - [ ] **Dopamine gap** — why stay on RadMo if cooling period removes the standard reward loop? Credibility status + insight velocity is the working hypothesis; needs concrete mechanic design and behavioral research
 - [ ] **Poster-facing UI** — how does the original poster see their post's performance? Reader view built first; poster view deferred
@@ -18,15 +18,15 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 
 ## Visual / UX To-Do
 
-- [ ] **"Hot take" spectrum visual** — a bar where one end is "hot take" (disincentivized, potentially 😑 emoji) and the other is "Radically Moderate" (positive signal, green checkmark); alternative or complement to the Fact/Opinion is/ought display; workshop separately
-- [ ] **Avatar shape mirroring spider chart** — replace circular avatar with a small polygon whose shape echoes the user's actual credibility profile (lopsided if weak on cross-viewpoint, diamond if balanced); makes avatar itself information-dense; workshop in dedicated session
-- [ ] **Is/ought color spectrum** — decided: blue (factual) ↔ amber (opinion); red/yellow/green reserved exclusively for credibility scores; "Fact / Opinion" is the user-facing language; "Is/Ought" stays as internal/technical vernacular
+- [ ] **"Hot take" spectrum visual** — a bar where one end is "hot take" (disincentivized) and the other is "Radically Moderate" (positive signal); alternative or complement to Fact/Opinion display; workshop separately
+- [ ] **Avatar shape mirroring spider chart** — replace circular avatar with a small polygon whose shape echoes the user's credibility profile; workshop in dedicated session
+- [ ] **Is/ought color spectrum** — DECIDED: blue (fact) ↔ amber (opinion); red/yellow/green reserved exclusively for credibility scores; "Fact / Opinion" is user-facing language; "Is/Ought" stays as internal/technical vernacular
 
 ---
 
 ## Perspective Check — Open Design Questions
 
-- [ ] **"Someone Unlike You" — geography as primary signal** — explore using geographic proximity as the primary differentiating signal; hypothesis: local dissimilar people who share viewpoints on a topic are the most valuable connections to surface; links to genuine-connection and local-community-building goals
+- [ ] **"Someone Unlike You" — geography as primary signal** — explore using geographic proximity as the primary differentiating signal; hypothesis: local dissimilar people who share viewpoints on a topic are the most valuable connections to surface
 - [ ] **"Someone Like You / Someone Unlike You" — 4 core design questions**
   1. What signals define "like" vs. "unlike"? (geography first? political lean? demographics? claim-checking behavior?)
   2. When/where does popup trigger? (every post? opinion content only? topic-gated? daily nudge?)
