@@ -1,49 +1,39 @@
 # RadMo — Defining the Information Environment
 
-This document captures RadMo's working definition of a "perfect information environment" and the platform's explicit lane within it. It is meant to be a stable north star — consulted when product decisions need grounding in first principles.
+This document defines what a "perfect information environment" looks like, what the current environment gets wrong, and what RadMo's explicit lane is within that problem space.
 
 ---
 
-## Why Define This
+## What the Current Environment Gets Wrong
 
-Throughout the design process it became clear that "better information environment" was doing a lot of work without being precisely defined. Before building the credibility score, the perspective panels, or the is/ought visualizer, we need to be explicit about what we're optimizing toward — and equally explicit about what we're *not* trying to do.
+The current information environment fails at the most basic level: **we cannot agree on facts.** Before we even reach the question of what we should do (ought), we are stuck arguing about what is true (is). Normative disagreement built on contested facts is not real disagreement — it is noise.
 
----
-
-## The Core Diagnosis
-
-The current information environment fails at the most basic level: **we cannot agree on facts**. Most public discourse is presented as a values disagreement (ought vs. ought), but underneath it is usually a facts disagreement (is vs. is) that nobody has resolved. The values debate happens on top of a contested factual layer, which makes it intractable.
-
-RadMo's primary intervention is one level below the values debate: **build the infrastructure for a shared factual layer**.
-
-This is not a neutral act — which facts get surfaced, amplified, and treated as settled are all editorial decisions with normative implications. But it is a more defensible and more tractable problem than adjudicating values.
+The specific failure modes:
+- Factual claims and normative claims are not separated — readers cannot tell which they are consuming
+- Normative framing is embedded in factual reporting, often invisibly
+- Amplification is driven by emotional engagement, not epistemic quality — contested or alarming claims spread faster than accurate ones
+- Domain expertise is not routed correctly — the loudest voice reaches the most people, not the most informed one
+- Changing your mind is culturally stigmatized as weakness or tribal betrayal, which freezes positions that should update
 
 ---
 
-## A Model of a Perfect Information Environment
+## The Perfect Information Environment — A Model
 
-### The Seven Layers (bottom-up)
+A perfect information environment is one where:
 
-**Layer 1 — Facts disseminate without normative framing**
-Information is reported and shared in "is" language first. What happened, when, where, to whom. No ought framing embedded in the initial dissemination.
+1. **Facts and normative claims are clearly separated.** Readers always know which they are consuming. "X is happening" and "we should do Y about X" are visually and structurally distinct.
 
-**Layer 2 — Facts update in real time**
-As circumstances change, the factual record updates. Yesterday's confident claim gets revised when new information arrives. The information environment treats updating as normal, not as weakness or betrayal.
+2. **Factual claims are grounded, sourced, and updated in real time.** As circumstances change, the factual layer updates. Claims are traceable to sources. Weak sourcing is visible.
 
-**Layer 3 — People ingest facts as shared base reality**
-There exists a factual layer that most participants accept as the starting point for any further discussion. Contested claims are flagged as contested. Settled claims are treated as settled.
+3. **Domain experts are the primary sources for factual claims in their domain.** The geopolitics researcher's claim about troop movements carries more weight than the pundit's. Expertise is surfaced, not buried under amplification.
 
-**Layer 4 — Domain knowledge is distributed and acknowledged**
-Not everyone knows everything equally. People have genuine expertise in narrow domains and near-zero knowledge in others. A good information environment routes factual claims through people with the deepest relevant knowledge — not the loudest voices.
+4. **Value claims are transparent about their value premises.** "Given that we prioritize X, we should do Y" rather than presenting normative conclusions as if they were facts. The ought is labeled as ought.
 
-**Layer 5 — Normative claims are built on factual foundations and are transparent about their value premises**
-Those with deep domain knowledge add "ought" language to the shared factual base: "given what we know about X, here are the options and their tradeoffs." Crucially, the value premises driving normative conclusions are made explicit — "given that we prioritize Y, we should do Z" — rather than presenting ought-conclusions as if they were facts.
+5. **Disagreement is correctly attributed.** People know whether they disagree about facts or about values. Factual disputes are resolved by evidence. Value disputes are acknowledged as legitimate differences that evidence alone cannot resolve.
 
-**Layer 6 — The decision space is mapped, not collapsed**
-A good information environment does not necessarily produce consensus on what to do. It produces a clearly mapped decision space: here are the options, here are the tradeoffs, here is where the genuine value disagreements lie. People with the same facts can legitimately reach different ought-conclusions because they hold different values — and that is okay. The goal is to relocate disagreement from "we can't agree on what is true" to "we agree on what is true but disagree on what to value" — the second type is more honest and more resolvable through deliberation.
+6. **The quality of an argument is judged by its epistemic properties** — not its tribal origin, its emotional charge, or its amplification by coordinated inauthentic behavior.
 
-**Layer 7 — The best arguments surface through quality-weighted engagement**
-The hive mind engages with the strongest normative arguments and these rise based on epistemic quality, not tribal amplification. This requires the engagement signal to be clean — bot-resistant, credibility-weighted, manipulation-resistant.
+7. **Changing your mind in response to new evidence is recognized as intellectual strength, not weakness.** Position updates accompanied by new factual grounding are rewarded. Unexplained flips are noted.
 
 ---
 
@@ -51,42 +41,74 @@ The hive mind engages with the strongest normative arguments and these rise base
 
 ### RadMo's explicit lane
 
-RadMo directly addresses Layers 1, 2, 4, 5 (partially), and 7 through product design:
+The platform's job is not to adjudicate values. Values legitimately differ across people and cultures, and a platform that tries to converge everyone toward a single "correct" normative position is both wrong and preachy.
 
-- **Fact/Opinion separation** (Layers 1, 5) — the is/ought visualizer makes it obvious which territory the reader is in at any moment; RadMo does not adjudicate normative claims, it surfaces them as normative
-- **Credibility score as epistemic method barometer** (Layer 4) — surfaces *how* a poster thinks (scientist vs. lawyer vs. zealot) so readers can calibrate their trust; poster-level trust and post-level trust are distinct signals
-- **Source grounding and claim integrity** (Layers 1, 3) — Factual Grounding and Claim Integrity dimensions flag ungrounded normative claims and source misrepresentation
-- **Quality-weighted engagement** (Layer 7) — credibility-weighted feed algorithm; repost qualifier mechanic; cross-viewpoint validation
-- **Updating destigmatized** (Layer 2) — platform explicitly rewards updating on evidence as scientist-mode behavior
+RadMo's job is one level below that: **build the infrastructure for a shared factual layer, and make it obvious to readers when they have crossed from fact into opinion.**
 
-### What RadMo does not do
+Specifically:
+- Visually separate fact from opinion in every post (Fact / Opinion coloring)
+- Surface the epistemic method of the poster (credibility score spider) so readers can judge the *how*, not just the *what*
+- Reward factual grounding, source diversity, cross-viewpoint validation, and claim integrity — the behaviors of scientist-mode thinking
+- Gently push users toward scientist-mode and away from zealot-mode through incentive design, not moral instruction
 
-- Adjudicate values disputes — RadMo is not a truth arbiter for normative claims
-- Enforce consensus — disagreement on values is legitimate and expected; the platform maps the decision space, it does not collapse it
-- Guarantee a clean factual layer — the factual layer is itself contested terrain; RadMo can flag weak sourcing and contested claims but cannot fully solve the epistemics-at-scale problem
-
----
-
-## The Platform's Gently Directive Role
-
-RadMo's goal is to gently push users toward scientist-mode thinking and away from zealot-mode, without preaching. The mechanism is incentives, not lectures:
-
-- Scientist-mode behavior (grounded claims, diverse sources, cross-viewpoint engagement, updating on evidence) earns higher credibility scores
-- Higher credibility scores earn status, visibility, and more meaningful engagement
-- The platform never tells users their thinking is wrong — it shows them what kind of thinking earns respect here
+### What RadMo is not trying to do
+- Determine which normative positions are correct
+- Eliminate disagreement (the goal is to *relocate* disagreement from factual disputes to honest value disputes)
+- Force consensus
+- Lecture users about epistemic virtue
 
 ---
 
-## Key Distinctions
+## The Is/Ought Triage Logic
 
-**Poster-level trust vs. post-level trust**
-The credibility score measures the poster's epistemic style over time. It does not guarantee any individual post is accurate. A high-cred poster can post a wrong claim; a low-cred poster can accidentally post something true. The UI must not allow readers to over-extrapolate from poster score to post content. Both signals exist and both matter.
+The model works from the bottom up:
 
-**The factual layer is not neutral**
-Which facts get surfaced, amplified, and treated as settled are editorial decisions with normative implications. Iran guy's post is almost entirely "is" language, but the *selection* of the claim, the urgency framing, and the "insider sources" assertion are soft ought moves dressed as is. RadMo's credibility infrastructure must flag not just explicit opinion but contested factual claims, weak sourcing, and is-dressed-as-ought.
+**Layer 1 — Is:** What is factually true? What is the evidence? Who has domain expertise here?
 
-**Changing your mind is scientist-mode**
-Updating a position in response to new evidence should be explicitly rewarded and destigmatized. Consistency for its own sake — holding a position to avoid appearing "wishy-washy" — is lawyer-mode. The platform's messaging and incentive design should make this distinction legible to users.
+**Layer 2 — Ought:** Given the facts, what should we do? This is where values enter, and where legitimate disagreement lives.
+
+A good information environment does not eliminate Layer 2 disagreement. It ensures that Layer 2 disagreement is actually *about values*, not secretly about contested Layer 1 facts dressed up as value differences.
+
+Most of what passes for political disagreement today is Layer 1 disagreement wearing a Layer 2 costume. RadMo's structural contribution is to strip the costume off.
+
+---
+
+## The Factual Layer Is Not Neutral
+
+Important caveat: even the factual layer involves editorial decisions. Which facts get surfaced, which get framed as urgent, which get treated as settled — these are soft normative acts. A post that says "BREAKING: US boots on ground in Iran" is using "is" language but is making choices about what to amplify and how to frame it.
+
+This means RadMo's job is not just to flag opinions as opinions. It is also to:
+- Flag *contested* factual claims as contested (weak sourcing, unverified)
+- Flag is-dressed-as-ought (normative framing embedded in ostensibly factual language)
+- Surface claim integrity failures (sources not supporting stated claims)
+
+The platform does not pretend the factual layer is a clean, neutral foundation. It acknowledges that the factual layer is itself a site of contest — and builds tools to make that contest legible.
+
+---
+
+## Poster Trust vs. Post Trust
+
+Two distinct signals that must not be conflated in the UI:
+
+**Poster trust** — the credibility score, built over a body of work. Tells the reader: how does this person typically approach evidence? What is their epistemic style? A poster with a score of 88 has a demonstrated track record of factual grounding, source diversity, cross-viewpoint validation, and claim integrity.
+
+**Post trust** — the specific claim, grounded or not, sourced or not. A high-cred poster can post a wrong or poorly sourced claim on a bad day. A low-cred poster can accidentally post something accurate.
+
+The credibility score is a prior, not a verdict on any specific post. The UI should make this distinction legible — readers should be able to interrogate the post content independently of the poster score.
+
+---
+
+## On Changing Your Mind
+
+Updating on new evidence is the defining behavior of scientist-mode thinking. It should be destigmatized and rewarded on the platform.
+
+The relevant distinction is not *whether* someone changed their mind but *why*:
+- Change accompanied by new factual grounding → scientist-mode; positive signal
+- Change correlated with social or tribal triggers, no factual update → lawyer-mode; neutral or negative signal
+
+Consistency is a legibility feature (it helps others engage with your position) but consistency in a wrong belief is not a virtue. RadMo's credibility system should reward *grounded updating*, not *position-holding*.
+
+This is a cultural stake in the ground as much as a product decision. One of RadMo's explicit platform values: **changing your mind is not weakness. It is the whole point.**
 
 ---
 
