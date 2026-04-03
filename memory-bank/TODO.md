@@ -30,9 +30,9 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 ## Perspective Check — Open Design Questions
 
 - [ ] **Perspective panel identification speed** — active engagement (like/repost) vs. passive signal (post viewed); passive is faster but raises privacy and accuracy questions
-- [ ] **"Same conclusion" vs. "same viewpoint" UI clarification** — post credibility verdict vs. political agreement; must be separated in copy and matching logic
-- [ ] **"Someone Like You / Someone Unlike You" — 4 core design questions**
-  1. What signals define "like" vs. "unlike" beyond political lean? (spider shape confirmed as epistemic axis; geography as secondary)
+- [ ] **\"Same conclusion\" vs. \"same viewpoint\" UI clarification** — post credibility verdict vs. political agreement; must be separated in copy and matching logic
+- [ ] **\"Someone Like You / Someone Unlike You\" — 4 core design questions**
+  1. What signals define \"like\" vs. \"unlike\" beyond political lean? (spider shape confirmed as epistemic axis; geography as secondary)
   2. When/where do panels trigger for readers (not just poster)?
   3. Opt-in vs. proactive surfacing?
   4. Passive exposure vs. interactive engagement?
@@ -44,14 +44,15 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Post-feed mockup updates needed:**
   - Perspective panels always visible (not cooling-period gated)
   - Edit button in poster header (30-min window)
-- [ ] **Spider shape personas** — define named archetypes for recognizable spider shapes; in progress this session
-- [ ] **"Hot take" spectrum visual** — bar from hot take to Radically Moderate; workshop separately
+- [ ] **Spider shape personas** — five archetypes defined (Bubble Scholar, Vibes Merchant, Magpie, Persuader, Radical Moderate); add real-world examples to `product/features.md` Section 7 or a new `product/personas.md`
+- [ ] **\"Hot take\" spectrum visual** — bar from hot take to Radically Moderate; workshop separately
 - [ ] **Avatar shape mirroring spider chart** — polygon avatar matching credibility profile; workshop separately
 
 ---
 
 ## Research Needed
 
+- [ ] **Spider shape change over time** — Sam Harris as the primary case study; his spider was closer to Radical Moderate early career and has drifted toward Bubble Scholar as his audience narrowed post-2016; research question: what causes spider drift? Is it audience capture, topic self-selection, or genuine epistemic change? Implications for whether RadMo should surface a user's *trajectory* not just their current shape
 - [ ] **News outlet bias rating landscape** — Ground News, AllSides, Ad Fontes, Media Bias/Fact Check; needed for Source Diversity operationalization
 - [ ] **Community Notes code walkthrough** — `matrix_factorization.py` and `scoring.py`; identify RadMo multi-dimensional adaptation points
 - [ ] **Sentiment analysis / argument mining** — NLP model selection for Factual Grounding scoring; cost/accuracy tradeoffs
@@ -72,7 +73,7 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] Claim extraction and cross-reference scoring
 - [ ] Multi-dimensional viewpoint mapping (geographic, cultural, generational, religious)
 - [ ] Mobile-first design
-- [ ] Ingroup norm surfacing — "most people in this discussion feel X"
+- [ ] Ingroup norm surfacing — \"most people in this discussion feel X\"
 - [ ] Cooling period UX — countdown display design
 - [ ] Temporal source diversity — citing across time, not just recent; deprioritized, add later
 
