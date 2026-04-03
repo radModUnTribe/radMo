@@ -32,15 +32,9 @@ A hybrid social media and news consumption platform designed to create a better 
 **The goal:**
 Create a platform where existing human tendencies (status-seeking, tribal identity, dopamine loops) produce better collective epistemic outcomes — not by fighting human nature but by redirecting it.
 
-**The "better information environment" definition:**
-- What "is" (factual claims) is less contested — people can agree on basic facts before disagreeing on values
-- Is/ought claims are clearly separated — factual reporting is distinguished from editorial opinion
-- Cross-viewpoint exposure happens under conditions that reduce rather than increase polarization
-- Less affective polarization (negative emotions toward outgroups) as a measurable outcome
-
 **Positioning:**
 - "Radically Moderate" — moderation framed as rebellion, not weakness
-- Target: the Quiet Majority — people exhausted by extremism who privately hold more moderate views than they publicly express (More in Common's "hidden tribes" research estimates 67% of Americans)
+- Target: the Quiet Majority — people exhausted by extremism who privately hold more moderate views than they publicly express
 - Tone model: Tim Urban — accessible, humorous, non-elitist, anti-preachy
 - Reframe: not "left vs. right" but "you vs. institutions profiting from your outrage"
 
@@ -49,21 +43,18 @@ Create a platform where existing human tendencies (status-seeking, tribal identi
 ## 2. Core Incentive Architecture
 
 **The four primitive brain mechanisms to design around:**
-1. Variable reward loops (core of social media addiction)
-2. Status signaling (likes, follower counts)
-3. Outgroup threat amplification (algorithm rewards fear/anger-inducing content)
-4. Identity protection (motivated reasoning when beliefs feel like identity)
+1. Variable reward loops
+2. Status signaling
+3. Outgroup threat amplification
+4. Identity protection
 
 **RadMo's approach:**
-- **Redirect, don't resist** — work with these tendencies rather than fighting them, but route them toward better outcomes
-- **Exception:** Some tendencies need active resistance (e.g., the cooling period deliberately introduces friction against impulsive reaction). The platform uses *both* redirect and resist, not just one.
-- **Replace the dopamine lever** — tie intellectual honesty to social status and credibility. Make epistemic quality feel like status worth pursuing.
+- **Redirect, don't resist** — work with human tendencies, route them toward better outcomes
+- Use resistance (friction) sparingly and intentionally — the cooling period is the primary example
+- **Replace the dopamine lever** — tie epistemic quality to social status and credibility
 
-**The dopamine gap problem** *(unresolved — flagged for deeper work)*:
-Outrage is a very high-dopamine activity. Intellectual honesty is a slower, lower-intensity reward. The central unsolved product challenge: can we make the redirected version feel as rewarding as the original? The credibility score system is our primary attempt to close this gap.
-
-**Loss function:**
-RadMo's algorithm should minimize "epistemically poor interactions" — tribal, low-quality sourced, or emotionally manipulative content. Sentiment analysis, source credibility scoring, and the bridging algorithm are tools for approximating this mathematically.
+**The dopamine gap problem** *(unresolved)*:
+Outrage is high-dopamine. Intellectual honesty is slower. Can we make the redirected version feel as rewarding? Credibility score system is the primary attempt.
 
 ---
 
@@ -72,226 +63,232 @@ RadMo's algorithm should minimize "epistemically poor interactions" — tribal, 
 **Status:** Mockup built — `product/mockups/rm-post.jsx`
 
 **Core features:**
-- Text posting with 280-character limit and countdown
-- Post button disabled until content is entered
-- "Say what you actually think." as the guiding tagline
-- Cooling period activates immediately after posting (see section 4)
+- Text posting with 280-character limit
+- "Say what you actually think." as guiding tagline
+- Cooling period activates immediately after posting
 
 **Social mechanics:**
-- Following other users
-- Cross-viewpoint follows are incentivized (higher credibility weight)
-- Cross-cultural follows are a first-class feature — not just left/right but geographic, religious, generational perspectives
-- Feed sorted by "viewpoint distance from you" as an option (alongside chronological)
-
-**"Radically Moderate Takes" thread format:**
-- Dedicated content type for nuanced positions that resist tribal framing
-- Format: "Radically moderate take: X has merit AND Y is also true"
-- Rewards intellectual honesty over tribal signaling
+- Cross-viewpoint and cross-cultural follows incentivized
+- Feed sorting: chronological, credibility-weighted, viewpoint-distance
+- "Radically Moderate Takes" thread format for nuanced positions
 
 ---
 
 ## 4. Cooling Period
 
-**Status:** Designed and built into post mockup. Architecture confirmed.
+**Status:** Architecture confirmed.
 
-**How it works (confirmed architecture):**
+**How it works:**
 - Posts are **live and visible in feeds immediately** after posting
-- The cooling period applies to the **poster's view of their own engagement**, not to the post's distribution
-- The poster cannot see reaction counts, who liked, who reposted, or their scores for 12 hours after posting
-- **Exception — Perspective Panels surface immediately:** As soon as a "Someone Unlike You" and "Someone Like You" match is identified, those panels appear for the poster — this is the dopamine hook during the cooling window (seeing a specific named person's perspective, not an aggregate count)
-- At the 12-hour mark, the curtain lifts: poster sees full engagement — who liked, who reposted, rater cards with credibility scores, average reposter cred
-- Credibility scores update continuously throughout (visible to readers at all times; poster's own score visible to them)
-
-**Strategic rationale:**
-- Breaks the immediate feedback loop that drives outrage posting
-- Separates *posting* (expression) from *reaction-watching* (validation-seeking)
-- Forces users to post based on conviction rather than anticipated applause
-- Post traveling in the meantime is the point — social distribution is not slowed
-- The perspective panels give the poster something to think about during the cooling window without revealing popularity signals
+- Cooling period governs the **poster's view of their own engagement** — not the post's distribution
+- Poster cannot see reaction counts, who liked/reposted, or scores for **12 hours**
+- **Perspective Panels surface immediately** as soon as matches are identified — this is the dopamine hook during the window
+- At 12 hours: full engagement data unlocks (rater cards, avg reposter cred, who liked/reposted)
+- Credibility scores update continuously and are always visible to readers
 
 **Edit window (confirmed):**
-- 30-minute edit window from time of posting
-- Window closes early if anyone reposts (manipulation risk: editing after receiving credibility halo from high-cred reposters)
-- Open design questions: typo vs. substantive edit distinction; reposter notification on substantive edits; retraction mechanic for reposters
+- 30-minute window from time of posting
+- Closes early if anyone reposts (manipulation risk)
+- Open questions: typo vs. substantive edit distinction; reposter notification; retraction mechanic
 
 **Open questions:**
-- Should cooling period length be fixed or variable? Could it scale with topic sensitivity or post virality?
-- Should users be able to opt out of the cooling period (and does that affect their credibility score)?
-- Where and how does the countdown display to the poster?
+- Fixed vs. variable cooling period length?
+- Can users opt out, and does that affect credibility score?
+- Where/how does the countdown display to the poster?
 
 ---
 
-## 5. Someone Like You / Someone Unlike You Popup
+## 5. Someone Like You / Someone Unlike You
 
 **Status:** Mockup built in `product/mockups/post-feed.jsx`. Core matching logic confirmed.
 
-**How it works:**
-Two panels surface as soon as matching individuals are identified — including during the cooling period. They are the poster's primary feedback signal during the 12-hour window.
+**Two panels, two axes — confirmed and separated:**
 
-- **Panel A — "Someone unlike you, similar conclusion"**: A user with a different political lean who likely reached the same conclusion about a post. Breaks the assumption that your epistemic verdict is tribally determined.
+- **Panel A — "Someone unlike you, similar conclusion"**: Different political lean, likely same post verdict. Breaks the assumption that your epistemic judgment is tribally determined.
+- **Panel B — "Someone like you, different conclusion"**: Similar epistemic style, different view on this post. Attacks in-group conformity pressure.
 
-- **Panel B — "Someone like you, different conclusion"**: A user who shares your epistemic style but holds a different view on the topic. Harder to dismiss as "other." Attacks in-group conformity pressure.
+The panels operate on independent axes that must not be conflated:
+1. **Political lean** — like/unlike you; current placeholder differentiator
+2. **Epistemic style** — how you think, not what you think; spider shape similarity
+3. **Post conclusion** — same/different verdict on this specific post's credibility
 
-**The two axes — confirmed and separated:**
+**Epistemic similarity via spider shape — CONFIRMED:**
+Spider shape = Tim Urban's vertical axis in quantified form. Similar shape = similar epistemic method regardless of political lean. Matching via cosine similarity between normalized dimension vectors.
 
-These panels operate on two independent axes that must not be conflated:
+**"Same conclusion" proxy (pre-qualifier):**
+- Like = near-certain agreement (strong signal)
+- Unqualified repost = weak-positive signal
+- UI language: "likely reached the same conclusion" until qualifier confirms
 
-1. **Political lean** ("like" or "unlike" you) — current placeholder signal; used for Panel A/B differentiation
-2. **Epistemic style** ("how you think", not "what you think") — the deeper matching signal; see below
-3. **Post conclusion** ("same" or "different" verdict on a specific post's credibility) — what the panel is surfacing
+**Geography as secondary signal:** Proximity for "Someone Unlike You — Nearby."
 
-**Epistemic similarity via spider shape — CONFIRMED MECHANIC:**
-
-The credibility score spider chart is a direct proxy for Tim Urban's vertical axis — *how* someone thinks, not *what* they conclude politically.
-
-- High sequencing score → demands is before ought → scientist-mode behavior
-- High cross-validation → actively seeks disconfirming views → low motivated reasoning
-- High source diversity → not epistemically siloed
-- The *shape* of the spider encodes epistemic style
-
-**"Someone Like You" = similar spider shape, regardless of political lean.**
-**"Someone Unlike You" = different political lean, but similar spider shape (same epistemic style, different priors).**
-
-This is the most valuable pairing on the platform: a scientist-mode conservative and a scientist-mode progressive examining the same post. Their priors differ; their methodology converges. If they reach the same conclusion, that's powerful signal.
-
-Matching algorithm: cosine similarity (or equivalent) between normalized spider dimension vectors. Shape similarity — not just overall score — determines the match.
-
-**"Same conclusion" signal — current approach:**
-Waiting for explicit agree/disagree qualifier at repost time is too slow for immediacy. Current proxy approach:
-- A **like** is near-certain agreement (strong signal)
-- A **repost without qualifier** is weak-positive signal (people rarely repost to oppose without context)
-- High-sequencing users of different political lean who liked a post → surfaced as predicted skeptic or predicted endorser depending on post type
-- UI language: "likely reached the same conclusion" until a qualifier confirms it, then upgrades to "same conclusion"
-
-Once the repost qualifier mechanic (disagree / neutral / agree) is built, this inference gets replaced with explicit signal.
-
-**Geography as secondary signal:**
-Geographic proximity is a secondary differentiating signal for "Someone Unlike You — Nearby." Local dissimilar people who share your epistemic verdict are especially valuable: they share your lived context but differ politically, which makes dismissal harder.
-
-**Strategic rationale:**
-- Empirically grounded: extended contact hypothesis shows knowing ingroup members have outgroup friends reduces prejudice (Wright et al., 1997)
-- Both panels work through *vicarious* contact — no direct interaction required
-- Matching on epistemic style rather than just political lean is a genuine product evolution beyond binary left/right framing
-
-**Open design questions** *(flagged in TODO.md)*:
-1. Does identification require active engagement (like/repost) or can passive signals (viewed) suffice? Passive is faster but privacy-sensitive.
-2. When/where does the popup trigger beyond the poster's own view? (reader view? every post? opinion-gated?)
-3. Opt-in vs. proactive surfacing for readers?
-4. Passive exposure vs. interactive engagement?
+**Open questions:** Identification speed (active vs. passive signal); opt-in vs. proactive for readers; passive vs. interactive engagement.
 
 ---
 
 ## 6. Is/Ought Visualizer
 
-**Status:** Built and committed — `product/mockups/is-ought.jsx`
+**Status:** Built — `product/mockups/is-ought.jsx`
 
-**How it works:**
-- Article text is scored word-by-word on a 0.0 (pure factual) to 1.0 (pure normative) spectrum
-- Colors map: **blue (fact) → amber (opinion)** — confirmed color language; red/yellow/green is exclusively credibility score territory
-- User-facing language: **"Fact / Opinion"** — "Is/Ought" is internal/technical only
-- Per-letter color gradients show transitions between fact and opinion territory as you read
-- Hover any word to see its classification label
-- Plain view toggle for comparison
-
-**Strategic rationale:**
-- The is/ought distinction is a core feature of "better information environment" as defined by RadMo
-- Most political conflict is about contested facts (is), not values (ought) — but the two get conflated
-- Making this distinction visible is both an educational tool and a bias signal
-- Sources that are predominantly "ought" are functionally opinion outlets regardless of branding
-
-**Applications:**
-- Applied to user posts → feeds into credibility score (is/ought sequencing dimension)
-- Applied to news sources → bias/editorial scoring independent of political lean
-- Applied to articles → "Fact / Opinion analysis enabled" as a reading mode
-
-**Future development:**
-- Currently hand-scored — needs algorithmic scoring via NLP/LLM
-- Is/ought scoring redesign needed: intent is connection *quality* between factual grounding and normative claims, not just ordering
+- Word-by-word scoring: 0.0 (fact) → 1.0 (opinion)
+- Color: **blue (fact) → amber (opinion)**; red/yellow/green reserved for credibility scores
+- User-facing language: **"Fact / Opinion"**; "Is/Ought" is internal only
+- Currently hand-scored; NLP/LLM automation needed
 
 ---
 
 ## 7. Credibility Score
 
-**Status:** Two mockups built — `product/mockups/credibility-score-v1.jsx` (bar chart), `product/mockups/credibility-score-v2.jsx` (radar/spider chart). Spider (v2) is the confirmed preferred direction.
+**Status:** Spider chart (v2) is the confirmed display direction. Four dimensions redefined this session.
 
-**Four dimensions (weighted):**
+**The platform's job re: is/ought:** Make it obvious which territory the reader is in. RadMo does not adjudicate normative claims — it surfaces epistemic method and separates fact from opinion so readers can do their own evaluation. The credibility score is a "how they think" barometer, not a "what they think" verdict.
 
-| Dimension | Weight | Description |
-|---|---|---|
-| Is/Ought Sequencing | 30% | Normative claims follow factual grounding. Measures whether a user establishes facts before making value claims. |
-| Cross-Viewpoint Validation | 30% | Percentage of high-rated contributions validated by users with opposing political factors (Community Notes mechanic adapted for RadMo). |
-| Source Diversity | 25% | Range of outlet bias ratings cited. Penalizes single-source or single-lean citation patterns. |
-| Claim Consistency | 15% | Do cited sources lean the same direction as the user's ought conclusions? Proxy for motivated reasoning detection. |
+---
 
-**Spider shape as epistemic fingerprint — CONFIRMED:**
+### The Four Dimensions (confirmed definitions)
 
-The spider chart is not only a credibility display — it encodes a user's *epistemic style* (how they think, not what they conclude). This directly maps to Tim Urban's vertical axis:
+#### 1. Factual Grounding — 30%
+*Formerly: Is/Ought Sequencing*
 
-- A user with a high, balanced spider = scientist-mode thinker (evidence-first, willing to update)
-- A user with a lopsided or low spider = lawyer-mode or lower (conclusion-first, evidence recruited)
-- The *shape* of the polygon — not just the overall score — is the meaningful signal
+**What it measures:** The degree to which a user's normative claims are supported by factual claims somewhere in their work. Grounding as *presence*, not *order* — it doesn't matter whether the opinion arrives before or after the facts rhetorically; what matters is whether the facts exist at all.
 
-**Spider shape similarity is the matching signal for the "Someone Like You" perspective panel.** Two users with similar spider shapes are epistemically compatible — they reason similarly — regardless of where they land politically. Matching algorithm: cosine similarity (or equivalent distance metric) between normalized dimension vectors.
+- **100:** Every normative claim the user makes has traceable factual support in their body of work
+- **0:** Pure proclamation — normative claims with no factual scaffolding, ever
 
-This dual function of the spider chart — credibility display *and* epistemic fingerprint for matching — is a core system design decision.
+**Technical note:** Harder to compute than order-detection. Requires argument structure parsing to link normative claims to supporting factual claims across potentially non-adjacent text — an NLP challenge closer to claim extraction than sentiment analysis.
 
-**Is/Ought posting mix:**
-Separate from the credibility score — a behavioral descriptor showing where a user sits on the factual/normative spectrum. Neither end is inherently bad; the score rewards *sequencing*, not ratio.
+**Why the rename matters:** Penalizing *order* creates demographic skew — academic writing style (conclusion last) is rewarded over other legitimate rhetorical structures. Penalizing *absence* of grounding targets the actual epistemic failure.
 
-**Design decisions:**
-- Score must be visible and legible — functions like a badge, present in every interaction
-- Earned in ways that feel meaningful and are hard to game
-- Creates social proof loops — high-credibility users attract high-credibility engagement
-- Separate Writing Impact (what you post) and Rating Impact (how you engage with others' content) — borrowed from Community Notes
+---
 
-**Engagement signals and credibility score updates:**
-- **Likes** → near-certain agreement signal; carry stronger *directional* weight on poster's cred score
-- **Reposts** → editorially ambiguous; weighted by the disagree/neutral/agree qualifier once that mechanic exists; unqualified reposts carry weaker directional weight
-- **Agree repost from high-cred user** → positive signal for poster's cred
-- **Disagree repost from high-cred user** → negative signal — post spreading because it's wrong
-- **Agree repost from low-cred user** → likely negative signal — credibility liability, not asset
-- Full mechanic design for cred score delta rules per engagement type is a to-do
+#### 2. Cross-Viewpoint Validation — 30%
+*Unchanged name; definition expanded*
 
-**Critical open questions:**
-- **Who rates source credibility?** Any centralized bias labeling system will be perceived as biased itself. Need a defensible methodology.
-- **Gaming risk:** If rules are legible, users will optimize for the metric rather than the behavior.
-- **Demographic skew risk:** The scoring system rewards a specific epistemic style. Emotional or communal communication registers may score lower not because they're less credible but because the system is miscalibrated.
-- **CrossViewpoint weight** — 40% vs. 30% still unresolved.
+**What it measures:** Whether a user's contributions are validated by people who have every reason to disagree with them. Unexpected validation is the signal — the more different the validator, the more meaningful the endorsement.
+
+- **100:** Contributions consistently validated across multiple difference axes
+- **0:** Only validated by users who already agree — epistemic bubble is tight
+
+**Validation axes (composite):**
+- **Political lean** — still included but no longer the only axis
+- **Epistemic tribe** — zealot-to-zealot cross-political validation is *stronger* signal than scientist-to-scientist, because it's more surprising; scientists are expected to follow evidence, zealots are not
+- **Geographic/cultural distance** — validation from users in different countries, regions, or cultural contexts; especially meaningful for international or policy topics
+- **Information diet distance** — validation from users whose citation graphs look measurably different from yours (see below)
+
+**Information diet distance — how it works:**
+Every citation a user makes is logged: outlet name, outlet type, outlet geography, publication date. Over 30+ posts, this builds a citation graph per user. Cosine similarity between two users' citation graphs = information diet distance. Two users whose reading patterns look nothing alike are "far apart" even if they vote the same way. Detectable entirely from platform behavior — no self-reporting required.
+
+**Composite weighting across axes:** TBD — validation from users who differ on multiple axes simultaneously carries more weight than single-axis difference.
+
+---
+
+#### 3. Source Diversity — 25%
+*Unchanged name; definition expanded beyond political bias ratings*
+
+**What it measures:** Whether a user draws from a genuinely diverse range of sources — across format, geography, and institutional type — rather than a single-neighborhood information diet.
+
+- **100:** Citations span multiple formats, geographies, and outlet types, including sources adversarial to the user's typical conclusions
+- **0:** All citations from the same type, same geography, same ideological neighborhood
+
+**Format diversity — tier ranking (highest to lowest epistemic weight):**
+1. Primary sources — government documents, transcripts, raw data, court filings, firsthand accounts
+2. Peer-reviewed academic research — methodology-constrained, adversarially reviewed
+3. Investigative journalism — primary source-reliant, editor-reviewed
+4. Government and institutional reports — NGOs, think tanks with disclosed methodology
+5. Quality news reporting — factual reporting from outlets with editorial standards
+6. Expert commentary/opinion — credentialed perspective, clearly normative but grounded
+7. General opinion/editorial — disclosed perspective pieces
+
+Citing across tiers 1–5 = high format diversity. Citing only tiers 6–7 = low. Institutional type is a tagging dimension *within* this format system, not a separate axis.
+
+**Geographic diversity:** Citations from multiple countries or regions. Single-country information diet is a measurable blind spot, especially for global or policy topics.
+
+**Political bias rating:** Still included as one input (AllSides, Ad Fontes, etc.) but no longer the whole definition. One signal among several.
+
+**Deprioritized for now:**
+- *Temporal diversity* (citing across time periods, not just recent news) — noted for future inclusion
+- *Claimed vs. independent* (does source agree or disagree with poster's conclusion) — overlaps with Claim Integrity; deprioritized here
+
+---
+
+#### 4. Claim Integrity — 15%
+*Formerly: Claim Consistency*
+
+**What it measures:** Whether the user's cited sources actually say what the user claims they say. The gap between source content and claimed source content.
+
+- **100:** Cited sources faithfully support the claims attributed to them — no cherry-picking, no out-of-context quotes, no misrepresented findings
+- **0:** Systematic gap between what sources say and what the user claims they show
+
+**Two failure modes:**
+- *Deliberate misrepresentation* — knows the source doesn't support the claim; intellectual dishonesty
+- *Sloppy reading* — genuinely misunderstands the source; epistemic weakness, not necessarily bad faith
+
+Algorithmically indistinguishable at the individual claim level. Distinguishable by *pattern*: random errors scatter across topics and directions; motivated misreading clusters — always the same political direction, always the same topic domain, always overstating the same type of conclusion. Non-random error patterns are the bad-faith signal.
+
+This dimension functions as a **good faith barometer** — the hardest of the four to game, because it requires the system to compare claimed source meaning against actual source content.
+
+---
+
+### Future Dimension: Updating on Evidence
+*Not in the current four — flagged for later*
+
+Changing your mind in response to new evidence is scientist-mode behavior and should be rewarded, not penalized. The platform should explicitly destigmatize updating.
+
+The signal isn't *whether* you changed your mind — it's *why*. A position change accompanied by a cited factual update ("new data from X suggests Y, revising earlier position") is scientist-mode. An unexplained flip or a change tracking with tribal movement is lawyer-mode.
+
+This is hard to operationalize cleanly alongside the current four dimensions and is deferred until the core system is stable.
+
+---
+
+### Spider Shape as Epistemic Fingerprint — CONFIRMED
+
+The spider chart encodes *how* a user thinks, not just *how well* they score overall:
+- High, balanced shape = scientist-mode (evidence-first, willing to update)
+- Lopsided or low shape = lawyer-mode or zealot-mode (conclusion-first, evidence recruited)
+- Shape, not score, is the meaningful signal
+
+Spider shape similarity (cosine distance between normalized dimension vectors) is the matching engine for the "Someone Like You" perspective panel. This is a core dual-purpose system design decision — same infrastructure serves both credibility display and epistemic matching.
+
+---
+
+### Engagement Signals and Credibility Score Updates
+
+- **Likes** → near-certain agreement; stronger directional weight on poster's cred score
+- **Unqualified reposts** → editorially ambiguous; weak directional weight until qualifier exists
+- **Agree repost, high-cred user** → positive signal
+- **Disagree repost, high-cred user** → negative signal (post spreading because it's wrong)
+- **Agree repost, low-cred user** → likely negative signal (credibility liability)
+- Full cred score delta rules per engagement type: to-do
+
+---
+
+### Open Questions
+- CrossViewpoint dimension weight: 40% vs. 30%
+- Gaming resistance: legible rules create optimization pressure
+- Demographic skew: system rewards a specific epistemic style; emotional/communal registers may be penalized unfairly
+- Source credibility rating methodology: who decides?
 
 ---
 
 ## 8. Feed Algorithm
 
 **Prosocial ranking:**
-- Downranks content with partisan animosity, antidemocratic attitudes, and outgroup threat framing
-- Does NOT remove content — just requires more scrolling (validated by UW/Stanford/Northeastern research)
-- Effect equivalent to ~3 years of historical attitude change in 10 days (pre-2024 election experiment)
+- Downranks partisan animosity, outgroup threat framing, antidemocratic content
+- Does NOT remove content — requires more scrolling
+- Cross-viewpoint citations weighted more heavily
+- "Needs Your Help" surfaces lopsided-engagement posts for rating by underrepresented perspectives
 
-**Cross-viewpoint incentivization:**
-- Following users with different political/cultural factors earns credibility weight
-- Cross-ideological citations in posts weighted more heavily than same-lean citations
-- "Needs Your Help" mechanic surfaces posts with lopsided engagement for rating by underrepresented perspectives
-
-**Feed sorting options:**
-- Chronological
-- Credibility-weighted (high credibility posts surface higher)
-- Viewpoint distance (shows content furthest from your own factor position)
+**Feed sorting options:** Chronological, credibility-weighted, viewpoint-distance
 
 ---
 
 ## 9. Source Citation Incentivization
 
-**Status:** Concept stage, not yet designed
+**Status:** Concept stage
 
-**Core ideas:**
-- Citing credible sources adds to credibility score (source diversity dimension)
-- Cross-ideological citation bonus: if original post is left-leaning and a response cites a left-leaning source to support a right-leaning argument, that citation carries MORE weight than a right-leaning source doing the same
-- Rationale: a source corroborating a position it wouldn't be expected to support is more epistemically meaningful
-
-**Open questions:**
-- Who rates source credibility?
-- Gaming risk: users may spam cross-ideological citations without engaging with the content
-- How does citation quality (full article vs. headline cherry-pick) factor in?
+- Citing credible sources adds to Source Diversity score
+- Cross-ideological citation bonus: adversarial source supporting your argument carries more weight than expected-ally source
+- Open questions: who rates sources; gaming risk; citation quality (full article vs. headline)
 
 ---
 
@@ -299,19 +296,10 @@ Separate from the credibility score — a behavioral descriptor showing where a 
 
 **Status:** Concept stage, research complete
 
-**The illiquid market mechanic:**
-- If an important topic has low engagement, it represents an "illiquid market" — less established consensus
-- The credibility payoff for engaging with an illiquid topic (with good sourcing and less inherent bias) should be **larger** than engaging with a well-established topic
-- This creates a financial-market-style incentive to surface underreported but important stories
-
-**Price of a claim as cross-ideological consensus signal:**
-- Rather than left/right framing, prediction market probabilities show what the community collectively believes will happen
-- A claim with high cross-ideological agreement has a higher "price" — it's not partisan, it's probable
-
-**Reputation vs. real money:**
-- Real-money markets have stronger accuracy signals but face regulatory risk
-- Reputation-based markets are legally clean and philosophically aligned
-- **Decision pending:** deeper exploration needed
+- Illiquid topic = higher credibility payoff for quality engagement
+- Prediction market price as cross-ideological consensus signal (not partisan framing)
+- Reputation-based preferred over real money (regulatory, philosophical alignment)
+- Decision pending on monetary component
 
 ---
 
@@ -319,15 +307,10 @@ Separate from the credibility score — a behavioral descriptor showing where a 
 
 **Status:** Concept stage
 
-**Core features:**
-- News aggregation across sources with viewpoint context
-- Bias/editorial scoring per article using is/ought analysis (not just political lean)
-- Source credibility rating system
-- "Blind spot" feature — shows stories you're likely missing based on your reading patterns
-
-**Differentiation from Ground News:**
-- Ground News uses human-panel left/center/right ratings — contested and binary
-- RadMo's approach: is/ought scoring is objective and measurable, not political
+- News aggregation with viewpoint context
+- Is/ought scoring for bias detection (not just political lean)
+- "Blind spot" feature based on reading patterns
+- Differentiation from Ground News: is/ought scoring is measurable; political lean ratings are contested
 
 ---
 
@@ -335,64 +318,42 @@ Separate from the credibility score — a behavioral descriptor showing where a 
 
 **Status:** Research complete, implementation pending
 
-**The bridging algorithm:**
-- Community Notes' matrix factorization separates political bias from genuine helpfulness
-- The note intercept — stripped of political bias — is the "common ground factor"
-- Algorithm and all data are open source: `github.com/twitter/communitynotes`
-
-**RadMo's evolution beyond Community Notes:**
-- Community Notes is limited to a binary left/right axis — known weakness
-- RadMo's multi-dimensional model (geographic, cultural, religious, generational) is a genuine product evolution
-- Every major platform has copied Community Notes as a *feature* — none has built a platform around the bridging *principle*
+- Matrix factorization separates political bias from genuine helpfulness
+- note_intercept = common ground factor
+- RadMo evolution: multi-dimensional beyond binary left/right
+- Planned: walk through `matrix_factorization.py` and `scoring.py`
 
 ---
 
 ## 13. Business Model
 
-**Subscription over advertising:**
-- Advertising-driven business models create outrage incentives
-- RadMo's subscription model means the platform profits when users find it genuinely valuable
-- Transparency about this distinction is itself a differentiator and trust signal
+Subscription over advertising. Platform profits when users find it valuable, not when they're outraged. Transparency about this is itself a trust signal.
 
 ---
 
 ## 14. Open Design Questions
 
-Flagged items needing dedicated design sessions:
-
-- [ ] **Dopamine gap** — How do we make intellectual honesty feel as rewarding as outrage?
-- [ ] **Source credibility rating methodology** — Who decides? How do we avoid the "biased bias rater" problem?
-- [ ] **Prediction markets monetary design** — Can real money be incorporated?
-- [ ] **Someone Like You / Someone Unlike You — open design questions** (see section 5)
-- [ ] **Is/ought scoring operationalization** — Moving from hand-scoring to algorithmic scoring at scale
-- [ ] **Repost intent qualifier** — disagree / neutral / agree mechanic at repost time; feeds into cred score delta
-- [ ] **Cred score delta rules** — full mechanic for how likes, repost types, and qualifier signals update poster's credibility score
-- [ ] **Community Notes code walkthrough** — planned session to read `matrix_factorization.py` and `scoring.py`
+- [ ] Dopamine gap — credibility status + insight velocity is the hypothesis
+- [ ] Source credibility rating methodology — who decides?
+- [ ] Prediction markets monetary design
+- [ ] Repost intent qualifier — disagree / neutral / agree at repost time
+- [ ] Cred score delta rules — full mechanic per engagement type
+- [ ] Is/ought scoring operationalization — NLP/LLM pipeline
+- [ ] Community Notes code walkthrough
+- [ ] CrossViewpoint weight — 40% vs. 30%
+- [ ] Updating-on-evidence dimension — future addition
 
 ---
 
 ## 15. Design Principles
 
-**1. Incentives over morality**
-Never ask users to be better people. Build a platform where existing human tendencies produce better collective outcomes.
-
-**2. Redirect, don't resist (mostly)**
-Work with human psychology rather than against it. Use resistance (friction) sparingly and intentionally.
-
-**3. The binary left/right model is a ceiling**
-Community Notes proved bridging works. RadMo's multi-dimensional model is a genuine product evolution.
-
-**4. Transparency as differentiation**
-Explicit business model messaging is a trust signal.
-
-**5. Moderation needs an identity**
-"Radically moderate" gives the quiet majority a tribe and a posture. Never let RadMo feel like a lecture.
-
-**6. Epistemic quality ≠ rhetorical style**
-The credibility system should measure epistemic quality, not academic communication style.
-
-**7. Generational tailwind**
-Younger voters show pragmatic, issue-based behavior. RadMo's natural early audience.
+1. **Incentives over morality** — never ask users to be better people
+2. **Redirect, don't resist (mostly)** — use friction sparingly and intentionally
+3. **The binary left/right model is a ceiling** — multi-dimensional is the evolution
+4. **Transparency as differentiation** — business model alignment is a trust signal
+5. **Moderation needs an identity** — rebellion framing, never a lecture
+6. **Epistemic quality ≠ rhetorical style** — don't penalize non-academic communication registers
+7. **Generational tailwind** — pragmatic younger voters are the natural early audience
 
 ---
 
