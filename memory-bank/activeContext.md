@@ -2,10 +2,7 @@
 
 ## Current Work Focus
 
-**Primary:** Post card reader view is the active design surface. Three open threads from this session:
-1. Viewpoint diversity reach display — tabled (Option 1 vs. Option 3 visualized, decision deferred)
-2. Dopamine gap — highest-risk unsolved design problem
-3. "Someone Like You / Someone Unlike You" — geography direction identified, 4 sub-questions still open
+**Primary:** Post card reader/poster view — cooling period architecture confirmed, perspective panel mechanics confirmed, epistemic matching via spider shape confirmed.
 
 ## What's Committed & Current
 
@@ -18,34 +15,41 @@
 - `product/mockups/post-feed.jsx` — **v3 reader view (current)** — post card with is/ought coloring, swappable cred scores, rater cards, badges, perspective check panels
 
 ### Documentation
-- `product/features.md` — 15 sections, current
-- `product/badges.md` — NEW: Bridge Builder, First Principles, Wide Lens — confirmed default features, draft earn conditions
+- `product/features.md` — 15 sections, updated this session
+- `product/badges.md` — Bridge Builder, First Principles, Wide Lens — confirmed default features, draft earn conditions
 - `research/research.md` — 12 topic areas, current
 - `strategy/strategy.md`, `strategy/evolution.md`, `strategy/what-to-build-now.md` — current
-- `TODO.md` — NEW: live running to-do list in repo root
+- `TODO.md` — live running to-do list in repo root
 
-## Locked Design Decisions (this session)
+## Locked Design Decisions
 
 - **Is/ought color spectrum:** Blue (fact) → amber (opinion). Red/yellow/green is exclusively credibility score language.
 - **User-facing language:** "Fact / Opinion" replaces "Is / Normative". "Is/Ought" stays as internal/technical term.
 - **Cred score interaction:** Clicking the score swaps it in-place with the spider chart. Not a dropdown. Click again to restore.
 - **Engagement display:** Avg reposter cred only (not liker avg). Reposting = higher-conviction signal.
-- **Viewpoint reach removed** from post card for now — tabled pending Option 1 vs. Option 3 decision.
-- **Badges are confirmed default features:** Bridge Builder, First Principles, Wide Lens. Documented in `product/badges.md`.
-- **"Someone Unlike You — Nearby":** Geography as primary signal for the unlike-you panel. Hypothesis: local dissimilar people who share your viewpoint on a topic are the most valuable connection to surface. Links to genuine-connection and local-community-building goals.
+- **Badges are confirmed default features:** Bridge Builder, First Principles, Wide Lens.
+- **Cooling period architecture:** Posts are live in feeds immediately. Cooling period governs what the *poster* sees of their own engagement — not the post's distribution. Perspective panels appear immediately when matches are identified. Full engagement data (who liked/reposted, scores, rater cards) visible to poster at 12 hours.
+- **Edit window:** 30 minutes from post time. Closes early on first repost. Open questions: typo vs. substantive distinction, reposter notification, retraction mechanic.
+- **Perspective panels show immediately:** As soon as "Someone Like You" and "Someone Unlike You" matches are identified, panels appear for the poster. This is the dopamine hook during the cooling window — a named person's perspective, not an aggregate count.
+- **Spider shape = epistemic fingerprint (CONFIRMED):** The credibility score spider chart encodes *how* a user thinks (Tim Urban's vertical axis), not just *how well* they score. High sequencing = scientist-mode (evidence-first). High cross-validation = seeks disconfirmation. High source diversity = not siloed. The shape of the polygon is the meaningful signal.
+- **"Someone Like You" matching = spider shape similarity:** Matching is done on cosine similarity (or equivalent) between normalized spider dimension vectors — not political lean, not overall score. Shape similarity = epistemic compatibility.
+- **"Someone Unlike You" matching:** Different political lean (current placeholder signal) + similar spider shape. The most valuable pairing: scientist-mode conservative and scientist-mode progressive examining the same post — different priors, same methodology.
+- **"Same conclusion" proxy (pre-qualifier):** Until the repost intent qualifier (disagree/neutral/agree) is built, conclusion inference uses engagement type: likes = near-certain agreement (strong signal); unqualified reposts = weak-positive signal. UI uses "likely reached the same conclusion" until confirmed.
 
 ## Open To-Dos (priority order)
 
 1. **Is/ought scoring redesign** — connection quality between factual and normative claims, not ordering
-2. **Viewpoint diversity reach** — Option 1 (similarity index) vs. Option 3 (cluster count); tabled
+2. **Viewpoint diversity reach** — Option 1 vs. Option 3; tabled
 3. **Badge earn conditions** — thresholds, visual design, loss mechanics
-4. **Dopamine gap** — no solution yet; must resolve before MVP
+4. **Dopamine gap** — must resolve before MVP
 5. **Poster-facing UI** — deferred
-6. **Reposter/poster cred tension** — high-cred reposters + low-cred poster is a meaningful signal; feed algorithm implications
-7. **"Someone Unlike You" — 4 sub-questions** (signals, trigger, opt-in vs. proactive, passive vs. interactive)
-8. **CrossViewpoint weight** — 40% vs. 30%
-9. **Hot take spectrum visual** — workshop separately
-10. **Avatar shape mirroring spider** — workshop separately
+6. **Repost intent qualifier** — disagree / neutral / agree mechanic at repost time
+7. **Cred score delta rules** — how likes, repost qualifiers, and engagement types update poster's score
+8. **Perspective panel identification speed** — active engagement vs. passive view signal
+9. **"Same conclusion" vs. "same viewpoint" UI clarification** — post credibility verdict vs. political agreement; must be clearly separated in copy and matching logic
+10. **CrossViewpoint weight** — 40% vs. 30%
+11. **Hot take spectrum visual** — workshop separately
+12. **Avatar shape mirroring spider** — workshop separately
 
 ## Active Preferences & Patterns
 
@@ -64,7 +68,8 @@
 - `what-to-build-now.md` argues browser extension before full platform (Phase 1 → 2 → 3)
 - Ground News is primary competitive reference; RadMo differentiates on social layer + multi-dimensional scoring
 - Community Notes binary left/right model is the ceiling RadMo evolves beyond
-- Matrix factorization fully documented this session — note_intercept is the common ground factor; user/note factors are the political alignment terms
+- Matrix factorization fully documented — note_intercept is the common ground factor; user/note factors are the political alignment terms
+- Spider shape similarity is both a credibility display mechanic AND the epistemic matching engine for perspective panels — dual-purpose system design decision
 
-**Last Updated:** 2026-04-02
+**Last Updated:** 2026-04-03
 **Next Review:** Start of next session
