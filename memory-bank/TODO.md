@@ -18,6 +18,10 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Viewpoint diversity reach display** — TABLED; Option 1 vs. Option 3; polarized case is the key test; decision deferred
 - [ ] **Bubble mode / Adventure mode** — names TBD; core concept: give users explicit toggle between in-bubble and out-of-bubble feeds; primary value is the *mirror* (proving the bubble exists and is larger than assumed), not just content variety; two user segments: (1) knows they're in a bubble but underestimates it — adventure mode is calibration; (2) doesn't believe they have a bubble — the label alone is an intervention; contrast must be legible (algorithm dependency: bubble detection must be real, adventure surfacing must be aggressive); red pill / blue pill framing has tribal baggage — steer toward "before/after reveal" in copy
 - [ ] **Feed weighting sliders** — alternative/complement to binary bubble/adventure toggle; always-visible sliders showing user's current information diet mix; slider position potentially displayable on profile as a credibility-adjacent signal; workshop after bubble/adventure mode is resolved
+- [ ] **Digest feed format** — instead of infinite scroll, RadMo serves a fixed daily digest (morning + evening drop); user reads what's there, no re-serving, no refresh loop; algorithm runs on a clock not a thumb; operationalization: ranked set per user based on spider profile, served 1-2x daily; tension with retention needs workshopping
+- [ ] **Top 10 facts of the day** — daily surfacing of the most cross-viewpoint-validated factual claims in the last 24hrs; signal = positive engagement (likes + agreement reposts) from users with maximally distant spider profiles, not raw volume; essentially Community Notes bridging algorithm applied to claims rather than corrections; buildable on existing CV architecture; needs UX design (where it lives, how it's presented)
+- [ ] **Flow state as optimization target** — "engagement" (interruption frequency) is the enemy of flow (interruption absence); RadMo should optimize for *insight events per session* not time-on-app or engagement rate; proxy signals: dwell time ending in a rating/repost, switching to adventure mode immediately after reading a post; connects to "time to insight" loss function already flagged; needs concrete instrumentation design
+- [ ] **Cost of ignoring shared facts** — users who never engage with Top 10 facts gradually lose reach (not access); feed ranking deprioritizes their content downstream because they demonstrably live in a hermetically sealed info environment; pressure without censorship; needs threshold design and anti-gaming mechanic
 
 ---
 
@@ -32,9 +36,9 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 ## Perspective Check — Open Design Questions
 
 - [ ] **Perspective panel identification speed** — active engagement (like/repost) vs. passive signal (post viewed); passive is faster but raises privacy and accuracy questions
-- [ ] **\"Same conclusion\" vs. \"same viewpoint\" UI clarification** — post credibility verdict vs. political agreement; must be separated in copy and matching logic
-- [ ] **\"Someone Like You / Someone Unlike You\" — 4 core design questions**
-  1. What signals define \"like\" vs. \"unlike\" beyond political lean? (spider shape confirmed as epistemic axis; geography as secondary)
+- [ ] **"Same conclusion" vs. "same viewpoint" UI clarification** — post credibility verdict vs. political agreement; must be separated in copy and matching logic
+- [ ] **"Someone Like You / Someone Unlike You" — 4 core design questions**
+  1. What signals define "like" vs. "unlike" beyond political lean? (spider shape confirmed as epistemic axis; geography as secondary)
   2. When/where do panels trigger for readers (not just poster)?
   3. Opt-in vs. proactive surfacing?
   4. Passive exposure vs. interactive engagement?
@@ -47,8 +51,9 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
   - Perspective panels always visible (not cooling-period gated)
   - Edit button in poster header (30-min window)
 - [ ] **Spider shape personas** — five archetypes defined (Bubble Scholar, Vibes Merchant, Magpie, Persuader, Radical Moderate); add real-world examples to `product/features.md` Section 7 or a new `product/personas.md`
-- [ ] **\"Hot take\" spectrum visual** — bar from hot take to Radically Moderate; workshop separately
+- [ ] **"Hot take" spectrum visual** — bar from hot take to Radically Moderate; workshop separately
 - [ ] **Avatar shape mirroring spider chart** — polygon avatar matching credibility profile; workshop separately
+- [ ] **Public information diet display** — nutrition-label style display on user profile showing source format mix, geographic diversity, political lean spread; aggregates into a badge or profile signal; design TBD
 
 ---
 
@@ -59,12 +64,14 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Community Notes code walkthrough** — `matrix_factorization.py` and `scoring.py`; identify RadMo multi-dimensional adaptation points
 - [ ] **Sentiment analysis / argument mining** — NLP model selection for Factual Grounding scoring; cost/accuracy tradeoffs
 - [ ] **Prediction market monetary incentive design** — real money vs. reputation; Kalshi ruling; Polymarket/Manifold/Metaculus reference models
+- [ ] **Flow state research** — what does the psychology/UX literature say about conditions for flow in information consumption contexts? What platforms (if any) have approximated it? Relevant to insight-event instrumentation
 
 ---
 
 ## Future Dimension Candidate (post-MVP)
 
 - [ ] **Mind-changing quality dimension** — reward grounded position updates (new evidence cited); penalize tribal flips (no factual trigger); signal: whether + why someone changed their mind; tabled until core four dimensions are stable
+- [ ] **Epistemic restraint signal** — cred score accrues at decreasing rate during posting silence (interest on restraint); cadence-break variant: score rewards posting *less* than your established cadence; gaming risk — needs floor mechanic so "never post" isn't a dominant strategy; fun, worth designing eventually
 
 ---
 
@@ -75,9 +82,10 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] Claim extraction and cross-reference scoring
 - [ ] Multi-dimensional viewpoint mapping (geographic, cultural, generational, religious)
 - [ ] Mobile-first design
-- [ ] Ingroup norm surfacing — \"most people in this discussion feel X\"
+- [ ] Ingroup norm surfacing — "most people in this discussion feel X"
 - [ ] Cooling period UX — countdown display design
 - [ ] Temporal source diversity — citing across time, not just recent; deprioritized, add later
+- [ ] **Portable cred score / LinkedIn integration** — RadMo score as professional signal; epistemic track record alongside CV; "here's my intellectual rigor number" as employment signal; long-term; changes target user slightly toward people with professional reasons to demonstrate rigor (high-motivation early adopter segment)
 
 ---
 
