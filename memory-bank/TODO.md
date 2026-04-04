@@ -21,7 +21,7 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Digest feed format** — instead of infinite scroll, RadMo serves a fixed daily digest (morning + evening drop); user reads what's there, no re-serving, no refresh loop; algorithm runs on a clock not a thumb; operationalization: ranked set per user based on spider profile, served 1-2x daily; tension with retention needs workshopping
 - [ ] **Top 10 facts of the day** — daily surfacing of the most cross-viewpoint-validated factual claims in the last 24hrs; signal = positive engagement (likes + agreement reposts) from users with maximally distant spider profiles, not raw volume; essentially Community Notes bridging algorithm applied to claims rather than corrections; buildable on existing CV architecture; needs UX design (where it lives, how it's presented)
 - [ ] **Flow state as optimization target** — "engagement" (interruption frequency) is the enemy of flow (interruption absence); RadMo should optimize for *insight events per session* not time-on-app or engagement rate; proxy signals: dwell time ending in a rating/repost, switching to adventure mode immediately after reading a post; connects to "time to insight" loss function already flagged; needs concrete instrumentation design
-- [ ] **Cost of ignoring shared facts** — users who never engage with Top 10 facts gradually lose reach (not access); feed ranking deprioritizes their content downstream because they demonstrably live in a hermetically sealed info environment; pressure without censorship; needs threshold design and anti-gaming mechanic
+- [ ] **Cost of ignoring shared facts** — ~~Top 10 engagement as signal~~ REVISED: tying reach penalties to Top 10 engagement is flawed (specialization ≠ hermetic sealing; a nurse who never engages with foreign policy facts isn't in a bubble). Better signal is already in the cred score: if a user's citation graph and reposts never leave a single ideological cluster *across all topics they post about*, that depresses their Cross-Viewpoint and Source Diversity scores naturally. Standalone mechanic likely unnecessary — the cred score does this work more fairly. Flag for review when cred score dimensions are fully operationalized.
 
 ---
 
@@ -71,7 +71,7 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 ## Future Dimension Candidate (post-MVP)
 
 - [ ] **Mind-changing quality dimension** — reward grounded position updates (new evidence cited); penalize tribal flips (no factual trigger); signal: whether + why someone changed their mind; tabled until core four dimensions are stable
-- [ ] **Epistemic restraint signal** — cred score accrues at decreasing rate during posting silence (interest on restraint); cadence-break variant: score rewards posting *less* than your established cadence; gaming risk — needs floor mechanic so "never post" isn't a dominant strategy; fun, worth designing eventually
+- [ ] **Epistemic restraint signal** — cred score accrues at decreasing rate (asymptotic ceiling) during posting silence; cadence-baseline variant: bonus kicks in only when you post *less* than your established pattern, so infrequent posters don't get a free ride; gaming neutralized by design; worth speccing eventually
 
 ---
 
