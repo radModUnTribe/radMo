@@ -18,6 +18,8 @@ Annotated links from research sessions. Organized by topic. Each entry includes 
 10. [Perceived vs. Actual Polarization (False Polarization)](#10-perceived-vs-actual-polarization-false-polarization)
 11. [Tribalism, Out-Group Humor, and Real Connection](#11-tribalism-out-group-humor-and-real-connection)
 12. [Vicious vs. Virtuous Cycles in Social Systems](#12-vicious-vs-virtuous-cycles-in-social-systems)
+13. [Flow State & Optimal Experience](#13-flow-state--optimal-experience)
+14. [Engagement vs. Stated Preferences — The Revealed Preference Problem](#14-engagement-vs-stated-preferences--the-revealed-preference-problem)
 
 ---
 
@@ -500,5 +502,84 @@ https://medium.com/@freeasabird7774/the-cycles-of-truth-and-deception-virtuous-a
 
 ---
 
-*Last updated: 2026-03-31*
-*Sessions: Ground News deep dive (Nov 2024), Platform strategy (Nov 2024), Cross-viewpoint research, Community Notes deep dive, Prediction markets research (Mar 2026), Social media fatigue / false polarization / tribalism / virtuous cycles (Mar 2026)*
+## 13. Flow State & Optimal Experience
+
+### Key finding
+Flow is a distinct psychological state — total absorption in an activity — characterized by clear goals, immediate feedback, challenge/skill balance, and loss of self-consciousness. It is fundamentally incompatible with the interruption-based design of current social media. Passive consumption (scrolling, watching) rarely produces flow; active, goal-directed participation does. Optimizing for flow — rather than engagement or time-on-app — is a genuinely different product design philosophy with strong psychological grounding.
+
+---
+
+**Flow (psychology) — Wikipedia**
+https://en.wikipedia.org/wiki/Flow_(psychology)
+> Comprehensive overview of Csikszentmihalyi's flow theory. Nine components of flow: clear goals, immediate feedback, challenge/skill balance, merging of action and awareness, intense concentration, sense of control, loss of self-consciousness, time distortion, autotelic experience. Key finding: flow occurs more often during work than free time; passive activities (watching TV) almost never produce it.
+> **RadMo relevance:** Passive scrolling is the anti-flow. The design implication: RadMo must give users an active job-to-be-done with clear goals and immediate feedback at the post level to create conditions for flow. Rating credibility, qualifying a repost, or identifying a perspective match are all active micro-tasks that fit this model.
+
+---
+
+**Flow: The Psychology of Optimal Experience — Csikszentmihalyi (1990)**
+https://www.amazon.com/Flow-Psychology-Experience-Perennial-Classics/dp/0061339202
+> The foundational book. Key distinction: *pleasure* (passive, transient) vs. *enjoyment* (active, produced by flow). Csikszentmihalyi's insight: happiness comes from ordering the information that enters consciousness — not from external events. Flow produces deeper, longer-lasting satisfaction than pleasure.
+> **RadMo relevance:** RadMo's value proposition maps to enjoyment (active, durable) not pleasure (passive, addictive). This is the philosophical underpinning of "time to insight" as a loss function over time-on-app.
+
+---
+
+**A Review on the Role of the Neuroscience of Flow States — PMC**
+https://pmc.ncbi.nlm.nih.gov/articles/PMC7551835/
+> Reviews neurocognitive research on flow. Key finding: flow involves a shift from explicit (conscious, effortful) to implicit (automatic, skilled) cognitive processing — the prefrontal cortex quiets down. Requires a "goal-directed, rule-bound system that provides clear feedback." Flow rarely occurs in everyday life because challenge and skill are rarely balanced.
+> **RadMo relevance:** A platform that provides clear epistemic goals (rate this claim, evaluate this source) and immediate feedback (score updates, perspective matches) creates the structural preconditions for flow that current platforms systematically destroy.
+
+---
+
+**Flow Theory — ScienceDirect overview**
+https://www.sciencedirect.com/topics/psychology/flow-theory
+> Comprehensive academic overview. Key quote: "activities which are passive, such as watching television, do not normally lead to flow." Pritzker (2007) exception: "audience flow" can occur if content is highly relevant to the viewer's life — suggesting that relevance (not just activity) matters.
+> **RadMo relevance:** The "audience flow" finding is important. Even passive reading can approach flow if the content is highly personally relevant. This supports the spider-match algorithm: content matched to your epistemic profile is more likely to produce the absorption state than generic feed content.
+
+---
+
+**The Struggle for Human Attention: Between Social Media Abuse and Digital Wellbeing — PMC**
+https://pmc.ncbi.nlm.nih.gov/articles/PMC7712353/
+> Reviews the attention economy literature. Herbert Simon's original insight: information consumes attention, so an abundance of information creates a scarcity of attention. Digital platforms have weaponized this. Average social media use: 5.1 hours/day (~36 hours/week). Young users report scrolling "without knowing what you see" — the polar opposite of flow.
+> **RadMo relevance:** Quantifies the scale of the attention capture problem. The contrast with flow-oriented design is stark. "Without knowing what you see" is the design failure RadMo is trying to fix.
+
+---
+
+**Social Media Psychology: How Platforms Affect Your Brain (2026)**
+https://netpsychology.org/social-media-psychology/
+> Reviews neuroimaging research showing frequent digital media switching reduces gray matter in regions associated with sustained attention. Cognitive scientist Gloria Mark: average knowledge worker switches tasks every 3 minutes and 5 seconds. Fragmented attention makes flow "increasingly difficult." Also: flow states on social media often manifest as *problematic usage* — continuing to scroll despite intending to stop.
+> **RadMo relevance:** Important nuance — social media CAN produce a flow-like absorption state, but it's compulsive rather than generative. The distinction is whether the flow is in service of an insight or in service of the scroll. RadMo's design task: redirect the absorption mechanism toward insight-producing activity.
+
+---
+
+## 14. Engagement vs. Stated Preferences — The Revealed Preference Problem
+
+### Key finding
+Engagement-based algorithms optimize for what users *do* (revealed preferences), not what they *say they want* (stated preferences). These are systematically different — and the gap is largest for political content. Twitter's own algorithm amplified content that users said made them feel worse. The stated preference approach reduces hostile content but risks reinforcing echo chambers. This is the central tension RadMo must resolve: the algorithm that keeps people clicking is not the algorithm that serves them.
+
+---
+
+**Engagement, User Satisfaction, and the Amplification of Divisive Content on Social Media — PNAS Nexus**
+https://pmc.ncbi.nlm.nih.gov/articles/PMC11894805/
+https://academic.oup.com/pnasnexus/article/4/3/pgaf062/8052060
+https://arxiv.org/abs/2305.16941
+> Milli et al., March 2025 (pre-registered). Algorithmic audit of Twitter. Key findings: (1) Twitter's engagement algorithm amplified anger (+10pp), partisan content, and out-group animosity vs. reverse-chronological baseline; (2) 62% of political tweets in the engagement feed expressed anger (vs. 52% in chronological); (3) users did *not* prefer the engagement-curated political tweets; (4) ranking by stated preferences reduced angry/hostile content but may reinforce echo chambers. Critical observation: "the engagement-based algorithm causes users to spend more time on the platform" — but it *underperforms* at satisfying what users say they want. Time-on-platform and user satisfaction are not the same metric.
+> **RadMo relevance:** This is the empirical proof that engagement optimization and user value optimization are different loss functions. RadMo's thesis in a single paper. The echo chamber risk in stated-preference optimization is also the key design problem: how do you deliver what users want without just handing them a tighter bubble?
+
+---
+
+**Social Drivers and Algorithmic Mechanisms on Digital Media — PMC**
+https://pmc.ncbi.nlm.nih.gov/articles/PMC11373151/
+> Synthesizes research on how platform design choices affect societal outcomes. Key argument: optimal design depends on platform *purpose* — and we may need different platforms for different goals. For reducing polarization: "algorithm metrics that prioritize content popular on both sides of the political spectrum" highlight moderate voices and reveal the opinion distribution.
+> **RadMo relevance:** Validates the purpose-built platform thesis. Also directly describes RadMo's cross-viewpoint validation mechanic as the right algorithmic direction for depolarization.
+
+---
+
+**Designing for User Experience and Engagement — ResearchGate**
+https://www.researchgate.net/publication/303689141_Designing_for_User_Experience_and_Engagement
+> HCI/UX research synthesis. Defines user engagement as a "quality of UX characterized by challenge, positive affect, endurability, aesthetic appeal, attention, feedback, variety/novelty, interactivity, and perceived user control." Key design principle for flow: the "sweet spot" between too easy (boredom) and too hard (frustration). Also: good flow requires user *control* over their viewpoint — directly relevant to adventure/bubble mode design.
+> **RadMo relevance:** The UX definition of engagement overlaps substantially with flow conditions. Perceived user control is common to both — which supports the case for visible, user-controlled bubble/adventure mode rather than silent algorithmic manipulation.
+
+---
+
+*Last updated: 2026-04-04*
+*Sessions: Ground News deep dive (Nov 2024), Platform strategy (Nov 2024), Cross-viewpoint research, Community Notes deep dive, Prediction markets research (Mar 2026), Social media fatigue / false polarization / tribalism / virtuous cycles (Mar 2026), Flow state + engagement vs. stated preferences (Apr 2026)*
