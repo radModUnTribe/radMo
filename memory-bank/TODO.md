@@ -16,6 +16,8 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Badge system** — Bridge Builder, First Principles, Wide Lens documented in `product/badges.md`; earn conditions are drafts; visual design, placement, gamification mechanics not yet specced
 - [ ] **Poster-facing UI** — how does the original poster see their post's performance? Reader view built first; poster view deferred
 - [ ] **Viewpoint diversity reach display** — TABLED; Option 1 vs. Option 3; polarized case is the key test; decision deferred
+- [ ] **Bubble mode / Adventure mode** — names TBD; core concept: give users explicit toggle between in-bubble and out-of-bubble feeds; primary value is the *mirror* (proving the bubble exists and is larger than assumed), not just content variety; two user segments: (1) knows they're in a bubble but underestimates it — adventure mode is calibration; (2) doesn't believe they have a bubble — the label alone is an intervention; contrast must be legible (algorithm dependency: bubble detection must be real, adventure surfacing must be aggressive); red pill / blue pill framing has tribal baggage — steer toward "before/after reveal" in copy
+- [ ] **Feed weighting sliders** — alternative/complement to binary bubble/adventure toggle; always-visible sliders showing user's current information diet mix; slider position potentially displayable on profile as a credibility-adjacent signal; workshop after bubble/adventure mode is resolved
 
 ---
 
@@ -89,4 +91,4 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 
 ---
 
-*Last updated: 2026-04-03*
+*Last updated: 2026-04-04*
