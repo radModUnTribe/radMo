@@ -13,7 +13,7 @@ Running document of all product features discussed, decisions made, and open que
 5. [Someone Like You / Someone Unlike You Popup](#5-someone-like-you--someone-unlike-you-popup)
 6. [Is/Ought Visualizer](#6-isought-visualizer)
 7. [Credibility Score](#7-credibility-score)
-8. [Feed Algorithm](#8-feed-algorithm)
+8. [Feed Algorithm & Audience Capture](#8-feed-algorithm--audience-capture)
 9. [Source Citation Incentivization](#9-source-citation-incentivization)
 10. [Prediction Markets & Underreported Topics](#10-prediction-markets--underreported-topics)
 11. [News Consumption Layer](#11-news-consumption-layer)
@@ -168,7 +168,9 @@ Local dissimilar people who share your epistemic verdict are especially valuable
 **Purpose:**
 The credibility score surfaces *how* a poster thinks — their epistemic method and style — not *what* they think politically. It is a "how you think" barometer, not a political alignment signal. The goal is to give readers a fast signal on poster trustworthiness and to gently incentivize scientist-mode thinking across the platform.
 
-**Important distinction:** Poster-level trust (credibility score, built over a body of work) and post-level trust (claim integrity + source grounding on a specific post) are complementary but distinct. A high-cred poster can post a wrong claim on a bad day. The UI should not allow readers to over-extrapolate from poster score to post content.
+**Important distinction:** Poster-level trust (credibility score, built over a body of work) and post-level trust (claim integrity + source grounding on a specific post) are complementary but distinct. The UI should not allow readers to over-extrapolate from poster score to post content.
+
+**Spider shape personas:** See `product/personas.md` for the five named archetypes (Bubble Scholar, Vibes Merchant, Magpie, Persuader, Radical Moderate) with real-world examples and evolution cases.
 
 ---
 
@@ -177,142 +179,118 @@ The credibility score surfaces *how* a poster thinks — their epistemic method 
 #### Dimension 1: Factual Grounding *(formerly "Is/Ought Sequencing")*
 **Weight: 30%**
 
-**What it measures:** What percentage of a user's normative claims have traceable factual support somewhere in their work. Grounding as *presence*, not *order* — the question is not whether facts come before or after a normative claim, but whether factual support exists at all.
+**What it measures:** What percentage of a user's normative claims have traceable factual support somewhere in their work. Grounding as *presence*, not *order*.
 
-**High (→ 100):** Every normative claim in the user's body of work has factual scaffolding somewhere. "We should do Z" is accompanied by "X data shows Y" — even if not adjacent in the same post.
+**High (→ 100):** Every normative claim has factual scaffolding somewhere in the user's body of work.
+**Low (→ 0):** Pure normative proclamation. All ought, no is.
 
-**Low (→ 0):** Pure normative proclamation. "We need to do Z" with no factual basis anywhere. All ought, no is.
+**Technical note:** Requires argument structure parsing (NLP argument mining) to link normative claims to supporting factual claims across potentially non-adjacent text.
 
-**Technical note:** Harder to compute than order-detection. Requires argument structure parsing that links normative claims to supporting factual claims across potentially non-adjacent text — closer to NLP argument mining than simple sentence ordering.
-
-**Tim Urban axis:** High = scientist-mode (builds the case). Low = zealot-mode (the verdict is the starting point).
+**Tim Urban axis:** High = scientist-mode. Low = zealot-mode.
 
 ---
 
 #### Dimension 2: Cross-Viewpoint Validation
 **Weight: 30%**
 
-**What it measures:** Whether a user's contributions hold up under adversarial scrutiny — validated by people who have every reason to disagree but don't.
+**What it measures:** Whether a user's contributions hold up under adversarial scrutiny — validated by people who have every reason to disagree but don't. Unexpected validation is the signal.
 
-**High (→ 100):** Posts and ratings are validated by users who differ across multiple axes. The argument doesn't collapse when someone who *wants* it to be wrong examines it.
+**High (→ 100):** Validated by users who differ across multiple axes.
+**Low (→ 0):** Only validated by users who already agree.
 
-**Low (→ 0):** Only validated by users who already agree. The epistemic bubble is tight — whether by tribal content or simply by never engaging across viewpoints.
+**Key insight on signal strength:** Zealot-mode users agreeing across political lines is *stronger* signal than scientist-mode users agreeing — it's more surprising. The dimension rewards validation from people who had no reason to agree.
 
-**Key insight on signal strength:** Unexpected validation carries more weight than expected validation. Zealot-mode users agreeing across political lines is *stronger* signal than scientist-mode users agreeing — precisely because it's more surprising. The dimension rewards validation from people who had no reason to agree.
+**Validation axes (composite):**
+1. **Political lean distance** — baseline; still included but not sole axis
+2. **Epistemic tribe distance** — scientist-to-zealot cross-validation; surprise = signal
+3. **Geographic/cultural distance** — validation from users in different countries or cultural contexts
+4. **Information diet distance** — validation from users whose citation graphs are measurably different; detected from platform behavior, no self-reporting required
 
-**Validation axes (composite — not political spectrum alone):**
-
-1. **Political lean distance** — the baseline axis; still included but not the only one
-2. **Epistemic tribe distance** — scientist-to-zealot cross-validation is meaningful signal; a zealot-mode user from the opposing political tribe validating a post is high-surprise, high-signal
-3. **Geographic/cultural distance** — validation from users in different countries, regions, or cultural contexts; particularly relevant for international or policy topics
-4. **Information diet distance** — validation from users whose citation patterns and reading habits are measurably different; detected from platform behavior (citation graph similarity), no self-reporting required
-
-*Information diet distance — how it works:* Every time a user cites a source, the platform logs outlet name, type, geography, political lean (where available), and publication date. Over 30+ posts, this builds a citation graph per user. Cosine similarity between two users' citation graphs = information diet distance. Users whose graphs look nothing alike are "far apart" even if they vote the same way. Fully detectable from existing platform behavior — no new data collection required beyond what source diversity scoring already needs.
-
-Composite weighting across axes: TBD — needs design work.
+*Information diet distance:* Platform logs every citation (outlet, type, geography, political lean, publication date). Citation graph per user built over 30+ posts. Cosine similarity between graphs = diet distance. Buildable from existing source diversity infrastructure.
 
 ---
 
 #### Dimension 3: Source Diversity
 **Weight: 25%**
 
-**What it measures:** Whether a user's citations span multiple source types, geographies, and (where available) political leans — or whether they draw from a single epistemic neighborhood.
-
-**High (→ 100):** Citations span format tiers, geographies, and institutional types. The user is seeking truth across different production contexts, not just confirming within one.
-
-**Low (→ 0):** All citations come from a single format tier, single geography, or single political lean. Narrow information diet regardless of whether the sources are individually credible.
+**What it measures:** Whether a user's citations span multiple source types, geographies, and (where available) political leans.
 
 **Format diversity — tier ranking (most to least epistemically robust):**
 
-| Tier | Format type | Notes |
-|---|---|---|
-| 1 | Primary sources | Government documents, transcripts, raw data, court filings, firsthand accounts. The thing itself, not an interpretation. |
-| 2 | Peer-reviewed academic research | Methodology-constrained, adversarially reviewed, falsifiable. |
-| 3 | Investigative journalism | Primary source-reliant, editor-reviewed, subject to correction. |
-| 4 | Government & institutional reports | NGOs, think tanks with disclosed methodology. Incentive-aware but structured. |
-| 5 | Quality news reporting | Factual reporting from outlets with editorial standards. |
-| 6 | Expert commentary / opinion | Credentialed people giving informed views. Disclosed normative content. |
-| 7 | General opinion / editorial | Perspective pieces. Legitimate but lowest factual weight. |
+| Tier | Format type |
+|---|---|
+| 1 | Primary sources — government documents, transcripts, raw data, court filings |
+| 2 | Peer-reviewed academic research |
+| 3 | Investigative journalism |
+| 4 | Government & institutional reports (NGOs, think tanks with disclosed methodology) |
+| 5 | Quality news reporting |
+| 6 | Expert commentary / opinion |
+| 7 | General opinion / editorial |
 
-Citing across tiers 1–5 is high format diversity. Citing only tiers 6–7 is low. Citing only a single tier, even tier 1, is medium — narrow even if rigorous.
+Institutional type collapses into format as a tagging dimension (not tracked separately).
 
-*Institutional type collapses into format as a tagging dimension* — a think tank report is tagged as tier 4 with institutional subtype, not tracked separately.
+**Geographic diversity:** Citations from multiple countries or regions. Single-country information diet is a measurable blind spot.
 
-**Geographic diversity:** Citations from multiple countries or regions. Detectable from source metadata. Particularly valuable for international topics where single-country information diet is a genuine blind spot.
+**Political lean** (AllSides, Ad Fontes, etc.): One input among several — not the definition.
 
-**Political lean** (where available via AllSides, Ad Fontes, etc.): One input among several — not the definition of source diversity on its own.
-
-**Deprioritized for now:**
-- *Temporal diversity* (citing sources across time, not just recent) — noted for future inclusion
-- *Claimed vs. independent* (does the source agree with the poster's claim) — overlaps with Claim Integrity; handle there
+**Deprioritized for now:** Temporal diversity (citing sources across time periods) — noted for future inclusion.
 
 ---
 
 #### Dimension 4: Claim Integrity *(formerly "Claim Consistency")*
 **Weight: 15%**
 
-**What it measures:** Whether the sources a user cites actually support the claims they're making — the good faith barometer. Does the source say what the poster claims it says?
+**What it measures:** Whether sources actually support the claims being made. The good faith barometer.
 
-**High (→ 100):** Claims are faithfully represented by cited sources. No cherry-picking, no out-of-context quotes, no citing a study for a conclusion it doesn't support.
+**High (→ 100):** Claims faithfully represented by cited sources.
+**Low (→ 0):** Systematic gap between what sources say and what poster claims.
 
-**Low (→ 0):** Systematic gap between what sources say and what the poster claims they say. Whether deliberate misrepresentation or sloppy reading, the result is the same: the source doesn't support the claim.
+**Pattern detection for bad faith:** Random errors scatter across topics and directions. Motivated misrepresentation clusters — consistently same political direction, same topic domain, same type of overstatement. Non-random error patterns = bad faith signal.
 
-**Deliberate vs. sloppy — pattern detection:**
-The dimension cannot directly distinguish intent, but pattern analysis can infer it:
-- *Random sloppy reading* — errors scatter across topics, directions, and political implications
-- *Motivated misrepresentation* — errors cluster: consistently in the same political direction, consistently on the same topic domain, consistently overstating the same type of conclusion
-Directionally non-random error patterns are the signal for bad faith. The algorithm doesn't need to read minds — it notices when "mistakes" are suspiciously consistent.
-
-**Tim Urban axis:** High = scientist-mode (evidence used honestly). Low = lawyer-mode (evidence recruited selectively to support a predetermined conclusion).
+**Tim Urban axis:** High = scientist-mode (evidence used honestly). Low = lawyer-mode (evidence recruited selectively).
 
 ---
 
 ### Spider Shape as Epistemic Fingerprint — CONFIRMED
 
-The spider chart is not only a credibility display — it encodes a user's *epistemic style* (how they think, not what they conclude). This directly maps to Tim Urban's vertical axis:
+- High, balanced spider = scientist-mode
+- Lopsided spider = specific epistemic profile readable at a glance
+- Collapsed spider = lawyer or zealot-mode
 
-- **High, balanced spider** = scientist-mode thinker: evidence-first, willing to update, low motivated reasoning
-- **Lopsided spider** = strength in one area, weakness in others; readable as a specific epistemic profile
-- **Low, collapsed spider** = lawyer or zealot-mode: conclusion-first, evidence recruited, narrow sources
-
-The *shape* of the polygon — not just the overall score — is the meaningful signal for epistemic style matching.
-
-**Dual function:** The spider chart serves as both a credibility display *and* the epistemic fingerprint for perspective panel matching ("Someone Like You" = similar spider shape). This is a core system design decision — one data structure, two uses.
+**Dual function:** Credibility display AND epistemic matching engine for perspective panels. One data structure, two uses. See `product/personas.md` for the five named archetypes.
 
 ---
 
 ### Engagement Signals and Credibility Score Updates
 
-- **Likes** → near-certain agreement; carry stronger directional weight on poster's cred score
-- **Reposts (unqualified)** → editorially ambiguous; carry weaker directional weight until qualifier exists
-- **Agree repost, high-cred reposter** → positive signal for poster's cred
-- **Disagree repost, high-cred reposter** → negative signal — post spreading because it's wrong
-- **Agree repost, low-cred reposter** → likely negative — credibility liability, not asset
+- **Likes** → near-certain agreement; stronger directional weight
+- **Reposts (unqualified)** → editorially ambiguous; weaker weight until qualifier exists
+- **Agree repost, high-cred** → positive signal
+- **Disagree repost, high-cred** → negative signal — post spreading because it's wrong
+- **Agree repost, low-cred** → likely negative — credibility liability
 
-Full cred score delta rules per engagement type are a to-do.
+Full delta rules per engagement type: to-do.
 
 ---
 
-### Future Dimension Candidate: Mind-Changing Quality
+### Future Dimension Candidates
 
-Updating on new evidence is scientist-mode behavior and should be *rewarded*, not penalized. The signal is not *whether* a user changed their mind but *why*:
-- Change accompanied by a cited factual update → scientist-mode; positive signal
-- Unexplained position flip, or flip correlated with tribal/social triggers → lawyer-mode; neutral or negative
+**Mind-Changing Quality:** Reward position changes accompanied by cited factual updates. Penalize tribal flips. Signal = whether + why someone changed their mind. Deferred until core four stable.
 
-Not being added to the current four dimensions — flagged for future inclusion once the core four are stable.
+**Directional Claim Integrity (Asymmetric Rigor):** Track CI separately for ingroup-confirming vs. ingroup-challenging sources. The *gap* between those scores is the asymmetric rigor signal. See Section 8 and `product/personas.md`.
 
 ---
 
 ### Open Questions
 - **CrossViewpoint weight** — 40% vs. 30% still unresolved
-- **Composite weighting across validation axes** — how to weight political lean vs. epistemic tribe vs. geographic vs. information diet distance
-- **Gaming risk** — legible rules invite optimization for the metric rather than the behavior
-- **Demographic skew risk** — system rewards a specific epistemic style; emotional or communal communication registers may score lower not because they're less credible but because the system is miscalibrated
-- **Source classification infrastructure** — required for both Source Diversity and information diet distance; shared dependency
+- **Composite weighting across validation axes** — political lean vs. epistemic tribe vs. geographic vs. information diet
+- **Gaming risk** — legible rules invite optimization for the metric
+- **Demographic skew risk** — system rewards a specific epistemic style
+- **Source classification infrastructure** — shared dependency for Source Diversity and information diet distance
 
 ---
 
-## 8. Feed Algorithm
+## 8. Feed Algorithm & Audience Capture
 
 **Prosocial ranking:**
 - Downranks content with partisan animosity, antidemocratic attitudes, and outgroup threat framing
@@ -323,6 +301,26 @@ Not being added to the current four dimensions — flagged for future inclusion 
 - Chronological
 - Credibility-weighted
 - Viewpoint distance
+
+---
+
+### Inverse Audience Capture Payout Structure
+
+**The problem:** Audience capture is financially self-reinforcing. Attention-based media pays more as tribal intensity increases. Sam Harris, Rogan, Weinstein all demonstrate spider drift toward narrower, more captive audiences because the financial signal rewards it. This is the mechanism by which asymmetric rigor becomes the norm.
+
+**The thesis:** If the platform's credibility score and visibility mechanics are inversely correlated with audience homogeneity, it creates a financial incentive to seek adversarial validation rather than tribal applause.
+
+**Proposed mechanics:**
+
+1. **Decay function on homogeneous engagement** — if 90%+ of a user's likes come from users with similar spider shapes, their effective score gets discounted. The platform detects audience capture algorithmically. Score recovers as engagement diversifies.
+
+2. **Bonus multiplier for adversarial validation** — a high-CV post from a user with historically low CV scores gets a multiplier. The *first* time a Bubble Scholar gets validated from outside their bubble counts more than the hundredth same-bubble validation. Rewards breakout moments explicitly.
+
+3. **Visibility inversely correlated with audience homogeneity** — posts that only travel within one epistemic cluster get deprioritized regardless of engagement volume. Most aggressive version; highest friction.
+
+**The tension:** These mechanics fight the dopamine loop directly. They require cross-viewpoint respect to *feel* like status — which is what the credibility score, badge system, and Radical Moderate identity are designed to manufacture culturally. The mechanics only work if the platform has successfully made epistemic quality feel like status worth pursuing.
+
+**Status:** Concept stage — needs deeper design work before implementation spec.
 
 ---
 
@@ -376,8 +374,11 @@ Not being added to the current four dimensions — flagged for future inclusion 
 - [ ] **Source credibility rating methodology** — who decides? biased bias rater problem
 - [ ] **Repost intent qualifier** — disagree / neutral / agree at repost time
 - [ ] **Cred score delta rules** — full mechanic for how engagement types update poster score
-- [ ] **Composite weighting for cross-viewpoint axes** — political lean vs. epistemic tribe vs. geographic vs. diet distance
+- [ ] **Composite weighting for cross-viewpoint axes**
 - [ ] **Is/ought scoring operationalization** — argument structure parsing at scale
+- [ ] **Directional Claim Integrity (asymmetric rigor)** — track CI separately for ingroup-confirming vs. ingroup-challenging sources; gap = asymmetric rigor score
+- [ ] **Inverse audience capture payout structure** — decay function, adversarial validation multiplier, visibility gating; needs full design spec
+- [ ] **Spider shape trajectory** — show a user's shape evolution over time, not just current snapshot
 - [ ] **Mind-changing quality dimension** — future addition; reward updating on evidence
 - [ ] **Community Notes code walkthrough** — planned session
 
@@ -401,7 +402,9 @@ Not being added to the current four dimensions — flagged for future inclusion 
 
 **8. Poster trust ≠ post trust** — credibility score (body of work) and post-level claim integrity are distinct signals. UI must not allow readers to conflate them.
 
+**9. Audience capture is the enemy** — the platform's mechanics must actively counteract the financial incentives that drive spider drift and asymmetric rigor. Credibility status must feel more valuable than tribal loyalty.
+
 ---
 
-*Last updated: 2026-04-03*
+*Last updated: 2026-04-04*
 *Status: Active workshopping — all features subject to change*
