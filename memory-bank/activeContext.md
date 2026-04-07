@@ -17,7 +17,8 @@
 ### Documentation
 - `product/features.md` — 15 sections, updated this session (dimension renames, full definitions, spider persona note)
 - `product/badges.md` — Bridge Builder, First Principles, Wide Lens — confirmed default features
-- `research/research.md` — 12 topic areas, current
+- `product/personas.md` — five spider shape archetypes with real-world examples; confirmed
+- `research/research.md` — primary research reference; also see `research/CORE-THESIS.md` and `research/THESIS-EVIDENCE-SUMMARY.md`
 - `strategy/strategy.md`, `strategy/evolution.md`, `strategy/what-to-build-now.md` — current
 - `strategy/information-environment.md` — **NEW this session** — perfect information environment model, RadMo's lane, is/ought triage logic, poster vs. post trust distinction
 - `memory-bank/TODO.md` — **moved from repo root** — live running to-do list now lives in memory-bank
@@ -56,6 +57,7 @@
 - **"Someone Like You" matching = cosine similarity between normalized spider dimension vectors** — shape, not overall score
 - **"Someone Unlike You" = different political lean + similar spider shape** (same epistemic method, different priors)
 - Spider chart is dual-purpose: credibility display AND epistemic matching engine for perspective panels
+- **Five archetypes confirmed:** Bubble Scholar, Vibes Merchant, Magpie, Persuader, Radical Moderate — documented in `product/personas.md`
 
 ### Perspective Panels
 - **"Same conclusion" proxy (pre-qualifier):** likes = near-certain agreement; unqualified reposts = weak-positive; UI says "likely reached the same conclusion" until confirmed
@@ -74,17 +76,16 @@
 1. **Factual Grounding scoring** — argument structure parsing; NLP/argument mining spec
 2. **Cross-viewpoint composite weighting** — four axes, weighting TBD
 3. **Source classification infrastructure** — shared dependency for Source Diversity + info diet distance
-4. **Spider shape personas** — name archetypes for recognizable shapes; in progress
-5. **Repost intent qualifier** — disagree / neutral / agree at repost time
-6. **Cred score delta rules** — full engagement signal → score update mechanic
-7. **Badge earn conditions** — thresholds, visual design, loss mechanics
-8. **Dopamine gap** — must resolve before MVP
-9. **Perspective panel identification speed** — active vs. passive signal
-10. **Post-feed mockup updates** — perspective panels always visible; edit button
-11. **CrossViewpoint weight** — 40% vs. 30%
-12. **Poster-facing UI** — deferred
-13. **Hot take spectrum visual** — workshop separately
-14. **Avatar shape mirroring spider** — workshop separately
+4. **Repost intent qualifier** — disagree / neutral / agree at repost time
+5. **Cred score delta rules** — full engagement signal → score update mechanic
+6. **Badge earn conditions** — thresholds, visual design, loss mechanics
+7. **Dopamine gap** — must resolve before MVP
+8. **Perspective panel identification speed** — active vs. passive signal
+9. **Post-feed mockup updates** — perspective panels always visible; edit button
+10. **CrossViewpoint weight** — 40% vs. 30%
+11. **Poster-facing UI** — deferred
+12. **Hot take spectrum visual** — workshop separately
+13. **Avatar shape mirroring spider** — workshop separately
 
 ## Active Preferences & Patterns
 
@@ -107,5 +108,5 @@
 - Spider shape is dual-purpose: credibility display + epistemic fingerprint for perspective panel matching
 - Dimension rename summary: Is/Ought Sequencing → Factual Grounding; Claim Consistency → Claim Integrity
 
-**Last Updated:** 2026-04-03
+**Last Updated:** 2026-04-07
 **Next Review:** Start of next session

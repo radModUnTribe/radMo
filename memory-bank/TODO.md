@@ -21,7 +21,6 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Digest feed format** — instead of infinite scroll, RadMo serves a fixed daily digest (morning + evening drop); user reads what's there, no re-serving, no refresh loop; algorithm runs on a clock not a thumb; operationalization: ranked set per user based on spider profile, served 1-2x daily; tension with retention needs workshopping
 - [ ] **Top 10 facts of the day** — daily surfacing of the most cross-viewpoint-validated factual claims in the last 24hrs; signal = positive engagement (likes + agreement reposts) from users with maximally distant spider profiles, not raw volume; essentially Community Notes bridging algorithm applied to claims rather than corrections; buildable on existing CV architecture; needs UX design (where it lives, how it's presented)
 - [ ] **Flow state as optimization target** — "engagement" (interruption frequency) is the enemy of flow (interruption absence); RadMo should optimize for *insight events per session* not time-on-app or engagement rate; proxy signals: dwell time ending in a rating/repost, switching to adventure mode immediately after reading a post; connects to "time to insight" loss function already flagged; needs concrete instrumentation design
-- [ ] **Cost of ignoring shared facts** — ~~Top 10 engagement as signal~~ REVISED: tying reach penalties to Top 10 engagement is flawed (specialization ≠ hermetic sealing; a nurse who never engages with foreign policy facts isn't in a bubble). Better signal is already in the cred score: if a user's citation graph and reposts never leave a single ideological cluster *across all topics they post about*, that depresses their Cross-Viewpoint and Source Diversity scores naturally. Standalone mechanic likely unnecessary — the cred score does this work more fairly. Flag for review when cred score dimensions are fully operationalized.
 
 ---
 
@@ -50,7 +49,6 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Post-feed mockup updates needed:**
   - Perspective panels always visible (not cooling-period gated)
   - Edit button in poster header (30-min window)
-- [ ] **Spider shape personas** — five archetypes defined (Bubble Scholar, Vibes Merchant, Magpie, Persuader, Radical Moderate); add real-world examples to `product/features.md` Section 7 or a new `product/personas.md`
 - [ ] **"Hot take" spectrum visual** — bar from hot take to Radically Moderate; workshop separately
 - [ ] **Avatar shape mirroring spider chart** — polygon avatar matching credibility profile; workshop separately
 - [ ] **Public information diet display** — nutrition-label style display on user profile showing source format mix, geographic diversity, political lean spread; aggregates into a badge or profile signal; design TBD
@@ -99,4 +97,4 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 
 ---
 
-*Last updated: 2026-04-04*
+*Last updated: 2026-04-07*

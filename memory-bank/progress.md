@@ -161,7 +161,12 @@ Five named archetypes defined and documented in `product/personas.md`:
 - **Original:** Shown after cooling period
 - **Revised:** Surface immediately when matches identified — this is the dopamine hook during the cooling window
 
+### Cost of Ignoring Shared Facts
+- **Proposed:** Standalone mechanic tying reach penalties to user engagement with Top 10 daily facts
+- **Problem:** Specialization ≠ hermetic sealing; a nurse who never engages with foreign policy facts isn't in a bubble; penalizing legitimate specialization is a false positive
+- **Resolved:** The cred score handles this more fairly — if a user's citation graph and reposts never leave a single ideological cluster *across all topics they post about*, this depresses Cross-Viewpoint and Source Diversity scores naturally. Standalone mechanic unnecessary. Flag for review when cred score dimensions are fully operationalized.
+
 ---
 
-**Last Updated:** 2026-04-04
+**Last Updated:** 2026-04-07
 **Next Review:** Start of next session
