@@ -110,8 +110,6 @@ Five named archetypes defined and documented in `product/personas.md`:
 
 **Phase:** Design & Prototyping
 
-**Completion:** ~38% (conceptual framework fully developed; UI mockup suite complete for reader view; persona system defined; backend/integration 0%)
-
 **Blockers:** None critical
 
 **Risk Level:** Low

@@ -8,7 +8,7 @@
 
 **RadMo's Pull:**
 - Status through credibility (not engagement metrics)
-- Cooling period (24-72hr delay on reactions) makes the app less addictive—users choose quality over dopamine
+- Cooling period (12-hour window on the poster's view of their own engagement) makes the app less compulsive — users choose quality over dopamine
 - Cross-ideological engagement becomes the path of least resistance
 - Transparency: explicit business model messaging builds trust vs. engagement-driven advertising
 
@@ -43,10 +43,10 @@
 
 ## Key Insights
 
-- Most users don't seek a "better information environment"—they're not in pain
+- Most users don't seek a "better information environment" — they're not in pain
 - Dopamine gap problem: Why stay on RadMo if the cooling period removes the reward loop?
 - "Why open RadMo" motivation must be stronger than X/Twitter/Reddit alternatives
-- Reddit users routinely "bot-check" suspicious commenters—behavioral credibility is a proven user need
+- Reddit users routinely "bot-check" suspicious commenters — behavioral credibility is a proven user need
 
 ## Generational Tailwind
 
@@ -68,13 +68,14 @@ These emerged from Tim Kuran's work on preference falsification and are central 
 
 ## Gamification & Badges
 
-Badges tied to **intellectual honesty and epistemic behavior**, not engagement volume. Examples:
-- Acknowledging a good point from the opposing viewpoint
-- Updating a stated position based on new evidence
-- Citing cross-ideological sources
-- Maintaining consistent positions over time (claim consistency)
+Badges are tied to **intellectual honesty and epistemic behavior**, not engagement volume. They are a status mechanism — the dopamine substitute that replaces likes/retweets with credibility signals. The goal: make intellectual honesty feel like winning.
 
-Badges are a status mechanism — the dopamine substitute that replaces likes/retweets with credibility signals. The goal: make intellectual honesty feel like winning.
+**Confirmed badges (under construction — earn conditions TBD):**
+- **Bridge Builder** — Cross-Viewpoint Validation; content that resonates across viewpoint clusters
+- **First Principles** — Factual Grounding; normative claims backed by factual scaffolding
+- **Wide Lens** — Source Diversity; citation breadth across source types and geographies
+
+Additional badge candidates are flagged for future discussion. See `product/badges.md`.
 
 ## Thinker Typology (Tim Urban Framework)
 
@@ -85,3 +86,5 @@ Reference model for audience framing and tone:
 - **Zealots** — ideological absolutists; identity fused with belief
 
 RadMo is built for scientists and aspiring scientists. The platform mechanics should reward scientist behavior and make lawyer/sports fan/zealot behavior costly in status terms.
+
+*Last updated: 2026-04-07*

@@ -4,9 +4,11 @@ Badges are persistent signals of epistemic quality earned through behavioral pat
 
 Badges signal *how someone posts*, not who they are. They describe behavior, not identity.
 
+**Status:** Under construction (Bucket 2). The three confirmed badges are established. Earn conditions are draft thresholds pending scoring operationalization. Additional badge candidates are flagged for future discussion.
+
 ---
 
-## Established Badges (v1)
+## Confirmed Badges
 
 ### Bridge Builder
 **What it signals:** This user consistently produces content that resonates across different viewpoint clusters — not just their own.
@@ -22,13 +24,11 @@ Badges signal *how someone posts*, not who they are. They describe behavior, not
 ### First Principles
 **What it signals:** This user grounds normative claims in factual evidence — they show their work.
 
-**Dimension:** Is/Ought Sequencing (pending redesign — see note)
+**Dimension:** Factual Grounding
 
-**Earn condition (draft):** Is/Ought Sequencing score ≥ 75 over a rolling 90-day window, minimum 20 posts analyzed.
+**Earn condition (draft):** Factual Grounding score ≥ 75 over a rolling 90-day window, minimum 20 posts analyzed.
 
-**Design rationale:** Rewards the epistemic behavior RadMo most wants to reinforce — building from facts to values rather than reverse-engineering facts to support a conclusion already held.
-
-**Note:** Is/Ought scoring methodology is currently under redesign. The intended measure is quality of connection between factual grounding and normative claims (not ordering). Earn conditions will update when the new spec is finalized.
+**Design rationale:** Rewards the epistemic behavior RadMo most wants to reinforce — ensuring normative claims have factual scaffolding somewhere in the user's body of work. Grounding as presence, not order.
 
 ---
 
@@ -45,10 +45,10 @@ Badges signal *how someone posts*, not who they are. They describe behavior, not
 
 ## Design Principles
 
-- **Earn conditions should resist gaming** — optimizing one dimension at the expense of others should not produce a badge; the Claim Consistency dimension exists partly to catch this pattern
+- **Earn conditions should resist gaming** — optimizing one dimension at the expense of others should not produce a badge; the Claim Integrity dimension exists partly to catch this pattern
 - **No negative badges** — the system rewards good epistemic behavior; it does not publicly punish bad behavior (the credibility score handles that signal)
 - **Badges are behavioral, not reputational** — they can be lost if scores drop below threshold; they reflect current behavior, not permanent status
-- **Claim Consistency has no badge** — intentional; it is a check on gaming the other three dimensions, not a behavior to directly reward on its own
+- **Claim Integrity has no badge** — intentional; it is a check on gaming the other three dimensions, not a behavior to directly reward on its own
 
 ---
 
@@ -60,9 +60,18 @@ Badges signal *how someone posts*, not who they are. They describe behavior, not
 - [ ] Badge loss — does a badge disappear immediately when score drops, or is there a grace period?
 - [ ] Badge display hierarchy — can users hold all three simultaneously? Is one more prestigious than the others?
 - [ ] Visual design — current labels are text-only placeholders; icon system not yet designed
-- [ ] Badge for Claim Consistency — tabled; may revisit if gaming patterns emerge at scale
 
 ---
 
-*Last updated: 2026-04-01*
-*Status: Badges are confirmed default features. Earn conditions are drafts pending scoring operationalization.*
+## Badge Candidates (Bucket 1 — flagged for future discussion)
+
+The following badge types have been mentioned but not yet explored:
+
+- **Mind Changer** — reward grounded position updates (new evidence cited); penalize tribal flips
+- **Honest Broker** — possible badge surfacing Claim Integrity behavior if gaming patterns warrant a direct reward signal; currently intentionally absent from confirmed set
+- Additional archetypes TBD
+
+---
+
+*Last updated: 2026-04-07*
+*Status: Confirmed badges established (Bucket 2); earn conditions under construction; additional candidates flagged (Bucket 1).*

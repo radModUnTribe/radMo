@@ -41,10 +41,10 @@ Tone model: Tim Urban — accessible, humorous, non-elitist, willing to be weird
 
 The credibility meter emerged as the central product feature — the mechanism that makes all the incentive redesign concrete. Key dimensions:
 
-- **Is/Ought separation (30%)** — does this person distinguish facts from value judgments?
+- **Factual Grounding (30%)** *(originally Is/Ought Sequencing)* — does this person's normative content have factual scaffolding behind it?
 - **Cross-viewpoint validation (30%)** — are their claims confirmed by sources they'd normally disagree with?
 - **Source diversity (25%)** — do they cite across the ideological spectrum?
-- **Claim consistency (15%)** — do their positions hold up over time?
+- **Claim Integrity (15%)** *(originally Claim Consistency)* — do their sources actually support the claims being made?
 
 The score is tied to social status within the platform. Being epistemically rigorous becomes the path to credibility, visibility, and influence — the same rewards outrage currently provides, pointed at better behavior.
 
@@ -104,7 +104,9 @@ This hasn't been designed yet but it's a real strategic surface worth exploring.
 - **"Reduce polarization"** as mission framing → replaced with adversarial framing against institutions
 - **"Invert" the incentive structure** → replaced with "redirect"
 - **Moralism as a design lever** → explicitly off the table; RadMo doesn't ask users to be better people
+- **Is/Ought Sequencing** → renamed Factual Grounding; redefined as presence-based, not order-based
+- **Claim Consistency** → renamed Claim Integrity; refocused on source accuracy and bad-faith pattern detection
 
 ---
 
-*Last updated: 2026-03-31*
+*Last updated: 2026-04-07*
