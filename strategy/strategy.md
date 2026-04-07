@@ -6,7 +6,7 @@ Positioning, target audience, competitive landscape, messaging framework, and lo
 
 ## Table of Contents
 
-1. [The Core Thesis](#1-the-core-thesis)
+1. [Platform Vision](#1-platform-vision)
 2. [The Problem We're Solving](#2-the-problem-were-solving)
 3. [Target Audience](#3-target-audience)
 4. [Positioning](#4-positioning)
@@ -19,17 +19,26 @@ Positioning, target audience, competitive landscape, messaging framework, and lo
 
 ---
 
-## 1. The Core Thesis
+## 1. Platform Vision
 
-Existing social media platforms didn't set out to radicalize anyone. They built systems that optimized for engagement, and engagement metrics happened to reward outrage, tribalism, and emotional manipulation. The algorithm didn't have values — it had a loss function. Polarization was a side effect.
+**What RadMo is:**
+A hybrid social media and news consumption platform designed to create a better information environment by rewiring incentive structures. The core thesis: existing platforms followed engagement metrics that happened to reward outrage and tribalism — not by malicious intent but as an emergent property of their loss function. RadMo proposes a different loss function.
 
-RadMo proposes a different loss function.
+**The goal:**
+Create a platform where existing human tendencies (status-seeking, tribal identity, dopamine loops) produce better collective epistemic outcomes — not by fighting human nature but by redirecting it.
 
-The central insight is that **incentives, not moral appeals, drive behavior**. Platforms fail when they ask users to be better people. RadMo succeeds by making the incentive-aligned behavior the path of least resistance — by making intellectual honesty feel like status, cross-viewpoint engagement feel like rebellion, and epistemic quality feel like something worth competing for.
+**The "better information environment" definition:**
+See `strategy/information-environment.md` for the full model. Summary:
+- Facts and normative claims are clearly separated — readers always know which they're consuming
+- Factual claims are grounded, sourced, and updated in real time
+- The credibility score surfaces *how* a poster thinks (epistemic method), not *what* they think politically
+- The platform gently pushes users toward scientist-mode thinking without preaching
 
-This is not a civic tech project. It is not a lecture. It is a platform designed to be more compelling than the alternatives because it routes existing human tendencies — status-seeking, tribal identity, dopamine loops — toward better collective epistemic outcomes.
-
-**Crucially:** RadMo's incentives do not fight against human tendencies. They utilize them differently, in conjunction with what Tim Urban calls "higher mind" tendencies — the scientist in us that observes, theorizes, and tests rather than the lawyer who starts with a conclusion and works backward.
+**Positioning:**
+- "Radically Moderate" — moderation framed as rebellion, not weakness
+- Target: the Quiet Majority — people exhausted by extremism who privately hold more moderate views
+- Tone model: Tim Urban — accessible, humorous, non-elitist, anti-preachy
+- Reframe: not "left vs. right" but "you vs. institutions profiting from your outrage"
 
 ---
 
@@ -59,6 +68,8 @@ A better information environment is one where:
 - Cross-viewpoint exposure happens under conditions that reduce rather than increase polarization
 - The quiet majority — people who privately hold more moderate views than they publicly express — have a platform and identity
 - Less affective polarization (negative emotions toward outgroups) is the measurable outcome
+
+See `strategy/information-environment.md` for the full formalized model, including RadMo's explicit lane, scope limits, the is/ought triage logic, and the poster trust vs. post trust distinction.
 
 ---
 
@@ -326,5 +337,5 @@ The generational tailwind is real. Younger voters are showing issue-based pragma
 
 ---
 
-*Last updated: 2026-03-30*
+*Last updated: 2026-04-07*
 *Status: Early stage — strategic direction established, execution details pending*

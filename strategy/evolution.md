@@ -92,6 +92,19 @@ This hasn't been designed yet but it's a real strategic surface worth exploring.
 
 ---
 
+## Stage 9: Formalizing the Information Environment Model
+
+A persistent ambiguity in early documentation was the phrase "better information environment" — used frequently but never precisely defined. This created a risk of scope creep and preachy framing (RadMo "fixing" discourse).
+
+This was resolved by formally defining the model in `strategy/information-environment.md`, which does three things:
+1. Defines what a perfect information environment would look like (seven properties)
+2. Specifies RadMo's explicit lane — what it is and is not trying to do
+3. Codifies the is/ought triage logic and the poster trust vs. post trust distinction
+
+The key strategic clarification: **RadMo's job is not to adjudicate values.** It is to build the factual layer infrastructure and make it obvious when readers have crossed from fact into opinion. Disagreement doesn't go away — it gets *relocated* from fake factual disputes to honest value disputes. This framing prevents scope creep and keeps the product from becoming preachy.
+
+---
+
 ## What Hasn't Changed
 
 - The core incentive thesis is intact
@@ -106,6 +119,7 @@ This hasn't been designed yet but it's a real strategic surface worth exploring.
 - **Moralism as a design lever** → explicitly off the table; RadMo doesn't ask users to be better people
 - **Is/Ought Sequencing** → renamed Factual Grounding; redefined as presence-based, not order-based
 - **Claim Consistency** → renamed Claim Integrity; refocused on source accuracy and bad-faith pattern detection
+- **"Better information environment" as vague aspiration** → formally defined with explicit lane, scope limits, and triage logic
 
 ---
 
