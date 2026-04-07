@@ -554,7 +554,7 @@ https://netpsychology.org/social-media-psychology/
 ## 14. Engagement vs. Stated Preferences — The Revealed Preference Problem
 
 ### Key finding
-Engagement-based algorithms optimize for what users *do* (revealed preferences), not what they *say they want* (stated preferences). These are systematically different — and the gap is largest for political content. Twitter's own algorithm amplified content that users said made them feel worse. The stated preference approach reduces hostile content but risks reinforcing echo chambers. This is the central tension RadMo must resolve: the algorithm that keeps people clicking is not the algorithm that serves them.
+Engagement-based algorithms surface content that users say they don't want — particularly for political content. However, this is not a clean proof of a stated/revealed preference gap in a pure form. The primary study (Milli et al.) compares engagement curation against a reverse-chronological baseline — a forced binary with a weak alternative — and "engagement gets more engagement" is nearly tautological since the algorithm was trained on those signals. What the research does cleanly show is: (1) engagement optimization surfaces more anger and out-group hostility than users say they prefer when asked directly; (2) alternative ranking approaches (value-based, credibility-weighted) produce feeds that are perceptibly and measurably different from engagement feeds; and (3) the engagement/quality tradeoff curve is shallow — credibility-weighted ranking captures most of the quality gain at low engagement cost. The stronger theoretical grounding for the stated/revealed gap comes from the Kahneman System 1/2 literature, which this research cites but does not independently test.
 
 ---
 
@@ -562,24 +562,31 @@ Engagement-based algorithms optimize for what users *do* (revealed preferences),
 https://pmc.ncbi.nlm.nih.gov/articles/PMC11894805/
 https://academic.oup.com/pnasnexus/article/4/3/pgaf062/8052060
 https://arxiv.org/abs/2305.16941
-> Milli et al., March 2025 (pre-registered). Algorithmic audit of Twitter. Key findings: (1) Twitter's engagement algorithm amplified anger (+10pp), partisan content, and out-group animosity vs. reverse-chronological baseline; (2) 62% of political tweets in the engagement feed expressed anger (vs. 52% in chronological); (3) users did *not* prefer the engagement-curated political tweets; (4) ranking by stated preferences reduced angry/hostile content but may reinforce echo chambers. Critical observation: "the engagement-based algorithm causes users to spend more time on the platform" — but it *underperforms* at satisfying what users say they want. Time-on-platform and user satisfaction are not the same metric.
-> **RadMo relevance:** This is the empirical proof that engagement optimization and user value optimization are different loss functions. RadMo's thesis in a single paper. The echo chamber risk in stated-preference optimization is also the key design problem: how do you deliver what users want without just handing them a tighter bubble?
+> Milli et al., March 2025 (pre-registered). Algorithmic audit of Twitter comparing engagement-curated timeline against reverse-chronological baseline. Key findings: (1) engagement algorithm amplified anger (+10pp) and out-group animosity vs. chronological; (2) 62% of political tweets in the engagement feed expressed anger vs. 52% in chronological; (3) users surveyed directly said they did *not* prefer the political tweets the algorithm selected. **Important caveat:** this is a forced binary — chronological is a weak baseline not a better alternative, and an algorithm trained on engagement will unsurprisingly outperform on engagement metrics. The study shows engagement curation surfaces content users say they dislike; it does not prove that engagement and stated preferences are fundamentally irreconcilable. The echo chamber risk in stated-preference optimization (also documented here) is the key design tension: delivering what users want without handing them a tighter bubble.
+> **RadMo relevance:** Useful evidence that engagement optimization diverges from user-stated preferences on political content specifically. Correctly framed, this supports RadMo's different-loss-function thesis without overclaiming.
+
+---
+
+**Value Alignment of Social Media Ranking Algorithms — Jahanbakhsh et al. (2025)**
+https://arxiv.org/abs/2509.14434
+> Builds a feed ranked by users' expressed values (Schwartz's Basic Human Values taxonomy) via sliders, then compares it to Twitter's engagement feed in a recognizability experiment (N=141, N=250). Key finding: users correctly identified the value-ranked feed 76.1% of the time — well above chance — confirming that value-ranked feeds are perceptibly and visibly different from engagement feeds. **Scope note:** this study does not test which feed users prefer or which produces better outcomes. It establishes that value-based ranking produces a meaningfully different feed, which is a precondition for RadMo's product differentiation claim to be legible to users, not proof that it will be preferred.
+> **RadMo relevance:** Confirms that a credibility/values-weighted algorithm produces a feed users can distinguish from an engagement feed. Legibility of difference is necessary for the product story to land.
+
+---
+
+**Personalization, Engagement, and Content Quality on Social Media — Moehring (2025)**
+https://alexmoehring.com/assets/pdf/moehring-reddit-newsfeed.pdf
+> Models Reddit's engagement-based ranking against credibility-aware counterfactual algorithms. Key findings: (1) a credibility-maximizing algorithm produces a 5.5% decline in total engagement; (2) a credibility-*weighted* algorithm (not maximizing) achieves over half the quality gain for only a 1.9% engagement drop; (3) personalized engagement maximization leads to less politically diverse content over time. The engagement/quality tradeoff is a shallow curve — most of the quality gain is available at low engagement cost.
+> **RadMo relevance:** The most practically important finding in this section. Directly answers the objection that quality-aware ranking kills retention. The efficient frontier is credibility-weighted (not credibility-maximizing) ranking: captures most of the epistemic quality gain for ~2% engagement cost. RadMo should target this middle of the curve. Also quantifies the pitch to skeptics and investors: "we get most of the quality gain for almost no engagement cost."
 
 ---
 
 **Social Drivers and Algorithmic Mechanisms on Digital Media — PMC**
 https://pmc.ncbi.nlm.nih.gov/articles/PMC11373151/
-> Synthesizes research on how platform design choices affect societal outcomes. Key argument: optimal design depends on platform *purpose* — and we may need different platforms for different goals. For reducing polarization: "algorithm metrics that prioritize content popular on both sides of the political spectrum" highlight moderate voices and reveal the opinion distribution.
+> Synthesizes research on how platform design choices affect societal outcomes. Key argument: optimal design depends on platform *purpose* — and we may need different platforms for different goals. For reducing polarization: algorithm metrics that prioritize content popular on both sides of the political spectrum highlight moderate voices and reveal the opinion distribution.
 > **RadMo relevance:** Validates the purpose-built platform thesis. Also directly describes RadMo's cross-viewpoint validation mechanic as the right algorithmic direction for depolarization.
 
 ---
 
-**Designing for User Experience and Engagement — ResearchGate**
-https://www.researchgate.net/publication/303689141_Designing_for_User_Experience_and_Engagement
-> HCI/UX research synthesis. Defines user engagement as a "quality of UX characterized by challenge, positive affect, endurability, aesthetic appeal, attention, feedback, variety/novelty, interactivity, and perceived user control." Key design principle for flow: the "sweet spot" between too easy (boredom) and too hard (frustration). Also: good flow requires user *control* over their viewpoint — directly relevant to adventure/bubble mode design.
-> **RadMo relevance:** The UX definition of engagement overlaps substantially with flow conditions. Perceived user control is common to both — which supports the case for visible, user-controlled bubble/adventure mode rather than silent algorithmic manipulation.
-
----
-
-*Last updated: 2026-04-04*
+*Last updated: 2026-04-07*
 *Sessions: Ground News deep dive (Nov 2024), Platform strategy (Nov 2024), Cross-viewpoint research, Community Notes deep dive, Prediction markets research (Mar 2026), Social media fatigue / false polarization / tribalism / virtuous cycles (Mar 2026), Flow state + engagement vs. stated preferences (Apr 2026)*
