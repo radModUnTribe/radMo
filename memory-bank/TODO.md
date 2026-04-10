@@ -22,6 +22,8 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Top 10 facts of the day** — daily surfacing of the most cross-viewpoint-validated factual claims in the last 24hrs; buildable on existing CV architecture; needs UX design
 - [ ] **Flow state as optimization target** — optimize for *insight events per session* not time-on-app; proxy signals: dwell time ending in a rating/repost, switching to adventure mode immediately after reading a post; needs concrete instrumentation design
 - [ ] **PWA design** — mobile presence alongside web platform launch; push notification mechanics (perspective panel matches, digest delivery) are the primary thing native does better; design PWA experience before committing to native app
+- [ ] **Avatar legibility at 44px** — are the five spider shapes distinct enough at avatar size without a legend? Elevated to active design question 2026-04-10; see persona-feed mockup
+- [ ] **News outlet incentive mechanic** — GTM angle for pitching outlets on RadMo as cross-aisle audience signal play; passive presence vs. active participation framing; needs development
 
 ---
 
@@ -51,8 +53,9 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
   - Perspective panels always visible (not cooling-period gated)
   - Edit button in poster header (30-min window)
 - [ ] **"Hot take" spectrum visual** — bar from hot take to Radically Moderate; workshop separately
-- [ ] **Avatar shape mirroring spider chart** — polygon avatar matching credibility profile; workshop separately
+- [ ] **Avatar shape mirroring spider chart** — polygon avatar matching credibility profile; elevated to active design priority 2026-04-10; open question is 44px legibility
 - [ ] **Public information diet display** — nutrition-label style display on user profile; design TBD
+- [ ] **Persona illustrations** — original IP-safe characters for each archetype; art direction brief exists (2026-04-10); designer needed; references: The Dude (Vibes Merchant), professor-lecturing-to-clones (Bubble Scholar), conspiracy board (Magpie), TED Talk guy (Persuader), referee (Radical Moderate)
 
 ---
 

@@ -6,6 +6,29 @@
 
 ---
 
+## Compounding Mechanic — Locked 2026-04-10
+
+**Decision:** Option B — multiplicative multiplier.
+
+When CI steelmanning credit and CV validation come from the same epistemic cluster in the same post, a multiplier applies to the CV score for that post:
+
+```
+CV_effective = CV_base × (1 + steelmanning_bonus)
+```
+
+- `steelmanning_bonus` ranges 0.0 (dunking / no steelmanning) to ~0.3 (strong steelmanning signal)
+- A CV score of 70 from a steelmanned post → effective ~91
+- A CV score of 70 from a dunked post → stays 70
+- Adversarial citation earns zero multiplier; steelmanned citation amplifies CV payoff
+
+**Rationale:** CI and CV are measuring different things on the same event — one measures how the source was treated, one measures how broadly the post was validated. These are genuinely distinct epistemic signals. Compounding rewards the complete epistemic behavior (engaging honestly AND being validated for it) more than either behavior in isolation. It creates strong incentive toward steelmanning without gating CV entirely when steelmanning is absent.
+
+**Status:** Locked for now — not permanent. Return to this when steelmanning scoring is being operationalized.
+
+**Option C (gating) was considered and rejected:** A post can be adversarial and still earn legitimate cross-viewpoint engagement. Gating would block that valid signal.
+
+---
+
 ## Problem Statement
 
 Cross-viewpoint citation is a core credibility mechanic on RadMo. But citation is not monolithic. There are two fundamentally different ways to cite an out-of-bubble source:
@@ -176,9 +199,10 @@ Users may not engage with content from outside their bubble enough to generate s
 1. **Rating UX for source characterization** — how do you prompt users to rate whether a citation was fair without it feeling like work? (Friction vs. data quality tradeoff)
 2. **Source-proximate user identification** — citation graph proximity is the right signal but requires enough user posting history to be accurate. What's the minimum post count before a user's diet distance is reliable?
 3. **Performative compliance threshold** — how much steelmanning is "enough"? Is one sentence of genuine engagement sufficient, or does the overall post posture matter?
-4. **Interaction with Cross-Viewpoint Validation** — a post that steelmans an out-of-bubble source and gets validated by that community should earn double signal (CI + CV). Is that double-counting or is it appropriate compounding?
+4. **Interaction with Cross-Viewpoint Validation** — resolved 2026-04-10: Option B compounding adopted. See top of this file.
 
 ---
 
 *Created: 2026-04-10*  
+*Last updated: 2026-04-10 — compounding mechanic decision added*  
 *Status: Spec — pending further workshopping*

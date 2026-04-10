@@ -17,19 +17,37 @@
 - **Cooling period (confirmed):** Posts live immediately in feeds; cooling period governs what the *poster* sees of their own engagement; perspective panels surface immediately when matches identified; full engagement data unlocks at 12 hours
 - **Edit window:** 30-minute window from post time; closes early on first repost
 - **Is/ought visualization:** Blue (fact) → amber (opinion) spectrum; "Fact / Opinion" user-facing; "Is/Ought" internal
-- **Engagement signal display:** Avg reposter cred (0–100 scale); repost > like as conviction signal; viewpoint reach tabled
+- **Engagement signal display:** Avg reposter cred (0–100 scale, rendered as progress ring); repost > like as conviction signal; viewpoint reach tabled
 - **Perspective check panels:** Surface immediately on match identification (not gated to cooling period); geography as secondary unlike-you signal
 - **Badges — confirmed default features:** Bridge Builder, First Principles, Wide Lens; documented in `product/badges.md`
-- **Score interaction pattern:** Clicking cred score swaps in-place with spider chart; no dropdowns
+- **Score interaction pattern:** Cred score as circular progress ring, clockwise from 12 o'clock; clicking ring swaps in-place with spider chart
 - **Repost intent qualifier:** Disagree / neutral / agree — flagged as to-do mechanic
 
 ### Credibility Score — Dimensions Confirmed
-- **Dimension 1: Factual Grounding** *(formerly Is/Ought Sequencing)* — grounding as presence not order; % of normative claims with factual support anywhere in user's work
+- **Dimension 1: Factual Grounding** *(formerly Is/Ought Sequencing)* — grounding as presence not order; % of normative claims with factual support anywhere in user's body of work
 - **Dimension 2: Cross-Viewpoint Validation** — expanded beyond political spectrum to composite of: political lean, epistemic tribe distance, geographic/cultural distance, information diet distance (citation graph similarity)
 - **Dimension 3: Source Diversity** — expanded beyond political bias ratings to format diversity (7-tier ranking), geographic diversity, political lean as one input among several
 - **Dimension 4: Claim Integrity** *(formerly Claim Consistency)* — good faith barometer; pattern detection for motivated vs. sloppy misrepresentation; directional clustering of errors = bad faith signal
 - **Spider shape = epistemic fingerprint (CONFIRMED):** Shape encodes Tim Urban's vertical axis (how you think, not what you think); cosine similarity between normalized dimension vectors = epistemic matching signal for perspective panels
 - **Dual function:** Spider chart is both credibility display and matching engine — one data structure, two uses
+
+### Claim Integrity — Sub-components Locked (2026-04-10)
+Steelmanning detection added as structured extension of Claim Integrity:
+
+| Sub-component | What it measures | Weight within CI |
+|---|---|---|
+| Factual accuracy | Do cited sources support the claims made? | ~50% |
+| Steelmanning score | Is the source's strongest argument engaged? | ~30% |
+| Asymmetric rigor | Same accuracy standard for ingroup and outgroup sources? | ~20% |
+
+Full spec: `product/steelmanning-spec.md`
+
+### Steelmanning Compounding Mechanic — Locked (2026-04-10)
+- **Decision:** Option B — multiplicative CV multiplier
+- `CV_effective = CV_base × (1 + steelmanning_bonus)`, bonus 0.0–0.3
+- Adversarial citation earns zero multiplier; steelmanned citation amplifies CV payoff
+- Rationale: CI and CV measure different things on the same event — not double-counting
+- Status: locked for now, not permanent
 
 ### Spider Shape Personas — Confirmed Archetypes
 Five named archetypes defined and documented in `product/personas.md`:
@@ -39,53 +57,52 @@ Five named archetypes defined and documented in `product/personas.md`:
 - **Persuader** — single CV spike; charisma as epistemic substitute. Examples: Obama, Harari
 - **Radical Moderate** — full balanced polygon; target archetype. Examples: Derek Thompson, Tyler Cowen
 
+**Persona hover blurbs (locked 2026-04-10):**
+- Bubble Scholar: "Rigorous, well-sourced, never leaves the bubble."
+- Vibes Merchant: "All assertion, zero evidence, high volume."
+- Magpie: "Reads widely, synthesizes loosely, cites everything."
+- Persuader: "Cross-partisan appeal, charisma-forward, light on rigor."
+- Radical Moderate: "Grounded, cross-validated, intellectually honest."
+
+**Persona illustration direction (2026-04-10):** Original IP-safe characters needed. Art direction brief:
+- Bubble Scholar: professor lecturing to a room of clones of himself
+- Vibes Merchant: The Dude archetype — bathrobe, sunglasses, slippers, cocktail, unbothered
+- Magpie: conspiracy board — red string connecting Lancet, Cato, FT, Substack
+- Persuader: TED Talk speaker mid-stride, arms open, lighting perfect
+- Radical Moderate: referee both teams are annoyed at but secretly trust
+
+### UX Locks (2026-04-10)
+- **Cred score ring:** Circular progress ring, clockwise from 12 o'clock, proportional to score; faint full-circle track; color matches persona
+- **Avg reposter cred:** Same ring treatment at smaller size; label "avg reposter cred" confirmed
+- **Dimension tooltips (Option C):** FG = "Opinions backed by facts"; CV = "Validated by people who disagree"; SD = "Breadth and independence of sources"; CI = "Sources honestly represented"
+- **Fact/opinion tooltips (Option A):** Fact = "Likely a factual claim — verifiable against evidence."; Opinion = "Likely a normative claim — reflects a value or judgment."
+
+### Cred Score Primary Function Clarified (2026-04-10)
+Cred score's primary job is **discovery primitive** — enabling readers to assess a stranger in their feed and decide whether they're worth following. The spider shape needs to be legible at scroll speed (44px avatar). Secondary job: post-level trust signal. This framing elevates the avatar-as-spider design question to active priority.
+
+Key insight: "You find people worth following not because they think like you politically, but because they think like you epistemically." RadMo's discovery is epistemic fingerprint matching across value distance.
+
+### News Outlet Cross-Aisle Signal (2026-04-10)
+RadMo is the only platform where outlets can observe genuine cross-aisle readership data. Steelmanning mechanic is the structural defense against adversarial citation optimizing for dunkable content. Passive presence (outlet as citable source) is immediately valuable without outlet participation. GTM pitch to outlets: audience signal play, not credibility play.
+
 ### Asymmetric Rigor — Identified Failure Mode
 - **Definition:** Applying rigorous evidential standards to outgroup claims while relaxing them for ingroup claims
 - **Mechanism:** Financially self-reinforcing via audience capture
 - **Signal:** Gap between ingroup CI score and outgroup CI score — detectable algorithmically
-- **Documented in:** `product/personas.md`
+- **Documented in:** `product/personas.md`, `product/steelmanning-spec.md`
 
-### Inverse Audience Capture Payout Structure — Concept Documented
-- Credibility score decays as audience becomes more homogeneous
-- Bonus multiplier for adversarial validation
-- Visibility inversely correlated with audience homogeneity
-- **Documented in:** `product/personas.md`
-
-### GTM Strategy — Confirmed Framework (this session)
+### GTM Strategy — Confirmed Framework
 - **Investor narrative:** Credibility layer for the web → platform → professional credential
 - **Beachhead:** Policy/academic X refugees (primary); journalists/fact-checkers (secondary); Substack writers (tertiary + distribution channel)
 - **Defensibility framing:** Citation graph as compounding proprietary asset; no-ads positioning as principled + strategic
 - **Monetization hierarchy:** Freemium → B2B credibility API → portable credential/LinkedIn play
-- **Objection playbook:** Niche concern (Community Notes scale counter); gaming concern (multi-dimensional defense); human nature concern (redirect not suppress)
-- **Key investor pitch:** "We don't run ads because ads require optimizing for engagement, and that's the problem we're solving."
-
-### Citation Graphs — Defined and Documented
-- Network of sources linked by citations; built passively from posting behavior
-- Core infrastructure for information diet distance detection (no self-reporting)
-- Shared dependency with Source Diversity dimension
-- Proprietary data asset that compounds — core defensibility argument
-- Requires source classification system as foundation
-
-### Public-Facing URI — Architected
-- Stable linkable URL per user credibility score (e.g., `radmo.com/u/[username]/credibility`)
-- Enables portable credential play (LinkedIn, Substack bylines, email signatures)
-- Other platforms can query/embed via API using URI as identifier
-- Must be planned from day one — cannot be retrofitted
-
-### Mobile / App Store Strategy — Confirmed
-- **iOS sandboxing:** Cross-app overlay (extension's core value) is impossible in a native mobile app
-- **Sequencing:** Extension → PWA (Phase 1.5, alongside web platform) → native app (Phase 3+)
-- **Apple Small Business Program:** Sub-$1M annual App Store revenue = 15% commission from day one; per-subscriber 12-month clock is irrelevant to pre-revenue decisions
-- **"Start the timer early" instinct debunked:** The 15% rate is per subscriber, not a company-level clock
-- **PWA advantages:** No App Store tax, no review process, no Apple political content risk, build once for iOS + Android
-- **PWA limitations:** Push notifications partial on iOS; slightly lower fidelity than native
-- **First-use retention:** Extension retention is brutal — must pre-seed high-profile accounts so first-use experience is populated, not empty
-- **Native app trigger:** When content density + user base justify a mobile destination experience
+- **Build sequencing:** Extension → PWA (Phase 1.5) → web platform → native app
 
 ### Technical Execution
 - React artifacts for rapid UI iteration working well
-- Component patterns: radar chart, arc gauge, rater cards, perspective panels, swappable cred displays
+- Component patterns: radar chart, arc gauge, rater cards, perspective panels, swappable cred displays, circular progress rings
 - Dark UI design system established (Palatino, #0a0a0a bg, color-coded credibility, blue/amber is/ought)
+- Persona feed mockup v6 current: `product/mockups/persona-feed-2026-04-10.jsx`
 
 ## What's Left to Build
 
@@ -116,7 +133,8 @@ Five named archetypes defined and documented in `product/personas.md`:
 - [ ] Inverse audience capture payout structure — deeper design
 - [ ] Spider shape trajectory display
 - [ ] Hot take spectrum visual
-- [ ] Avatar shape mirroring spider chart
+- [ ] Avatar shape mirroring spider chart — legibility question open
+- [ ] Persona illustrations — IP-safe original art
 - [ ] Public URI / portable credential infrastructure
 - [ ] B2B credibility API
 
@@ -153,16 +171,24 @@ Five named archetypes defined and documented in `product/personas.md`:
 ### Credibility Score Dimensions
 - Renamed: Is/Ought Sequencing → Factual Grounding; Claim Consistency → Claim Integrity
 - Redefined: Factual Grounding = presence not order; Cross-Viewpoint = composite axes; Source Diversity = format + geography + political lean as one input
+- Claim Integrity sub-components added (2026-04-10): factual accuracy + steelmanning score + asymmetric rigor
+
+### Steelmanning Compounding
+- Options A (additive), B (multiplicative), C (gating) evaluated 2026-04-10
+- Option B selected: CV_effective = CV_base × (1 + steelmanning_bonus)
 
 ### Build Sequencing
-- Extension first (original) → Extension + PWA (Phase 1.5 added this session) → web platform → native mobile app
-- PWA added as pragmatic mobile solution before committing to App Store dependency
+- Extension first (original) → Extension + PWA (Phase 1.5 added) → web platform → native mobile app
 
 ### Cooling Period
 - Original: Post hidden 24 hours → Revised: Post live immediately; cooling = poster's view only; 12 hours
 
 ### Is/Ought Visual Language
 - Original: Green/yellow/red → Decided: Blue (fact) → amber (opinion); user-facing: "Fact / Opinion"
+
+### Cred Score Display
+- Original: numeric badge → Revised: circular progress ring, clockwise from 12 o'clock
+- Avg reposter cred: raw number → same ring treatment at smaller size
 
 ---
 

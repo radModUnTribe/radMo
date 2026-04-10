@@ -2,7 +2,9 @@
 
 ## Current Work Focus
 
-**Primary:** GTM strategy thought experiment — investor narrative, browser extension economics, mobile/PWA sequencing, citation graphs, public-facing URI architecture.
+**Primary:** Feed UX, persona identity system, steelmanning mechanic.
+
+**Previous session (2026-04-10):** GTM strategy thought experiment — investor narrative, browser extension economics, mobile/PWA sequencing, citation graphs, public-facing URI architecture.
 
 ## What's Committed & Current
 
@@ -12,17 +14,16 @@
 - `product/mockups/credibility-score-v1.jsx` — bar chart (9.5KB)
 - `product/mockups/credibility-score-v2.jsx` — animated radar chart (13.5KB)
 - `product/mockups/rm-expert-post.jsx` — expert post variant (13.7KB)
-- `product/mockups/post-feed.jsx` — **v3 reader view (current)** — post card with is/ought coloring, swappable cred scores, rater cards, badges, perspective check panels
+- `product/mockups/post-feed.jsx` — v3 reader view (superseded for now — see below)
+- `product/mockups/persona-feed-2026-04-10.jsx` — **v6 persona feed (current)** — spider avatars, cred progress rings, fact/opinion coloring, avg reposter cred ring, full hover tooltip system
 
 ### Documentation
-- `product/features.md` — 15 sections, updated last session (dimension renames, full definitions, spider persona note)
-- `product/badges.md` — Bridge Builder, First Principles, Wide Lens — confirmed default features
-- `product/personas.md` — five spider shape archetypes with real-world examples; confirmed
-- `research/research.md` — primary research reference; also see `research/CORE-THESIS.md` and `research/THESIS-EVIDENCE-SUMMARY.md`
-- `strategy/strategy.md`, `strategy/evolution.md` — current
-- `strategy/what-to-build-now.md` — **updated this session** — Phase 1.5 (PWA) added; mobile/App Store economics section added
-- `strategy/gtm.md` — **NEW this session** — full GTM thought experiment: investor narrative, beachhead segments, citation graphs, public URI, monetization, objections, mobile strategy
-- `strategy/information-environment.md` — perfect information environment model, RadMo's lane, is/ought triage logic
+- `product/features.md` — updated 2026-04-10
+- `product/badges.md` — Bridge Builder, First Principles, Wide Lens
+- `product/personas.md` — five spider shape archetypes with real-world examples
+- `product/steelmanning-spec.md` — **updated 2026-04-10** — compounding mechanic (Option B) added
+- `research/research.md` — primary research reference
+- `strategy/strategy.md`, `strategy/evolution.md`, `strategy/gtm.md`, `strategy/what-to-build-now.md`, `strategy/information-environment.md`
 - `memory-bank/TODO.md` — live running to-do list
 
 ## Locked Design Decisions
@@ -30,61 +31,69 @@
 ### Visual / UX
 - **Is/ought color spectrum:** Blue (fact) → amber (opinion). Red/yellow/green is exclusively credibility score language.
 - **User-facing language:** "Fact / Opinion" replaces "Is / Normative". "Is/Ought" stays as internal/technical term.
-- **Cred score interaction:** Clicking the score swaps it in-place with the spider chart. Not a dropdown. Click again to restore.
-- **Engagement display:** Avg reposter cred only (not liker avg).
+- **Cred score display:** Circular progress ring, clockwise from 12 o'clock, proportional to score; faint full-circle track; ring color matches persona color
+- **Avg reposter cred:** Same ring treatment at smaller size; label "avg reposter cred" confirmed
+- **Score interaction:** Clicking the score ring swaps it in-place with the spider chart. Click again to restore.
+- **Engagement display:** Avg reposter cred ring (not liker avg).
 - **Badges are confirmed default features:** Bridge Builder, First Principles, Wide Lens.
+- **Hover tooltips locked:**
+  - Persona (avatar / badge / cred ring / large spider): short pithy blurbs per archetype
+  - Text segments: Option A — "Likely a factual claim — verifiable against evidence." / "Likely a normative claim — reflects a value or judgment."
+  - Dimension bars: Option C — FG: "Opinions backed by facts"; CV: "Validated by people who disagree"; SD: "Breadth and independence of sources"; CI: "Sources honestly represented"
 
 ### Cooling Period & Post Visibility
-- **Posts are live in feeds immediately.** Cooling period governs what the *poster* sees of their own engagement — not the post's distribution.
-- **Perspective panels appear immediately** when matches are identified — dopamine hook during cooling window.
-- **Full engagement data visible to poster at 12 hours** (who liked/reposted, scores, rater cards).
+- **Posts are live in feeds immediately.**
+- **Perspective panels appear immediately** when matches are identified.
+- **Full engagement data visible to poster at 12 hours.**
 - **Edit window:** 30 minutes from post time. Closes early on first repost.
 
-### Credibility Score — Dimension Definitions (confirmed last session)
+### Credibility Score — Dimension Definitions (confirmed)
 
-| Old name | New name | Weight | Core change |
-|---|---|---|---|
-| Is/Ought Sequencing | **Factual Grounding** | 30% | Grounding as *presence*, not *order* — does a factual basis exist for normative claims? |
-| Cross-Viewpoint Validation | Cross-Viewpoint Validation | 30% | Expanded to four axes: political lean, epistemic tribe, geographic/cultural, information diet distance |
-| Source Diversity | Source Diversity | 25% | Format tier ranking added; geographic diversity added; institutional collapses into format |
-| Claim Consistency | **Claim Integrity** | 15% | Rename only; pattern detection (directionally clustered errors = motivated misrepresentation) |
+| Dimension | Weight | Core definition |
+|---|---|---|
+| Factual Grounding | 30% | Grounding as *presence*, not *order* |
+| Cross-Viewpoint Validation | 30% | Four axes: political lean, epistemic tribe, geographic/cultural, information diet distance |
+| Source Diversity | 25% | Format tier ranking + geographic diversity + political lean as one input |
+| Claim Integrity | 15% | Sub-components: factual accuracy (~50%), steelmanning score (~30%), asymmetric rigor (~20%) |
+
+### Steelmanning Compounding (locked 2026-04-10)
+- `CV_effective = CV_base × (1 + steelmanning_bonus)`, bonus 0.0–0.3
+- Adversarial citation = zero multiplier; steelmanned citation amplifies CV payoff
+- Full spec: `product/steelmanning-spec.md`
+
+### Cred Score Primary Function (clarified 2026-04-10)
+- **Primary:** Discovery primitive — rapid epistemic assessment of strangers in feed
+- **Secondary:** Post-level trust signal
+- Spider avatar legibility at 44px is the active open design question
 
 ### Spider Shape as Epistemic Fingerprint
-- Spider shape = Tim Urban's vertical axis (*how* you think, not *what* you think)
-- **"Someone Like You" matching = cosine similarity between normalized spider dimension vectors** — shape, not overall score
-- **"Someone Unlike You" = different political lean + similar spider shape** (same epistemic method, different priors)
-- **Five archetypes confirmed:** Bubble Scholar, Vibes Merchant, Magpie, Persuader, Radical Moderate — documented in `product/personas.md`
+- **"Someone Like You" = similar spider shape** (cosine similarity of normalized vectors)
+- **"Someone Unlike You" = different political lean + similar spider shape**
+- **Five archetypes confirmed:** Bubble Scholar, Vibes Merchant, Magpie, Persuader, Radical Moderate
 
-### Information Environment Model
-- **RadMo's lane:** build the factual layer infrastructure; separate is from ought visually; surface epistemic method via credibility score
-- **Goal:** relocate disagreement from factual disputes to honest value disputes
-- Full model in `strategy/information-environment.md`
-
-### GTM & Build Sequencing (confirmed this session)
+### GTM & Build Sequencing
 - **Extension → PWA (Phase 1.5) → web platform → native mobile app**
-- PWA alongside web platform launch; native app deferred until content density justifies it
-- Apple Small Business Program: 15% commission from day one for sub-$1M revenue — per-subscriber 12-month clock irrelevant to pre-revenue sequencing
-- iOS sandboxing prevents cross-app overlay — extension's core value is impossible in a native mobile app
-- Pre-seed high-profile accounts before extension launch (first-use retention is brutal)
-- Public-facing URI for credibility score must be architected from day one (enables portable credential play)
-- Citation graphs are the passive infrastructure for information diet distance detection — no self-reporting required
+- Outlet incentive = audience signal play, not credibility play
+- Passive presence (outlet as citable source) accrues citation graph data without outlet participation
 
 ## Open To-Dos (priority order)
 
-1. **Factual Grounding scoring** — argument structure parsing; NLP/argument mining spec
-2. **Cross-viewpoint composite weighting** — four axes, weighting TBD
-3. **Source classification infrastructure** — shared dependency for Source Diversity + info diet distance (also a B2B product)
-4. **Repost intent qualifier** — disagree / neutral / agree at repost time
-5. **Cred score delta rules** — full engagement signal → score update mechanic
-6. **Badge earn conditions** — thresholds, visual design, loss mechanics
-7. **Dopamine gap** — must resolve before MVP
-8. **Perspective panel identification speed** — active vs. passive signal
-9. **Post-feed mockup updates** — perspective panels always visible; edit button
-10. **CrossViewpoint weight** — 40% vs. 30%
-11. **PWA design** — mobile presence alongside web platform; push notification mechanics
-12. **Poster-facing UI** — deferred
-13. **Hot take spectrum visual** — workshop separately
-14. **Avatar shape mirroring spider** — workshop separately
+1. **Avatar legibility at 44px** — are the five spider shapes distinct enough without a legend?
+2. **Persona illustrations** — IP-safe original character art; brief exists
+3. **News outlet incentive mechanic** — GTM angle development
+4. **Factual Grounding scoring** — argument structure parsing; NLP/argument mining spec
+5. **Cross-viewpoint composite weighting** — four axes, weighting TBD
+6. **Source classification infrastructure** — shared dependency
+7. **Repost intent qualifier** — disagree / neutral / agree at repost time
+8. **Cred score delta rules** — full engagement signal → score update mechanic
+9. **Badge earn conditions** — thresholds, visual design, loss mechanics
+10. **Dopamine gap** — must resolve before MVP
+11. **Perspective panel identification speed** — active vs. passive signal
+12. **Post-feed mockup updates** — perspective panels always visible; edit button
+13. **CrossViewpoint weight** — 40% vs. 30%
+14. **PWA design** — mobile presence alongside web platform
+15. **Poster-facing UI** — deferred
+16. **Hot take spectrum visual** — workshop separately
 
 ## Active Preferences & Patterns
 
@@ -94,16 +103,15 @@
 - **Conciseness:** Named concepts over prose
 - **Concrete outputs:** Code, spec docs, named frameworks over abstract discussion
 - **Validation:** Expect pushback on elitism or preachiness
-- **GitHub:** Single-commit multi-file pushes; always fetch SHA before updating
+- **GitHub:** Single-commit multi-file pushes; always fetch SHA before updating; never replace old files, date and preserve
 
 ## Context Notes
 
 - `credibility-score-v2` (radar) is the preferred credibility display direction
-- `what-to-build-now.md` argues browser extension → PWA → full platform → native mobile
+- `persona-feed-2026-04-10.jsx` is the current feed mockup; `post-feed.jsx` (v3) preserved as prior version
 - Ground News is primary competitive reference
 - Community Notes binary left/right model is the ceiling RadMo evolves beyond
-- Spider shape is dual-purpose: credibility display + epistemic fingerprint for perspective panel matching
-- Dimension rename summary: Is/Ought Sequencing → Factual Grounding; Claim Consistency → Claim Integrity
+- Steelmanning detection adapted from Community Notes bridging logic
 - Citation graphs = passive infrastructure for information diet distance; no self-reporting needed
 - Public-facing URI enables portable credential; must be architected from day one
 

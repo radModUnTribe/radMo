@@ -168,9 +168,20 @@ Local dissimilar people who share your epistemic verdict are especially valuable
 **Purpose:**
 The credibility score surfaces *how* a poster thinks — their epistemic method and style — not *what* they think politically. It is a "how you think" barometer, not a political alignment signal. The goal is to give readers a fast signal on poster trustworthiness and to gently incentivize scientist-mode thinking across the platform.
 
+**Primary function clarified (2026-04-10):** The cred score's most important job is as a **discovery primitive** — enabling readers to quickly assess a stranger who appears in their feed and decide whether they're worth following. Secondary job: post-level trust signal. The spider shape needs to be legible at scroll speed, not just on profile.
+
 **Important distinction:** Poster-level trust (credibility score, built over a body of work) and post-level trust (claim integrity + source grounding on a specific post) are complementary but distinct. The UI should not allow readers to over-extrapolate from poster score to post content.
 
 **Spider shape personas:** See `product/personas.md` for the five named archetypes (Bubble Scholar, Vibes Merchant, Magpie, Persuader, Radical Moderate) with real-world examples and evolution cases.
+
+**UI locks (2026-04-10):**
+- Cred score displayed as circular progress ring, clockwise from 12 o'clock, proportional to score
+- Ring color matches persona color; faint full-circle track shows incomplete ring clearly
+- "Avg reposter cred" label confirmed (replaces "reposted by" — raw number was ambiguous)
+- Avg reposter cred gets same ring treatment at smaller size
+- Persona hover blurbs locked — see `product/personas.md`
+- Dimension bar tooltips locked (Option C): FG = "Opinions backed by facts"; CV = "Validated by people who disagree"; SD = "Breadth and independence of sources"; CI = "Sources honestly represented"
+- Fact/opinion segment tooltips locked (Option A): Fact = "Likely a factual claim — verifiable against evidence."; Opinion = "Likely a normative claim — reflects a value or judgment."
 
 ---
 
@@ -207,6 +218,8 @@ The credibility score surfaces *how* a poster thinks — their epistemic method 
 4. **Information diet distance** — validation from users whose citation graphs are measurably different; detected from platform behavior, no self-reporting required
 
 *Information diet distance:* Platform logs every citation (outlet, type, geography, political lean, publication date). Citation graph per user built over 30+ posts. Cosine similarity between graphs = diet distance. Buildable from existing source diversity infrastructure.
+
+**Steelmanning compounding (locked 2026-04-10):** When CI steelmanning credit and CV validation come from the same epistemic cluster in the same post: `CV_effective = CV_base × (1 + steelmanning_bonus)`, bonus 0.0–0.3. See `product/steelmanning-spec.md`.
 
 ---
 
@@ -249,6 +262,16 @@ Institutional type collapses into format as a tagging dimension (not tracked sep
 
 **Tim Urban axis:** High = scientist-mode (evidence used honestly). Low = lawyer-mode (evidence recruited selectively).
 
+**Sub-components (locked 2026-04-10):**
+
+| Sub-component | What it measures | Weight within CI |
+|---|---|---|
+| Factual accuracy | Do cited sources support the claims made? (existing) | ~50% |
+| Steelmanning score | Is the source's strongest argument engaged? (new) | ~30% |
+| Asymmetric rigor | Same accuracy standard applied to ingroup and outgroup sources? (new) | ~20% |
+
+See `product/steelmanning-spec.md` for full spec.
+
 ---
 
 ### Spider Shape as Epistemic Fingerprint — CONFIRMED
@@ -258,6 +281,8 @@ Institutional type collapses into format as a tagging dimension (not tracked sep
 - Collapsed spider = lawyer or zealot-mode
 
 **Dual function:** Credibility display AND epistemic matching engine for perspective panels. One data structure, two uses. See `product/personas.md` for the five named archetypes.
+
+**Avatar-as-spider (elevated priority 2026-04-10):** Spider shape serves as the user avatar. Core design question: are the five shapes sufficiently distinct at 44px without a legend? Open — see `product/mockups/persona-feed-2026-04-10.jsx` for current state.
 
 ---
 
@@ -326,10 +351,18 @@ Full delta rules per engagement type: to-do.
 
 ## 9. Source Citation Incentivization
 
-**Status:** Concept stage
+**Status:** Concept stage — expanded 2026-04-10
 
 - Citing credible sources adds to credibility score (source diversity dimension)
 - Cross-ideological citation bonus: source corroborating a position it wouldn't be expected to support carries more epistemic weight
+
+**News outlet cross-aisle audience signal (2026-04-10):**
+RadMo is the only platform where an outlet like Fox News can observe genuine cross-aisle readership and citation data — who on the left is citing their content, and in what context. This is audience data unavailable on their own platform or on X/YouTube.
+
+- **Passive presence** (outlet as citable source): No outlet participation required. Citation graphs build around them from user behavior alone. Cross-aisle citation data accrues automatically. Clean and immediately valuable.
+- **Active participation** (outlet posts on RadMo): Requires the outlet to optimize for RadMo's cred score mechanic. The incentive is audience reach, not cred score directly — RadMo is where they find readers they can't reach elsewhere.
+- **GTM angle:** Pitch to outlets as an audience signal play, not a credibility play. "This is where you learn what the other side actually engages with from you."
+- **Adversarial citation risk:** Outlets may optimize for dunkable content if adversarial citation generates traffic. Steelmanning mechanic in Claim Integrity is the structural defense. See `product/steelmanning-spec.md`.
 
 ---
 
@@ -358,6 +391,7 @@ Full delta rules per engagement type: to-do.
 
 - Matrix factorization: note intercept = common ground factor
 - RadMo evolution: multi-dimensional model beyond binary left/right
+- Steelmanning detection adapted from Community Notes bridging logic — see `product/steelmanning-spec.md`
 - Planned session: walk through `matrix_factorization.py` and `scoring.py`
 
 ---
@@ -381,6 +415,9 @@ Full delta rules per engagement type: to-do.
 - [ ] **Spider shape trajectory** — show a user's shape evolution over time, not just current snapshot
 - [ ] **Mind-changing quality dimension** — future addition; reward updating on evidence
 - [ ] **Community Notes code walkthrough** — planned session
+- [ ] **Avatar legibility at 44px** — are the five spider shapes distinct enough at avatar size without a legend? See persona-feed mockup.
+- [ ] **Persona illustrations** — original IP-safe characters for each archetype; art direction brief exists, designer needed
+- [ ] **News outlet incentive mechanic** — GTM angle development; passive presence vs. active participation framing
 
 ---
 
@@ -406,5 +443,5 @@ Full delta rules per engagement type: to-do.
 
 ---
 
-*Last updated: 2026-04-04*
+*Last updated: 2026-04-10*
 *Status: Active workshopping — all features subject to change*
