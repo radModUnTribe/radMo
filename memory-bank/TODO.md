@@ -10,24 +10,25 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 
 - [ ] **Factual Grounding scoring operationalization** — requires argument structure parsing (NLP/argument mining) to link normative claims to factual support across non-adjacent text; harder than order-detection; needs tech spec
 - [ ] **Cross-viewpoint validation composite weighting** — how to weight political lean vs. epistemic tribe vs. geographic/cultural vs. information diet distance across the four axes; TBD
-- [ ] **Source classification infrastructure** — shared dependency for Source Diversity scoring AND information diet distance (cross-viewpoint); needs outlet tagging system: format tier, geography, political lean (where available), institutional type
+- [ ] **Source classification infrastructure** — shared dependency for Source Diversity scoring AND information diet distance (cross-viewpoint); needs outlet tagging system: format tier, geography, political lean (where available), institutional type; also a B2B product candidate
 - [ ] **CrossViewpoint dimension weight** — 40% vs. 30% still unresolved
 - [ ] **Dopamine gap** — why stay on RadMo without the outrage loop? Credibility status + insight velocity is the working hypothesis; needs concrete mechanic design
 - [ ] **Badge system** — Bridge Builder, First Principles, Wide Lens documented in `product/badges.md`; earn conditions are drafts; visual design, placement, gamification mechanics not yet specced
 - [ ] **Poster-facing UI** — how does the original poster see their post's performance? Reader view built first; poster view deferred
 - [ ] **Viewpoint diversity reach display** — TABLED; Option 1 vs. Option 3; polarized case is the key test; decision deferred
-- [ ] **Bubble mode / Adventure mode** — names TBD; core concept: give users explicit toggle between in-bubble and out-of-bubble feeds; primary value is the *mirror* (proving the bubble exists and is larger than assumed), not just content variety; two user segments: (1) knows they're in a bubble but underestimates it — adventure mode is calibration; (2) doesn't believe they have a bubble — the label alone is an intervention; contrast must be legible (algorithm dependency: bubble detection must be real, adventure surfacing must be aggressive); red pill / blue pill framing has tribal baggage — steer toward "before/after reveal" in copy
-- [ ] **Feed weighting sliders** — alternative/complement to binary bubble/adventure toggle; always-visible sliders showing user's current information diet mix; slider position potentially displayable on profile as a credibility-adjacent signal; workshop after bubble/adventure mode is resolved
-- [ ] **Digest feed format** — instead of infinite scroll, RadMo serves a fixed daily digest (morning + evening drop); user reads what's there, no re-serving, no refresh loop; algorithm runs on a clock not a thumb; operationalization: ranked set per user based on spider profile, served 1-2x daily; tension with retention needs workshopping
-- [ ] **Top 10 facts of the day** — daily surfacing of the most cross-viewpoint-validated factual claims in the last 24hrs; signal = positive engagement (likes + agreement reposts) from users with maximally distant spider profiles, not raw volume; essentially Community Notes bridging algorithm applied to claims rather than corrections; buildable on existing CV architecture; needs UX design (where it lives, how it's presented)
-- [ ] **Flow state as optimization target** — "engagement" (interruption frequency) is the enemy of flow (interruption absence); RadMo should optimize for *insight events per session* not time-on-app or engagement rate; proxy signals: dwell time ending in a rating/repost, switching to adventure mode immediately after reading a post; connects to "time to insight" loss function already flagged; needs concrete instrumentation design
+- [ ] **Bubble mode / Adventure mode** — names TBD; core concept: give users explicit toggle between in-bubble and out-of-bubble feeds; primary value is the *mirror* (proving the bubble exists and is larger than assumed), not just content variety; two user segments: (1) knows they're in a bubble but underestimates it — adventure mode is calibration; (2) doesn't believe they have a bubble — the label alone is an intervention; contrast must be legible; red pill / blue pill framing has tribal baggage — steer toward "before/after reveal" in copy
+- [ ] **Feed weighting sliders** — alternative/complement to binary bubble/adventure toggle; always-visible sliders showing user's current information diet mix; workshop after bubble/adventure mode is resolved
+- [ ] **Digest feed format** — instead of infinite scroll, RadMo serves a fixed daily digest; operationalization: ranked set per user based on spider profile, served 1-2x daily; tension with retention needs workshopping
+- [ ] **Top 10 facts of the day** — daily surfacing of the most cross-viewpoint-validated factual claims in the last 24hrs; buildable on existing CV architecture; needs UX design
+- [ ] **Flow state as optimization target** — optimize for *insight events per session* not time-on-app; proxy signals: dwell time ending in a rating/repost, switching to adventure mode immediately after reading a post; needs concrete instrumentation design
+- [ ] **PWA design** — mobile presence alongside web platform launch; push notification mechanics (perspective panel matches, digest delivery) are the primary thing native does better; design PWA experience before committing to native app
 
 ---
 
 ## Engagement Mechanics — Open Design Questions
 
 - [ ] **Repost intent qualifier — disagree / neutral / agree** — required at repost time; feeds into poster's cred score delta; workshop friction implications
-- [ ] **Cred score delta rules** — full mechanic for how likes, repost qualifiers, and engagement types update poster's credibility score; likes = stronger directional weight (near-certain agreement); reposts weighted by qualifier once built
+- [ ] **Cred score delta rules** — full mechanic for how likes, repost qualifiers, and engagement types update poster's credibility score
 - [ ] **Edit button mechanics** — 30-min window confirmed; open: typo vs. substantive edit distinction (NLP); reposter notification on substantive edits; retraction mechanic for reposters
 
 ---
@@ -51,39 +52,40 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
   - Edit button in poster header (30-min window)
 - [ ] **"Hot take" spectrum visual** — bar from hot take to Radically Moderate; workshop separately
 - [ ] **Avatar shape mirroring spider chart** — polygon avatar matching credibility profile; workshop separately
-- [ ] **Public information diet display** — nutrition-label style display on user profile showing source format mix, geographic diversity, political lean spread; aggregates into a badge or profile signal; design TBD
+- [ ] **Public information diet display** — nutrition-label style display on user profile; design TBD
 
 ---
 
 ## Research Needed
 
-- [ ] **Spider shape change over time** — Sam Harris as the primary case study; his spider was closer to Radical Moderate early career and has drifted toward Bubble Scholar as his audience narrowed post-2016; research question: what causes spider drift? Is it audience capture, topic self-selection, or genuine epistemic change? Implications for whether RadMo should surface a user's *trajectory* not just their current shape
-- [ ] **News outlet bias rating landscape** — Ground News, AllSides, Ad Fontes, Media Bias/Fact Check; needed for Source Diversity operationalization
+- [ ] **Spider shape change over time** — Sam Harris as primary case study; what causes spider drift? audience capture vs. topic self-selection vs. genuine epistemic change?
+- [ ] **News outlet bias rating landscape** — Ground News, AllSides, Ad Fontes, Media Bias/Fact Check
 - [ ] **Community Notes code walkthrough** — `matrix_factorization.py` and `scoring.py`; identify RadMo multi-dimensional adaptation points
-- [ ] **Sentiment analysis / argument mining** — NLP model selection for Factual Grounding scoring; cost/accuracy tradeoffs
+- [ ] **Sentiment analysis / argument mining** — NLP model selection for Factual Grounding scoring
 - [ ] **Prediction market monetary incentive design** — real money vs. reputation; Kalshi ruling; Polymarket/Manifold/Metaculus reference models
-- [ ] **Flow state research** — what does the psychology/UX literature say about conditions for flow in information consumption contexts? What platforms (if any) have approximated it? Relevant to insight-event instrumentation
+- [ ] **Flow state research** — psychology/UX literature on flow in information consumption contexts
 
 ---
 
 ## Future Dimension Candidate (post-MVP)
 
-- [ ] **Mind-changing quality dimension** — reward grounded position updates (new evidence cited); penalize tribal flips (no factual trigger); signal: whether + why someone changed their mind; tabled until core four dimensions are stable
-- [ ] **Epistemic restraint signal** — cred score accrues at decreasing rate (asymptotic ceiling) during posting silence; cadence-baseline variant: bonus kicks in only when you post *less* than your established pattern, so infrequent posters don't get a free ride; gaming neutralized by design; worth speccing eventually
+- [ ] **Mind-changing quality dimension** — reward grounded position updates; tabled until core four dimensions are stable
+- [ ] **Epistemic restraint signal** — cred score accrues at decreasing rate during posting silence; cadence-baseline variant
 
 ---
 
 ## Product Features (post-MVP)
 
+- [ ] Native mobile app — React Native; after web platform has content density + user base to justify a mobile destination
 - [ ] Prediction markets + reputation system
 - [ ] Automated sentiment/bias detection via NLP
 - [ ] Claim extraction and cross-reference scoring
 - [ ] Multi-dimensional viewpoint mapping (geographic, cultural, generational, religious)
-- [ ] Mobile-first design
 - [ ] Ingroup norm surfacing — "most people in this discussion feel X"
 - [ ] Cooling period UX — countdown display design
-- [ ] Temporal source diversity — citing across time, not just recent; deprioritized, add later
-- [ ] **Portable cred score / LinkedIn integration** — RadMo score as professional signal; epistemic track record alongside CV; "here's my intellectual rigor number" as employment signal; long-term; changes target user slightly toward people with professional reasons to demonstrate rigor (high-motivation early adopter segment)
+- [ ] Temporal source diversity — citing across time; deprioritized
+- [ ] **Portable cred score / LinkedIn integration** — RadMo score as professional signal; requires public-facing URI architecture from day one
+- [ ] **B2B credibility API** — newsrooms, fact-checkers, platforms pay to query scores; source classification infrastructure is the shared foundation
 
 ---
 
@@ -94,7 +96,8 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] Community Notes integration (fork + adapt to multi-dimensional)
 - [ ] Testing strategy (unit, integration, A/B)
 - [ ] Decision log for design tradeoffs
+- [ ] Public-facing URI architecture for credibility scores (required for portable credential play)
 
 ---
 
-*Last updated: 2026-04-07*
+*Last updated: 2026-04-10*

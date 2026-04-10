@@ -41,130 +41,130 @@ Five named archetypes defined and documented in `product/personas.md`:
 
 ### Asymmetric Rigor — Identified Failure Mode
 - **Definition:** Applying rigorous evidential standards to outgroup claims while relaxing them for ingroup claims
-- **Mechanism:** Financially self-reinforcing via audience capture; attention economics pay more as tribal intensity increases
+- **Mechanism:** Financially self-reinforcing via audience capture
 - **Signal:** Gap between ingroup CI score and outgroup CI score — detectable algorithmically
-- **Potential dimension:** Directional Claim Integrity — track CI separately for ingroup-confirming vs. ingroup-challenging sources
 - **Documented in:** `product/personas.md`
 
 ### Inverse Audience Capture Payout Structure — Concept Documented
-- **Thesis:** If credibility score drops as audience becomes more homogeneous, platform creates financial incentive for adversarial validation over tribal applause
-- **Proposed mechanics:**
-  - Decay function on homogeneous engagement (90%+ likes from similar spiders = score discount)
-  - Bonus multiplier for adversarial validation (first cross-bubble validation worth more than hundredth same-bubble validation)
-  - Visibility inversely correlated with audience homogeneity
-- **Tension:** Fights the dopamine loop; requires cross-viewpoint respect to *feel* like status — the badge and credibility systems must make this work culturally
-- **Documented in:** `product/personas.md` (under asymmetric rigor section)
+- Credibility score decays as audience becomes more homogeneous
+- Bonus multiplier for adversarial validation
+- Visibility inversely correlated with audience homogeneity
+- **Documented in:** `product/personas.md`
 
-### Spider Evolution Over Time — Documented Cases
-- **Sam Harris:** Near-Radical Moderate early → Bubble Scholar late; CV collapsed as audience narrowed post-2016
-- **Joe Rogan:** Wide Persuader early → Vibes Merchant core late; guest list narrowed, claim integrity degraded
-- **Bret Weinstein:** Legitimate Bubble Scholar early → rogue late; citation universe collapsed, documented claim integrity failures
-- **Pattern:** Audience capture is the primary driver of spider drift; financial incentives reinforce the narrowing
-- **Research to-do:** What causes spider drift? Is it audience capture, topic self-selection, or genuine epistemic change? Does RadMo's inverse-capture mechanics prevent drift?
+### GTM Strategy — Confirmed Framework (this session)
+- **Investor narrative:** Credibility layer for the web → platform → professional credential
+- **Beachhead:** Policy/academic X refugees (primary); journalists/fact-checkers (secondary); Substack writers (tertiary + distribution channel)
+- **Defensibility framing:** Citation graph as compounding proprietary asset; no-ads positioning as principled + strategic
+- **Monetization hierarchy:** Freemium → B2B credibility API → portable credential/LinkedIn play
+- **Objection playbook:** Niche concern (Community Notes scale counter); gaming concern (multi-dimensional defense); human nature concern (redirect not suppress)
+- **Key investor pitch:** "We don't run ads because ads require optimizing for engagement, and that's the problem we're solving."
+
+### Citation Graphs — Defined and Documented
+- Network of sources linked by citations; built passively from posting behavior
+- Core infrastructure for information diet distance detection (no self-reporting)
+- Shared dependency with Source Diversity dimension
+- Proprietary data asset that compounds — core defensibility argument
+- Requires source classification system as foundation
+
+### Public-Facing URI — Architected
+- Stable linkable URL per user credibility score (e.g., `radmo.com/u/[username]/credibility`)
+- Enables portable credential play (LinkedIn, Substack bylines, email signatures)
+- Other platforms can query/embed via API using URI as identifier
+- Must be planned from day one — cannot be retrofitted
+
+### Mobile / App Store Strategy — Confirmed
+- **iOS sandboxing:** Cross-app overlay (extension's core value) is impossible in a native mobile app
+- **Sequencing:** Extension → PWA (Phase 1.5, alongside web platform) → native app (Phase 3+)
+- **Apple Small Business Program:** Sub-$1M annual App Store revenue = 15% commission from day one; per-subscriber 12-month clock is irrelevant to pre-revenue decisions
+- **"Start the timer early" instinct debunked:** The 15% rate is per subscriber, not a company-level clock
+- **PWA advantages:** No App Store tax, no review process, no Apple political content risk, build once for iOS + Android
+- **PWA limitations:** Push notifications partial on iOS; slightly lower fidelity than native
+- **First-use retention:** Extension retention is brutal — must pre-seed high-profile accounts so first-use experience is populated, not empty
+- **Native app trigger:** When content density + user base justify a mobile destination experience
 
 ### Technical Execution
 - React artifacts for rapid UI iteration working well
 - Component patterns: radar chart, arc gauge, rater cards, perspective panels, swappable cred displays
 - Dark UI design system established (Palatino, #0a0a0a bg, color-coded credibility, blue/amber is/ought)
-- Inline visualizer (Anthropic March 2026) used for interactive mockups; artifacts panel still available for downloadable files
 
 ## What's Left to Build
 
 ### Critical Path (MVP Readiness)
-- [ ] **Factual Grounding scoring operationalization** — argument structure parsing / NLP argument mining; harder than order-detection
-- [ ] **Badge earn conditions** — thresholds, visual design, loss mechanics; see `product/badges.md`
+- [ ] **Factual Grounding scoring operationalization** — argument structure parsing / NLP argument mining
+- [ ] **Badge earn conditions** — thresholds, visual design, loss mechanics
 - [ ] **Viewpoint diversity reach display** — tabled; Option 1 vs. Option 3 decision deferred
 - [ ] **Poster-facing UI** — deferred; reader view complete
-- [ ] **Dopamine gap** — must solve before MVP; credibility status + insight velocity is working hypothesis
-- [ ] **Repost intent qualifier** — disagree / neutral / agree mechanic; feeds into cred score delta
+- [ ] **Dopamine gap** — must solve before MVP
+- [ ] **Repost intent qualifier** — disagree / neutral / agree mechanic
 - [ ] **Cred score delta rules** — full mechanic per engagement type
-- [ ] **Cooling period UX** — where/how countdown displays to poster
 - [ ] **Post-feed mockup updates** — perspective panels always visible; edit button in poster header
+- [ ] **PWA design** — mobile presence alongside web platform
 - [ ] Backend architecture (API design, database schema)
 - [ ] Content submission flow
 - [ ] Community Notes integration (fork + multi-dimensional adaptation)
 
 ### Secondary (Post-MVP)
+- [ ] Native mobile app (React Native, post platform launch)
 - [ ] Prediction markets + reputation system
 - [ ] Automated sentiment/bias detection via NLP
 - [ ] Claim extraction and cross-reference scoring
 - [ ] Multi-dimensional viewpoint mapping (geographic, cultural, generational, religious)
 - [ ] Mobile-first design
-- [ ] Ingroup norm surfacing — "most people in this discussion feel X"
+- [ ] Ingroup norm surfacing
 - [ ] Asymmetric rigor / Directional Claim Integrity dimension
-- [ ] Mind-changing quality dimension (updating on evidence)
-- [ ] Inverse audience capture payout structure — deeper design and implementation
-- [ ] Spider shape trajectory display — show a user's shape over time, not just current
+- [ ] Mind-changing quality dimension
+- [ ] Inverse audience capture payout structure — deeper design
+- [ ] Spider shape trajectory display
 - [ ] Hot take spectrum visual
 - [ ] Avatar shape mirroring spider chart
+- [ ] Public URI / portable credential infrastructure
+- [ ] B2B credibility API
 
 ### Research Queued
 - [ ] News outlet bias rating landscape
-- [ ] Community Notes code walkthrough (`matrix_factorization.py`, `scoring.py`)
+- [ ] Community Notes code walkthrough
 - [ ] Sentiment analysis / argument mining for Factual Grounding scoring
 - [ ] Prediction market monetary incentive design
-- [ ] Spider shape change over time — what causes drift? Audience capture vs. topic self-selection vs. genuine epistemic change
-- [ ] Source classification infrastructure — shared dependency for Source Diversity and information diet distance
+- [ ] Spider shape change over time
+- [ ] Source classification infrastructure
+- [ ] Flow state research
 
 ## Current Status
 
 **Phase:** Design & Prototyping
-
 **Blockers:** None critical
-
 **Risk Level:** Low
 
 ## Known Issues & Trade-offs
 
 ### High Priority
 1. **Dopamine Gap:** Why stay on RadMo without the outrage loop?
-   - *Hypothesis:* Credibility status + insight velocity
-   - *Validation needed:* User testing, behavioral research
-
-2. **Asymmetric Rigor Detection:** Directional CI is the right signal but requires source-level political lean tagging and per-source CI scoring — significant infrastructure requirement
-
-3. **Audience Capture Decay Function:** Inverse payout structure requires detecting homogeneous engagement at scale — gaming risk if rules are legible
-
-4. **Gaming Risk (general):** Legible scoring rules invite optimization for the metric rather than the behavior it proxies
-
-5. **Demographic Skew:** Credibility system rewards a specific epistemic style. Emotional or communal communication registers may score lower not because they're less credible but because the system is miscalibrated.
+2. **Asymmetric Rigor Detection:** Significant infrastructure requirement
+3. **Audience Capture Decay Function:** Gaming risk if rules are legible
+4. **Gaming Risk (general):** Legible scoring rules invite metric optimization
+5. **Demographic Skew:** Credibility system may miscalibrate against emotional/communal communication styles
 
 ### Medium Priority
-6. **Prediction Market Incentives:** Real money vs. reputation; complex game theory
-7. **Scale & Moderation:** Quality at scale; RadMo needs a defensible approach to source credibility without a biased central rater
+6. **Prediction Market Incentives:** Real money vs. reputation
+7. **Scale & Moderation:** Quality at scale without biased central rater
 
 ## Evolution of Key Decisions
 
 ### Credibility Score Dimensions
-- **Original names:** Is/Ought Sequencing, Cross-Viewpoint Validation, Source Diversity, Claim Consistency
-- **Renamed this session:** Factual Grounding (from Is/Ought Sequencing), Claim Integrity (from Claim Consistency)
-- **Redefined:** Factual Grounding = presence not order; Cross-Viewpoint = composite axes not just political spectrum; Source Diversity = format + geography + political lean as one input
+- Renamed: Is/Ought Sequencing → Factual Grounding; Claim Consistency → Claim Integrity
+- Redefined: Factual Grounding = presence not order; Cross-Viewpoint = composite axes; Source Diversity = format + geography + political lean as one input
+
+### Build Sequencing
+- Extension first (original) → Extension + PWA (Phase 1.5 added this session) → web platform → native mobile app
+- PWA added as pragmatic mobile solution before committing to App Store dependency
 
 ### Cooling Period
-- **Original:** Post hidden for 24 hours
-- **Revised:** Post live immediately; cooling period = poster's view of engagement only; 12 hours (down from 24)
-- **Rationale:** Distribution is the point; friction targets the dopamine loop, not the spread
+- Original: Post hidden 24 hours → Revised: Post live immediately; cooling = poster's view only; 12 hours
 
 ### Is/Ought Visual Language
-- **Original:** Green/yellow/red gradient
-- **Problem:** Conflicts with credibility score color language
-- **Decided:** Blue (fact) → amber (opinion); user-facing: "Fact / Opinion"
-
-### Spider Shape Matching
-- **Original:** Political lean as matching signal
-- **Confirmed:** Spider shape similarity (cosine distance between normalized vectors) = "Someone Like You"
-- **Rationale:** Matches on *how* someone thinks (Tim Urban's vertical axis), not *what* they think
-
-### Perspective Panels Timing
-- **Original:** Shown after cooling period
-- **Revised:** Surface immediately when matches identified — this is the dopamine hook during the cooling window
-
-### Cost of Ignoring Shared Facts
-- **Proposed:** Standalone mechanic tying reach penalties to user engagement with Top 10 daily facts
-- **Problem:** Specialization ≠ hermetic sealing; a nurse who never engages with foreign policy facts isn't in a bubble; penalizing legitimate specialization is a false positive
-- **Resolved:** The cred score handles this more fairly — if a user's citation graph and reposts never leave a single ideological cluster *across all topics they post about*, this depresses Cross-Viewpoint and Source Diversity scores naturally. Standalone mechanic unnecessary. Flag for review when cred score dimensions are fully operationalized.
+- Original: Green/yellow/red → Decided: Blue (fact) → amber (opinion); user-facing: "Fact / Opinion"
 
 ---
 
-**Last Updated:** 2026-04-07
+**Last Updated:** 2026-04-10
 **Next Review:** Start of next session

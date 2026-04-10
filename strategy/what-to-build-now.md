@@ -4,7 +4,7 @@
 >
 > This is a genuine strategic opinion, not a summary of what we've discussed. It applies the research to a build decision and argues a specific position.
 >
-> *Written: 2026-03-21*
+> *Written: 2026-03-21. Mobile/PWA section added: 2026-04-10.*
 
 ---
 
@@ -62,6 +62,24 @@ The product experience I'd build isn't just a silent filter. It would show the u
 
 This is the Tim Urban move applied to product design: show the user the mechanism that's operating on them before asking them to do anything differently. "Here's what the algorithm is doing" is not identity-threatening. It's information. People can receive that without triggering the defensive response that explicit political challenge would produce.
 
+### Phase 1.5: Progressive Web App (PWA)
+
+Before committing to a native iOS/Android app, ship a Progressive Web App alongside the web platform. A PWA is a responsive web app that installs to the home screen, works offline, and sends push notifications — without going through an App Store.
+
+**Why PWA before native:**
+- No App Store tax (0% vs. 15–30%)
+- No review process or platform gatekeeping
+- No risk of Apple rejecting the app over political content policies (historically unpredictable)
+- Build once, works on both iOS and Android
+- Sufficient for a read-heavy feed product at early scale
+
+**PWA limitations to know:**
+- Apple has historically limited PWA capabilities on iOS (improving since iOS 16.4 but still behind Android)
+- No App Store discoverability (weak for extensions too, so no meaningful loss)
+- Slightly lower-fidelity than native — acceptable for MVP
+
+The PWA is the right answer for mobile presence during the web platform launch. Native app comes later, when content density and user base justify a mobile-first destination experience.
+
 ### Phase 2: The Community Layer
 
 While the extension is building its user base, run a parallel track that establishes the Quiet Majority as an identity and community — before the platform exists to house it.
@@ -86,10 +104,46 @@ The platform you build in Phase 3 is fundamentally more likely to work than the 
 
 ---
 
+## Mobile App: When and Why
+
+### The Fundamental Constraint
+
+iOS and Android sandboxing prevents one app from reading or modifying another app's content. The browser extension's core value — overlaying credibility signals on Twitter, Reddit, and Substack — **is impossible in a native mobile app.** A mobile app can't be a mobile version of the extension. It has to be a standalone RadMo feed, which requires content density, which brings back the cold start problem the extension bypasses.
+
+### App Store Economics
+
+**Apple:**
+- $99/year developer account
+- 30% commission on IAP and subscriptions (year 1 per subscriber); 15% from month 13 onward
+- **Small Business Program:** Developers under $1M annual App Store revenue qualify for 15% from day one — applies at launch for any early-stage product. Apply once; rate reverts to standard when you exceed the threshold.
+- Subscriptions must be processed through Apple IAP if offered inside the app. The workaround: push users to subscribe on your website, then log in on mobile. Apple can't take a cut of web-originated subscriptions.
+- Review process: 1–3 days. Can be rejected for policy reasons with limited recourse.
+- Historical note: Apple's policies on apps related to political content have been unpredictable. An app framed around credibility scoring of political speech could draw scrutiny.
+
+**Google Play:**
+- $25 one-time developer fee
+- Same 30%/15% commission structure
+- More permissive review process
+- More PWA-friendly than iOS
+
+**The "start the timer early" instinct:** The 15% rate is per subscriber, not a company-level clock. There is no benefit to being in the App Store before you have paying subscribers. The clock only runs when someone is actually paying. The Small Business Program makes this moot anyway — you get 15% from day one regardless.
+
+### Native App Sequencing
+
+Native mobile app is Phase 3+, after:
+- The web platform has sufficient content density to make a mobile destination compelling
+- The PWA has validated mobile usage patterns and retention
+- Engineering bandwidth exists to maintain a third codebase
+- Push notification mechanics (perspective panel matches, digest delivery) are fully designed — this is the primary thing native does better than PWA
+
+If building native: React Native is the right call for an early team (one codebase, two stores). Native Swift/Kotlin doubles engineering cost for a performance gain that doesn't matter pre-scale.
+
+---
+
 ## What This Build Order Protects Against
 
 ### The backfire problem
-The biggest unresolved design challenge in the research is Theory 3: cross-viewpoint exposure under the wrong conditions makes polarization worse. The extension is not a cross-viewpoint exposure tool — it's a outrage-reduction tool. It sidesteps the backfire risk almost entirely. You're not showing users content from the other side; you're showing them less angry content from all sides. That's a much safer first intervention, and one with direct causal evidence behind it.
+The biggest unresolved design challenge in the research is Theory 3: cross-viewpoint exposure under the wrong conditions makes polarization worse. The extension is not a cross-viewpoint exposure tool — it's an outrage-reduction tool. It sidesteps the backfire risk almost entirely. You're not showing users content from the other side; you're showing them less angry content from all sides. That's a much safer first intervention, and one with direct causal evidence behind it.
 
 ### The identity threat problem
 The extension doesn't ask users to reconsider their political views. It asks them to see their information diet differently. "The algorithm is making you angry" is not an identity threat. "Here's someone who disagrees with you" is. Phase 1 operates in the safer register.
@@ -138,13 +192,15 @@ The full RadMo platform, built on that foundation, is a much stronger bet than t
 ## Summary
 
 | Phase | What | Why | Timeline |
-|-------|------|-----|----------|
-| 1 | Browser extension (feed reranker) | Test core thesis, build initial user base, generate behavioral data | Months 1-6 |
-| 2 | Community layer (newsletter, Discord) | Establish Quiet Majority identity, validate addressable market, find early adopters | Months 3-12 (parallel) |
-| 3 | Full social platform | Build on proven thesis, known audience, tested features, established culture | Month 18+ |
+|-------|------|-----|-----------|
+| 1 | Browser extension (feed reranker) | Test core thesis, build initial user base, generate behavioral data | Months 1–6 |
+| 1.5 | PWA alongside web platform | Mobile presence without App Store dependency, cold start still bypassed | Months 6–12 |
+| 2 | Community layer (newsletter, Discord) | Establish Quiet Majority identity, validate addressable market | Months 3–12 (parallel) |
+| 3 | Full social platform | Build on proven thesis, known audience, tested features | Month 18+ |
+| 3+ | Native mobile app | When content density + user base justify a mobile destination | Post platform launch |
 
 The platform is the destination. The extension and community are how you earn the right to build it.
 
 ---
 
-*This document represents a strategic opinion based on the research conducted in this project. It should be revisited as the addressable market research (open question #1 from the session notes) develops and as the core thesis evidence base expands.*
+*This document represents a strategic opinion based on the research conducted in this project. It should be revisited as the addressable market research develops and as the core thesis evidence base expands.*
