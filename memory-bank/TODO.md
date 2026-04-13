@@ -6,13 +6,29 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 
 ---
 
-## Design Decisions Needed (high priority)
+## ⚠️ Fundamental Blockers (Investor-Level Red Flags)
+
+These are pre-implementation blockers. Nothing in the technical build queue should be treated as a priority over resolving or at minimum documenting mitigation strategies for these.
+
+- [ ] **Dopamine gap** — why stay on RadMo without the outrage loop? Credibility status + insight velocity is the working hypothesis but has never been validated at scale. Existential product question — if the engagement loop doesn't work, nothing else matters. Needs concrete mechanic design and ideally early testing.
+- [ ] **No validated willingness to pay** — freemium is the monetization plan but there is zero evidence the target user pays $8–12/mo vs. using Bluesky for free. B2B API requires scale that doesn't exist. Portable credential is 5+ years out. No near-term revenue path with evidence behind it.
+- [ ] **Factual Grounding is 30% of the score and effectively a placeholder** — hardest dimension to build; nobody has productized it; a credibility score where nearly a third is absent or directionally noisy at launch is a material investor concern.
+- [ ] **Gaming risk is structural** — legible scoring rules invite metric optimization; steelmanning and asymmetric rigor are especially vulnerable; current defense ("gaming one dimension depresses others") is a hypothesis not a validated mechanism.
+- [ ] **"Who scores the scorers" governance problem** — source credibility, factual claim definitions, cross-viewpoint validation thresholds are all politically contested; no documented governance model for how scoring decisions are made, updated, or appealed; will be weaponized at first controversial call.
+- [ ] **Platform/API dependency risk** — extension beachhead and account-analysis concept both depend on social media API access that is actively becoming more hostile; X API is expensive and restricted; Meta is locked down; no mitigation plan documented.
+- [ ] **Addressable market is theorized, not quantified** — "Quiet Majority exists" is research-grounded but nobody has measured whether it's 5M or 500M people, whether they'd pay, or whether they'd adopt a new platform vs. muting politics on existing ones.
+- [ ] **Legal exposure from user-level credibility scoring** — scoring individual users' epistemic behavior in ways that affect reach or reputation is defamation-adjacent, especially if the score is wrong or perceived as politically motivated; no legal framework documented; material risk at scale. *Partial mitigation: spider profile private by default; post-level scoring carries lower exposure (editorial judgment about content, Section 230 territory). Full legal framework still needed pre-launch.*
+- [ ] **No team** — design and prototyping stage with one person; build complexity (custom ML, matrix factorization, RAG pipelines, real-time scoring, social platform) requires a technical co-founder and ML expertise not yet in place.
+- [ ] **Cold start on the platform itself remains unsolved** — extension defers but does not solve; spider profiles and CV dimension only generate meaningful signal at critical mass of diverse users posting on RadMo; the cold start problem is deferred to Phase 3 with no documented solution.
+
+---
+
+## Design Decisions Needed
 
 - [ ] **Factual Grounding scoring operationalization** — requires argument structure parsing (NLP/argument mining) to link normative claims to factual support across non-adjacent text; harder than order-detection; needs tech spec
 - [ ] **Cross-viewpoint validation composite weighting** — how to weight political lean vs. epistemic tribe vs. geographic/cultural vs. information diet distance across the four axes; TBD
 - [ ] **Source classification infrastructure** — shared dependency for Source Diversity scoring AND information diet distance (cross-viewpoint); needs outlet tagging system: format tier, geography, political lean (where available), institutional type; also a B2B product candidate
 - [ ] **CrossViewpoint dimension weight** — 40% vs. 30% still unresolved
-- [ ] **Dopamine gap** — why stay on RadMo without the outrage loop? Credibility status + insight velocity is the working hypothesis; needs concrete mechanic design
 - [ ] **Badge system** — Bridge Builder, First Principles, Wide Lens documented in `product/badges.md`; earn conditions are drafts; visual design, placement, gamification mechanics not yet specced
 - [ ] **Poster-facing UI** — how does the original poster see their post's performance? Reader view built first; poster view deferred
 - [ ] **Viewpoint diversity reach display** — TABLED; Option 1 vs. Option 3; polarized case is the key test; decision deferred
@@ -24,6 +40,8 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **PWA design** — mobile presence alongside web platform launch; push notification mechanics (perspective panel matches, digest delivery) are the primary thing native does better; design PWA experience before committing to native app
 - [ ] **Avatar legibility at 44px** — are the five spider shapes distinct enough at avatar size without a legend? Elevated to active design question 2026-04-10; see persona-feed mockup
 - [ ] **News outlet incentive mechanic** — GTM angle for pitching outlets on RadMo as cross-aisle audience signal play; passive presence vs. active participation framing; needs development
+- [ ] **Two-tier data model** — what users see (broad/simplified post-level spider signal) vs. what RadMo holds internally (rich full-dimensional user profile); internal data is the scoring engine and matching primitive; public-facing version intentionally less granular; architecture and UX implications need spec
+- [ ] **Spider profile incentivization structure** — users who opt in to making their spider chart public get something in return; exact mechanic TBD; framing: a good score is worth showing off, platform should make that feel rewarding not coerced; explore reward options (badge, reach bonus, discovery boost)
 
 ---
 
@@ -73,8 +91,16 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Sentiment analysis / argument mining** — NLP model selection for Factual Grounding scoring
 - [ ] **Prediction market monetary incentive design** — real money vs. reputation; Kalshi ruling; Polymarket/Manifold/Metaculus reference models
 - [ ] **Flow state research** — psychology/UX literature on flow in information consumption contexts
-- [ ] **Center for Humane Technology** — potential strategic relationship; CHT is advocacy/awareness (not product); could be legitimizing partner; track their AI and social media work for alignment and differentiation
-- [ ] **Factual Grounding landscape** — companies working on argument mining, claim detection, NLP-based fact-checking (Full Fact, Logically, Factiverse, Squash, etc.); assess partnership vs. build vs. integrate options
+- [ ] **Factual Grounding landscape** — companies working on argument mining, claim detection, NLP-based fact-checking (Full Fact, Logically, Factiverse, FEVER benchmark community); assess partnership vs. build vs. integrate options
+- [ ] **Legal framework for user-level credibility scoring** — defamation exposure, Section 230 scope, jurisdiction considerations; needs legal counsel before public launch
+- [ ] **Addressable market sizing** — quantify the Quiet Majority; willingness to pay research; behavioral data from extension as primary eventual source
+
+---
+
+## GTM — Under Construction
+
+- [ ] **Extension absorption risk** — browser/platform players (Chrome, Edge, X) have history of absorbing popular extension categories as native features; RadMo's surface-level feed overlay is replicable; moat is the compounding citation graph and spider profile depth, not the UI; timing bet more than a defensibility bet; strategy still under construction
+- [ ] **Account-analysis beachhead** — ingest user's social media history, analyze it, produce initial spider chart / persona as onboarding hook; potentially more viral than feed overlay (epistemic fingerprint is shareable); constrained by API access hostility; still under construction
 
 ---
 
@@ -83,6 +109,18 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Mind-changing quality dimension** — reward grounded position updates; tabled until core four dimensions are stable
 - [ ] **Epistemic restraint signal** — cred score accrues at decreasing rate during posting silence; cadence-baseline variant
 - [ ] **Track record calibration** — signal for whether a user "called" outcomes through consistent epistemic reasoning vs. lucky contrarianism; key distinction is calibration (evidence-based prediction) vs. survivorship bias (hot take that landed); likely a Claim Integrity sub-component or future standalone dimension; natural home in prediction markets mechanic post-MVP; requires temporal claim extraction (falsifiable prediction detection + outcome resolution NLP); also relevant to historical account analysis at signup
+
+---
+
+## Potential Future Partners & Collaborators
+
+- [ ] **Center for Humane Technology (CHT)** — Tristan Harris / Aza Raskin; nonprofit advocacy org, not a product; aligned on incentive-reform thesis; could provide legitimacy, press access, policy credibility; no competitive overlap; currently pivoting focus toward AI; potential legitimizing partner worth cultivating
+- [ ] **Ground News** — currently documented as competitive foil in strategy docs (outlet-level bias aggregation for readers vs. RadMo's user-level epistemic scoring for participants); limited actual product overlap; potential data-sharing angle: their outlet bias ratings are direct input for RadMo's Source Diversity scoring; worth reframing as potential data partner while preserving competitive positioning notes elsewhere
+- [ ] **Factiverse** — Norwegian fact-checking API; claim extraction and verification at sentence level in 110+ languages; peer-reviewed technology; small and unfunded; potential integration for Claim Integrity factual accuracy sub-component; actively seeking enterprise partners
+- [ ] **Full Fact** — UK nonprofit; building LLM-assisted claim detection tooling for journalists (Gemini-based prototype); potential API or methodology licensing; no commercial conflict with RadMo
+- [ ] **AllSides / Ad Fontes / Media Bias Fact Check** — outlet bias rating databases; direct input for Source Diversity scoring; all three have existing methodologies RadMo could license or integrate rather than rebuild from scratch
+- [ ] **FEVER benchmark community** — academic fact extraction and verification research (Cambridge NLP group and others); state-of-the-art signal for Factual Grounding; natural research partner and credibility validator; not a product partner
+- [ ] **Science 2025 reranking study authors** — authored the preregistered feed reranking study that is the closest empirical precedent to RadMo's extension concept; potential academic validation partnership
 
 ---
 

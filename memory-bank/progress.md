@@ -78,18 +78,17 @@ Five named archetypes defined and documented in `product/personas.md`:
 - **Fact/opinion tooltips (Option A):** Fact = "Likely a factual claim — verifiable against evidence."; Opinion = "Likely a normative claim — reflects a value or judgment."
 
 ### Cred Score Primary Function Clarified (2026-04-10)
-Cred score's primary job is **discovery primitive** — enabling readers to assess a stranger in their feed and decide whether they're worth following. The spider shape needs to be legible at scroll speed (44px avatar). Secondary job: post-level trust signal. This framing elevates the avatar-as-spider design question to active priority.
+Cred score's primary job is **discovery primitive** — enabling readers to assess a stranger in their feed and decide whether they're worth following. The spider shape needs to be legible at scroll speed (44px avatar). Secondary job: post-level trust signal.
 
-Key insight: "You find people worth following not because they think like you politically, but because they think like you epistemically." RadMo's discovery is epistemic fingerprint matching across value distance.
+Key insight: "You find people worth following not because they think like you politically, but because they think like you epistemically."
 
 ### News Outlet Cross-Aisle Signal (2026-04-10)
-RadMo is the only platform where outlets can observe genuine cross-aisle readership data. Steelmanning mechanic is the structural defense against adversarial citation optimizing for dunkable content. Passive presence (outlet as citable source) is immediately valuable without outlet participation. GTM pitch to outlets: audience signal play, not credibility play.
+RadMo is the only platform where outlets can observe genuine cross-aisle readership data. Steelmanning mechanic is the structural defense against adversarial citation. Passive presence (outlet as citable source) immediately valuable without participation. GTM pitch: audience signal play, not credibility play.
 
 ### Asymmetric Rigor — Identified Failure Mode
 - **Definition:** Applying rigorous evidential standards to outgroup claims while relaxing them for ingroup claims
 - **Mechanism:** Financially self-reinforcing via audience capture
 - **Signal:** Gap between ingroup CI score and outgroup CI score — detectable algorithmically
-- **Documented in:** `product/personas.md`, `product/steelmanning-spec.md`
 
 ### GTM Strategy — Confirmed Framework
 - **Investor narrative:** Credibility layer for the web → platform → professional credential
@@ -104,9 +103,75 @@ RadMo is the only platform where outlets can observe genuine cross-aisle readers
 - Dark UI design system established (Palatino, #0a0a0a bg, color-coded credibility, blue/amber is/ought)
 - Persona feed mockup v6 current: `product/mockups/persona-feed-2026-04-10.jsx`
 
+---
+
+## Session Findings — 2026-04-13
+
+### Investor-Level Red Flags Identified
+Full audit of fundamental blockers conducted. Ten pre-implementation blockers documented in TODO.md. These supersede the technical build queue as priority. Key items: dopamine gap (existential), no validated willingness to pay, Factual Grounding placeholder at 30% weight, structural gaming risk, governance problem, API dependency risk, unquantified addressable market, legal exposure from user scoring, no team, cold start deferred not solved.
+
+Status updated in progress.md from "Risk Level: Low" to "Risk Level: High — fundamental blockers identified."
+
+### Spider Profile Privacy Model — Locked
+- **Private by default.** User owns and controls visibility.
+- **Post-level characterization** for feed (simplified/broad signal for scroll legibility — not full accumulated profile)
+- **Two-tier data model:** public simplified vs. internal rich full-dimensional
+- **Voluntary public profile incentivization** TBD — mechanic to be designed
+- **Legal rationale:** user scoring is defamation-adjacent; post-level scoring is editorial judgment (Section 230); private-by-default reduces exposure materially
+- Note: original spider-chart-as-feed-avatar concept preserved at post level; user profile spider remains private unless user opts in
+
+### Technical Build Order Confirmed
+| Order | Dimension | Approach | Difficulty |
+|---|---|---|---|
+| 1 | Source Diversity | Outlet DB + entropy math; no ML | Weeks |
+| 2 | Cross-Viewpoint Validation | Community Notes matrix factorization + multi-axis expansion | 3–6 months |
+| 3 | Claim Integrity | RAG pipeline; LLM reasoning + Factiverse API candidate | 3–6 months |
+| 4 | Factual Grounding | Research frontier; custom ML eventually; v1 directionally noisy | 12+ months |
+
+### LLM Integration Architecture for Claim Integrity
+RAG pipeline pattern confirmed conceptually:
+- Fetch linked content → structured prompt → LLM categorical judgment → store → aggregate into score
+- Not a trained classifier — LLM used as reasoning engine
+- Asymmetric rigor requires batch analysis across post history
+- Three-tier stack: lookup tables (SD) → LLM reasoning (CI) → custom ML (FG)
+- Can ship meaningful credibility score with just SD + CV while FG matures
+
+### Factual Grounding Landscape Assessed
+- **Factiverse** — Norwegian startup; sentence-level claim extraction + verification API; 110+ languages; potential integration for CI factual accuracy sub-component
+- **Full Fact** — UK nonprofit; LLM-assisted claim detection (Gemini-based); no commercial conflict
+- **FEVER benchmark** — academic state-of-the-art signal; Cambridge NLP group; research partner candidate
+- Gap confirmed: all existing tools do factual claim verification against external sources; nobody has productized is/ought separation + normative grounding detection; RadMo's FG dimension is genuinely novel
+
+### Center for Humane Technology (CHT) Assessed
+- Advocacy/awareness org, not product; aligned on incentive-reform thesis
+- Currently pivoting focus to AI ("AI and What Makes Us Human" launched 2026)
+- No competitive overlap; potential legitimizing partner
+- Moved to Partners & Collaborators section in TODO
+
+### Grok Fact-Checking Research
+- Renault, Mosleh & Rand (2026): 1.67M fact-check requests to Grok/Perplexity on X, Feb–Sep 2025; 7.6% of all LLM interactions; clear partisan asymmetry in usage (people using it to confirm, not challenge)
+- Grok is displacing Community Notes: substantial reduction in CN proposals following Grok introduction
+- Grok's architecture: general LLM + real-time web/X retrieval (RAG); stateless per query; no behavioral history
+- RadMo's structural advantage: behavioral history across hundreds of posts is the moat Grok cannot replicate
+- Demand for credibility signals on social media confirmed at scale
+
+### GTM — Extension & Beachhead Concepts
+- **Extension absorption risk documented:** surface-level overlay is replicable; moat is compounding data, not UI; timing bet; strategy under construction
+- **Account-analysis beachhead explored:** ingest social history → initial spider chart as onboarding hook; viral potential (shareable epistemic fingerprint); constrained by API hostility; under construction
+- Both concepts preserved in TODO GTM section; neither committed
+
+### Partners & Collaborators Section Established
+New TODO section created. Partners identified: CHT, Ground News (dual framing: competitive foil + potential data partner), Factiverse, Full Fact, AllSides/Ad Fontes/MBFC, FEVER community, Science 2025 reranking study authors.
+
+---
+
 ## What's Left to Build
 
+### Fundamental Blockers (resolve before building)
+See TODO.md — Fundamental Blockers section. All ten items are pre-implementation.
+
 ### Critical Path (MVP Readiness)
+- [ ] **Source Diversity v1** — next technical milestone; outlet DB + scoring math
 - [ ] **Factual Grounding scoring operationalization** — argument structure parsing / NLP argument mining
 - [ ] **Badge earn conditions** — thresholds, visual design, loss mechanics
 - [ ] **Viewpoint diversity reach display** — tabled; Option 1 vs. Option 3 decision deferred
@@ -133,10 +198,10 @@ RadMo is the only platform where outlets can observe genuine cross-aisle readers
 - [ ] Inverse audience capture payout structure — deeper design
 - [ ] Spider shape trajectory display
 - [ ] Hot take spectrum visual
-- [ ] Avatar shape mirroring spider chart — legibility question open
 - [ ] Persona illustrations — IP-safe original art
 - [ ] Public URI / portable credential infrastructure
 - [ ] B2B credibility API
+- [ ] Track record calibration dimension
 
 ### Research Queued
 - [ ] News outlet bias rating landscape
@@ -146,25 +211,37 @@ RadMo is the only platform where outlets can observe genuine cross-aisle readers
 - [ ] Spider shape change over time
 - [ ] Source classification infrastructure
 - [ ] Flow state research
+- [ ] Legal framework for user-level credibility scoring
+- [ ] Addressable market sizing
 
 ## Current Status
 
 **Phase:** Design & Prototyping
-**Blockers:** None critical
-**Risk Level:** Low
+**Blockers:** Critical — ten investor-level fundamental blockers identified 2026-04-13; see TODO.md
+**Risk Level:** High
 
 ## Known Issues & Trade-offs
 
-### High Priority
-1. **Dopamine Gap:** Why stay on RadMo without the outrage loop?
-2. **Asymmetric Rigor Detection:** Significant infrastructure requirement
-3. **Audience Capture Decay Function:** Gaming risk if rules are legible
-4. **Gaming Risk (general):** Legible scoring rules invite metric optimization
-5. **Demographic Skew:** Credibility system may miscalibrate against emotional/communal communication styles
+### Critical (Investor-Level Blockers — added 2026-04-13)
+1. **Dopamine Gap** — existential; engagement loop unvalidated
+2. **No validated willingness to pay** — no near-term revenue path with evidence
+3. **Factual Grounding placeholder** — 30% of score weight; hardest to build; nobody has productized it
+4. **Gaming risk** — structural; legible rules invite optimization
+5. **Governance problem** — who scores the scorers; no documented model
+6. **Platform/API dependency** — extension + account-analysis strategy at risk
+7. **Addressable market unquantified** — Quiet Majority is a hypothesis
+8. **Legal exposure** — user-level scoring is defamation-adjacent; partially mitigated by private-by-default
+9. **No team** — technical co-founder and ML expertise needed
+10. **Cold start deferred** — platform cold start unsolved; extension defers it to Phase 3
+
+### High Priority (pre-existing)
+11. **Asymmetric Rigor Detection** — significant infrastructure requirement
+12. **Audience Capture Decay Function** — gaming risk if rules are legible
+13. **Demographic Skew** — credibility system may miscalibrate against emotional/communal communication styles
 
 ### Medium Priority
-6. **Prediction Market Incentives:** Real money vs. reputation
-7. **Scale & Moderation:** Quality at scale without biased central rater
+14. **Prediction Market Incentives** — real money vs. reputation
+15. **Scale & Moderation** — quality at scale without biased central rater
 
 ## Evolution of Key Decisions
 
@@ -172,6 +249,11 @@ RadMo is the only platform where outlets can observe genuine cross-aisle readers
 - Renamed: Is/Ought Sequencing → Factual Grounding; Claim Consistency → Claim Integrity
 - Redefined: Factual Grounding = presence not order; Cross-Viewpoint = composite axes; Source Diversity = format + geography + political lean as one input
 - Claim Integrity sub-components added (2026-04-10): factual accuracy + steelmanning score + asymmetric rigor
+
+### Spider Profile Visibility
+- Original: public by default (spider chart as feed avatar)
+- Revised (2026-04-13): private by default; post-level simplified signal public; opt-in public profile with incentivization TBD
+- Rationale: legal exposure reduction + user resistance to being graded
 
 ### Steelmanning Compounding
 - Options A (additive), B (multiplicative), C (gating) evaluated 2026-04-10
@@ -190,7 +272,11 @@ RadMo is the only platform where outlets can observe genuine cross-aisle readers
 - Original: numeric badge → Revised: circular progress ring, clockwise from 12 o'clock
 - Avg reposter cred: raw number → same ring treatment at smaller size
 
+### Risk Assessment
+- Original: Risk Level: Low, no critical blockers
+- Revised (2026-04-13): Risk Level: High, ten fundamental blockers identified
+
 ---
 
-**Last Updated:** 2026-04-10
+**Last Updated:** 2026-04-13
 **Next Review:** Start of next session

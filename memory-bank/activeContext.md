@@ -2,9 +2,11 @@
 
 ## Current Work Focus
 
-**Primary:** Feed UX, persona identity system, steelmanning mechanic.
+**Primary (2026-04-13):** Preparing for technical implementation starting with Source Diversity. However, session identified ten investor-level fundamental blockers that must be prioritized above technical build work. See TODO.md — Fundamental Blockers section.
 
 **Previous session (2026-04-10):** GTM strategy thought experiment — investor narrative, browser extension economics, mobile/PWA sequencing, citation graphs, public-facing URI architecture.
+
+**This session (2026-04-13):** GTM deep dive — extension absorption risk, account-analysis beachhead, Grok/fact-checking landscape, technical build order for dimensions, LLM integration architecture, legal exposure from user scoring, spider profile privacy model, investor red flags audit, partners & collaborators.
 
 ## What's Committed & Current
 
@@ -71,29 +73,52 @@
 - **"Someone Unlike You" = different political lean + similar spider shape**
 - **Five archetypes confirmed:** Bubble Scholar, Vibes Merchant, Magpie, Persuader, Radical Moderate
 
+### Spider Profile Privacy Model (locked 2026-04-13)
+- **Spider profile is private by default.** User owns and controls visibility. RadMo does not publish user scores — users do, if they choose to. Meaningful legal distinction.
+- **Post-level spider/persona characterization for the feed** — simplified/broad version of the spider signal shown at post level for scroll legibility; not the full accumulated user profile.
+- **Two-tier data model** — what users see (broad/simplified) vs. what RadMo holds internally (rich, full-dimensional); internal data is the scoring engine and matching primitive.
+- **Voluntary public profile incentivization** — users who opt in to making spider chart public get something in return; mechanic TBD; see TODO.
+- **Legal rationale** — user-level scoring is defamation-adjacent; post-level scoring is editorial judgment about content (Section 230 territory); private-by-default reduces exposure materially.
+
 ### GTM & Build Sequencing
 - **Extension → PWA (Phase 1.5) → web platform → native mobile app**
 - Outlet incentive = audience signal play, not credibility play
 - Passive presence (outlet as citable source) accrues citation graph data without outlet participation
 
+### Technical Build Order — Dimensions (confirmed 2026-04-13)
+1. **Source Diversity** — lookup problem; outlet database + entropy math; no model training; buildable in weeks
+2. **Cross-Viewpoint Validation** — Community Notes matrix factorization as foundation (open source); multi-axis expansion harder but well-precedented; 3–6 months for credible v1
+3. **Claim Integrity** — RAG pipeline: fetch linked content → structured LLM prompt → categorical judgment → aggregate over time; Factiverse API candidate for factual accuracy sub-component; 3–6 months
+4. **Factual Grounding** — research frontier; no clean productized solution exists; custom ML eventually; v1 will be directionally noisy; be honest with users
+
+### LLM Integration Pattern for Claim Integrity (confirmed 2026-04-13)
+RAG pipeline architecture:
+- User submits post → backend extracts claims + links → fetches linked content → formats structured prompt → calls LLM API → parses structured categorical response → stores sub-scores in DB → aggregates into CI dimension score → updates overall credibility score
+- LLM used as reasoning engine, not trained classifier; structured prompts return categorical judgments (supported / partially supported / unsupported / misrepresented)
+- Asymmetric rigor requires batch job across post history, not single-post analysis
+- Grok is doing the easy stateless version of this (single-post, user-initiated, no behavioral history); RadMo's version is fundamentally different — behavioral history across hundreds of posts is the moat
+
 ## Open To-Dos (priority order)
 
-1. **Avatar legibility at 44px** — are the five spider shapes distinct enough without a legend?
-2. **Persona illustrations** — IP-safe original character art; brief exists
-3. **News outlet incentive mechanic** — GTM angle development
-4. **Factual Grounding scoring** — argument structure parsing; NLP/argument mining spec
-5. **Cross-viewpoint composite weighting** — four axes, weighting TBD
-6. **Source classification infrastructure** — shared dependency
-7. **Repost intent qualifier** — disagree / neutral / agree at repost time
-8. **Cred score delta rules** — full engagement signal → score update mechanic
-9. **Badge earn conditions** — thresholds, visual design, loss mechanics
-10. **Dopamine gap** — must resolve before MVP
-11. **Perspective panel identification speed** — active vs. passive signal
-12. **Post-feed mockup updates** — perspective panels always visible; edit button
-13. **CrossViewpoint weight** — 40% vs. 30%
-14. **PWA design** — mobile presence alongside web platform
-15. **Poster-facing UI** — deferred
-16. **Hot take spectrum visual** — workshop separately
+See TODO.md — Fundamental Blockers section for current top priorities.
+
+Previous priority list preserved for reference:
+1. Avatar legibility at 44px
+2. Persona illustrations
+3. News outlet incentive mechanic
+4. Factual Grounding scoring
+5. Cross-viewpoint composite weighting
+6. Source classification infrastructure
+7. Repost intent qualifier
+8. Cred score delta rules
+9. Badge earn conditions
+10. Dopamine gap
+11. Perspective panel identification speed
+12. Post-feed mockup updates
+13. CrossViewpoint weight
+14. PWA design
+15. Poster-facing UI
+16. Hot take spectrum visual
 
 ## Active Preferences & Patterns
 
@@ -109,11 +134,14 @@
 
 - `credibility-score-v2` (radar) is the preferred credibility display direction
 - `persona-feed-2026-04-10.jsx` is the current feed mockup; `post-feed.jsx` (v3) preserved as prior version
-- Ground News is primary competitive reference
-- Community Notes binary left/right model is the ceiling RadMo evolves beyond
+- Ground News is primary competitive reference AND potential data partner (outlet bias ratings = Source Diversity input); dual framing intentional — see TODO partners section
+- Community Notes binary left/right model is the ceiling RadMo evolves beyond; Grok is displacing Community Notes on X (confirmed by Renault et al. 2026 study — 1.67M fact-check requests; partisan asymmetry in usage documented)
 - Steelmanning detection adapted from Community Notes bridging logic
 - Citation graphs = passive infrastructure for information diet distance; no self-reporting needed
 - Public-facing URI enables portable credential; must be architected from day one
+- CHT (Center for Humane Technology) = potential legitimizing partner; advocacy not product; currently pivoting to AI focus
+- Extension absorption risk flagged — surface-level feed overlay is replicable by browser/platform players; moat is compounding citation graph + spider profile depth; strategy still under construction
+- Account-analysis beachhead (ingest social history → generate initial spider chart) — explored, still under construction; constrained by API access hostility
 
-**Last Updated:** 2026-04-10
+**Last Updated:** 2026-04-13
 **Next Review:** Start of next session
