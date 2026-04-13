@@ -27,6 +27,12 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 
 ---
 
+## Messaging / Positioning
+
+- [ ] **"Platform you'd want your kids to use" tagline** — contrast with well-documented knowledge by social media insiders that their own products were harmful (Facebook execs not letting kids use Facebook, etc.); RadMo as the platform built with that awareness baked in from day one; exact copy TBD but direction: "a platform we'd let our own kids use" / "designed for humans, not engagement metrics"; workshop as part of broader brand voice development
+
+---
+
 ## Engagement Mechanics — Open Design Questions
 
 - [ ] **Repost intent qualifier — disagree / neutral / agree** — required at repost time; feeds into poster's cred score delta; workshop friction implications
@@ -68,6 +74,7 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Prediction market monetary incentive design** — real money vs. reputation; Kalshi ruling; Polymarket/Manifold/Metaculus reference models
 - [ ] **Flow state research** — psychology/UX literature on flow in information consumption contexts
 - [ ] **Center for Humane Technology** — potential strategic relationship; CHT is advocacy/awareness (not product); could be legitimizing partner; track their AI and social media work for alignment and differentiation
+- [ ] **Factual Grounding landscape** — companies working on argument mining, claim detection, NLP-based fact-checking (Full Fact, Logically, Factiverse, Squash, etc.); assess partnership vs. build vs. integrate options
 
 ---
 
