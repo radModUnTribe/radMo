@@ -110,8 +110,6 @@ RadMo is the only platform where outlets can observe genuine cross-aisle readers
 ### Investor-Level Red Flags Identified
 Full audit of fundamental blockers conducted. Ten pre-implementation blockers documented in TODO.md. These supersede the technical build queue as priority. Key items: dopamine gap (existential), no validated willingness to pay, Factual Grounding placeholder at 30% weight, structural gaming risk, governance problem, API dependency risk, unquantified addressable market, legal exposure from user scoring, no team, cold start deferred not solved.
 
-Status updated in progress.md from "Risk Level: Low" to "Risk Level: High — fundamental blockers identified."
-
 ### Spider Profile Privacy Model — Locked
 - **Private by default.** User owns and controls visibility.
 - **Post-level characterization** for feed (simplified/broad signal for scroll legibility — not full accumulated profile)
@@ -217,8 +215,13 @@ See TODO.md — Fundamental Blockers section. All ten items are pre-implementati
 ## Current Status
 
 **Phase:** Design & Prototyping
-**Blockers:** Critical — ten investor-level fundamental blockers identified 2026-04-13; see TODO.md
-**Risk Level:** High
+**Blockers:** Ten investor-level fundamental blockers identified 2026-04-13; see TODO.md
+
+**Execution Risk: Low–Medium** — nothing identified is technically impossible; Source Diversity is buildable now; Claim Integrity is tractable with LLMs; Factual Grounding is hard but has a clear research path; the build is complex but not blocked. Rises to Medium only because technical co-founder and ML expertise are not yet in place.
+
+**Investment Risk: High** — dopamine gap unvalidated; no evidence of willingness to pay; addressable market unquantified; Factual Grounding placeholder at 30% of score weight; governance model undocumented; platform API dependency unmitigated. A sophisticated investor would require answers to most of the ten blockers before committing. This is normal for a passion project at design/prototyping stage — not a crisis, but an honest assessment.
+
+**Product Risk: Medium** — core thesis is well-grounded in research (Community Notes, Science 2025 reranking study, false polarization literature); design patterns are thoughtful and internally consistent; the credibility scoring model is more rigorous than anything in market. Risk is that cross-viewpoint exposure under wrong conditions can backfire (Theory 3 unresolved), gaming risk is structural, and the dopamine gap means retention is unproven. Not existential but not trivial.
 
 ## Known Issues & Trade-offs
 
@@ -273,8 +276,9 @@ See TODO.md — Fundamental Blockers section. All ten items are pre-implementati
 - Avg reposter cred: raw number → same ring treatment at smaller size
 
 ### Risk Assessment
-- Original: Risk Level: Low, no critical blockers
-- Revised (2026-04-13): Risk Level: High, ten fundamental blockers identified
+- Original: single undifferentiated "Risk Level: Low"
+- Revised (2026-04-13): three delineated dimensions — Execution (Low–Medium), Investment (High), Product (Medium)
+- Note: this is a passion project at design/prototyping stage; Investment Risk: High reflects honest pre-seed assessment, not project distress
 
 ---
 
