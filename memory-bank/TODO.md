@@ -67,6 +67,7 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 - [ ] **Sentiment analysis / argument mining** — NLP model selection for Factual Grounding scoring
 - [ ] **Prediction market monetary incentive design** — real money vs. reputation; Kalshi ruling; Polymarket/Manifold/Metaculus reference models
 - [ ] **Flow state research** — psychology/UX literature on flow in information consumption contexts
+- [ ] **Center for Humane Technology** — potential strategic relationship; CHT is advocacy/awareness (not product); could be legitimizing partner; track their AI and social media work for alignment and differentiation
 
 ---
 
@@ -74,6 +75,7 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 
 - [ ] **Mind-changing quality dimension** — reward grounded position updates; tabled until core four dimensions are stable
 - [ ] **Epistemic restraint signal** — cred score accrues at decreasing rate during posting silence; cadence-baseline variant
+- [ ] **Track record calibration** — signal for whether a user "called" outcomes through consistent epistemic reasoning vs. lucky contrarianism; key distinction is calibration (evidence-based prediction) vs. survivorship bias (hot take that landed); likely a Claim Integrity sub-component or future standalone dimension; natural home in prediction markets mechanic post-MVP; requires temporal claim extraction (falsifiable prediction detection + outcome resolution NLP); also relevant to historical account analysis at signup
 
 ---
 
@@ -103,4 +105,4 @@ Live document. Updated each session. Items graduate to `memory-bank/progress.md`
 
 ---
 
-*Last updated: 2026-04-10*
+*Last updated: 2026-04-13*
