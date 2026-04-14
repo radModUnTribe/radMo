@@ -1,0 +1,30 @@
+news_source,rating,rating_num,confidence_level,format_tier,format_tier_label,country_code
+New York Times - News,left-center,2,High,4,Major Newspaper,US
+Washington Post,left-center,2,High,4,Major Newspaper,US
+The Atlantic,left-center,2,NA,4,Longform Magazine,US
+The Guardian,left-center,2,Medium,4,Major Newspaper,GB
+Financial Times,center,3,Low or Initial Rating,4,Major Newspaper,GB
+The Economist,left-center,2,NA,4,Longform Magazine,GB
+Foreign Affairs,center,3,Low or Initial Rating,4,Policy Journal,US
+Wall Street Journal - News,center,3,High,4,Major Newspaper,US
+Scientific American,center,3,Low or Initial Rating,4,Science Magazine,US
+Reuters,center,3,Low or Initial Rating,3,Wire Service,GB
+BBC News,center,3,Medium,5,Broadcast News,GB
+NPR Online News,center,3,Medium,5,Public Broadcast,US
+Bloomberg,center,3,Medium,5,Major Digital News,US
+CNN (Web News),left-center,2,High,5,Broadcast News,US
+Fox Online News,right-center,4,High,5,Broadcast News,US
+ProPublica,center,3,NA,5,Investigative News,US
+Al Jazeera,left-center,2,Low or Initial Rating,5,Broadcast News,QA
+Brookings Institution,center,3,NA,2,Research Institution,US
+Politico,left-center,2,Medium,6,Digital News,US
+The Hill,center,3,Low or Initial Rating,6,Digital News,US
+FiveThirtyEight,center,3,Low or Initial Rating,6,Data / Analysis,US
+Vox,left,1,High,6,Digital News / Opinion,US
+Mother Jones,left,1,NA,6,Magazine / Opinion,US
+National Review,right,5,Medium,6,Magazine / Opinion,US
+Washington Examiner,right-center,4,Medium,6,Digital News,US
+Reason,right-center,4,Low or Initial Rating,6,Magazine / Opinion,US
+Breitbart News,right,5,High,7,Partisan Blog,US
+The Daily Wire,right,5,Medium,7,Partisan Blog,US
+InfoWars,right,5,Medium,7,Partisan Blog,US

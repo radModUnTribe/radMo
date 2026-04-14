@@ -1,0 +1,111 @@
+citation_id,user_id,post_id,news_source,cited_at,source,post_topic,post_summary
+bs_p1_c1,bubble_scholar,bs_p1,New York Times - News,2026-01-05T09:15:00Z,radmo_post,climate_policy,Federal climate targets are inadequate given IPCC projections
+bs_p1_c2,bubble_scholar,bs_p1,Vox,2026-01-05T09:15:00Z,radmo_post,climate_policy,Federal climate targets are inadequate given IPCC projections
+bs_p1_c3,bubble_scholar,bs_p1,Brookings Institution,2026-01-05T09:15:00Z,radmo_post,climate_policy,Federal climate targets are inadequate given IPCC projections
+bs_p2_c1,bubble_scholar,bs_p2,Washington Post,2026-01-18T14:22:00Z,radmo_post,healthcare,The ACA coverage gap remains a structural failure of incremental reform
+bs_p2_c2,bubble_scholar,bs_p2,The Atlantic,2026-01-18T14:22:00Z,radmo_post,healthcare,The ACA coverage gap remains a structural failure of incremental reform
+bs_p2_c3,bubble_scholar,bs_p2,ProPublica,2026-01-18T14:22:00Z,radmo_post,healthcare,The ACA coverage gap remains a structural failure of incremental reform
+bs_p3_c1,bubble_scholar,bs_p3,New York Times - News,2026-02-02T11:45:00Z,radmo_post,economic_inequality,Wage stagnation since the 1970s is not accidental — it reflects deliberate policy choices
+bs_p3_c2,bubble_scholar,bs_p3,Mother Jones,2026-02-02T11:45:00Z,radmo_post,economic_inequality,Wage stagnation since the 1970s is not accidental — it reflects deliberate policy choices
+bs_p3_c3,bubble_scholar,bs_p3,Brookings Institution,2026-02-02T11:45:00Z,radmo_post,economic_inequality,Wage stagnation since the 1970s is not accidental — it reflects deliberate policy choices
+bs_p4_c1,bubble_scholar,bs_p4,The Atlantic,2026-02-20T08:30:00Z,radmo_post,criminal_justice,Mass incarceration has failed as both deterrence and rehabilitation policy
+bs_p4_c2,bubble_scholar,bs_p4,Washington Post,2026-02-20T08:30:00Z,radmo_post,criminal_justice,Mass incarceration has failed as both deterrence and rehabilitation policy
+bs_p4_c3,bubble_scholar,bs_p4,ProPublica,2026-02-20T08:30:00Z,radmo_post,criminal_justice,Mass incarceration has failed as both deterrence and rehabilitation policy
+bs_p5_c1,bubble_scholar,bs_p5,New York Times - News,2026-03-08T16:10:00Z,radmo_post,immigration,Legal immigration pathways are deliberately undersized relative to labor demand
+bs_p5_c2,bubble_scholar,bs_p5,The Guardian,2026-03-08T16:10:00Z,radmo_post,immigration,Legal immigration pathways are deliberately undersized relative to labor demand
+bs_p5_c3,bubble_scholar,bs_p5,Vox,2026-03-08T16:10:00Z,radmo_post,immigration,Legal immigration pathways are deliberately undersized relative to labor demand
+bs_p6_c1,bubble_scholar,bs_p6,Washington Post,2026-03-25T10:05:00Z,radmo_post,education,Teacher shortages are a predictable result of decades of underfunding public education
+bs_p6_c2,bubble_scholar,bs_p6,NPR Online News,2026-03-25T10:05:00Z,radmo_post,education,Teacher shortages are a predictable result of decades of underfunding public education
+bs_p7_c1,bubble_scholar,bs_p7,The Atlantic,2026-04-05T13:40:00Z,radmo_post,foreign_policy,US credibility in NATO depends on consistent commitment not transactional bargaining
+bs_p7_c2,bubble_scholar,bs_p7,Foreign Affairs,2026-04-05T13:40:00Z,radmo_post,foreign_policy,US credibility in NATO depends on consistent commitment not transactional bargaining
+bs_p8_c1,bubble_scholar,bs_p8,New York Times - News,2026-04-10T09:00:00Z,radmo_post,technology,Section 230 reform without antitrust enforcement misses the actual structural problem
+bs_p8_c2,bubble_scholar,bs_p8,Washington Post,2026-04-10T09:00:00Z,radmo_post,technology,Section 230 reform without antitrust enforcement misses the actual structural problem
+vm_p1_c1,vibes_merchant,vm_p1,InfoWars,2026-01-08T21:15:00Z,radmo_post,elections,They are stealing elections and nobody in the mainstream media will say it
+vm_p2_c1,vibes_merchant,vm_p2,Breitbart News,2026-01-22T19:45:00Z,radmo_post,immigration,The border is open and the government is importing votes
+vm_p3_c1,vibes_merchant,vm_p3,The Daily Wire,2026-02-06T20:30:00Z,radmo_post,culture,Woke ideology is destroying our schools and nobody is stopping it
+vm_p3_c2,vibes_merchant,vm_p3,Breitbart News,2026-02-06T20:30:00Z,radmo_post,culture,Woke ideology is destroying our schools and nobody is stopping it
+vm_p4_c1,vibes_merchant,vm_p4,Breitbart News,2026-02-18T22:00:00Z,radmo_post,media,The mainstream media is pure propaganda and has been for years
+vm_p5_c1,vibes_merchant,vm_p5,InfoWars,2026-03-03T18:15:00Z,radmo_post,economy,Hyperinflation is coming and the Fed is deliberately crashing the dollar
+vm_p5_c2,vibes_merchant,vm_p5,The Daily Wire,2026-03-03T18:15:00Z,radmo_post,economy,Hyperinflation is coming and the Fed is deliberately crashing the dollar
+vm_p6_c1,vibes_merchant,vm_p6,The Daily Wire,2026-03-19T23:00:00Z,radmo_post,government,The government used COVID as cover to build a surveillance state
+vm_p7_c1,vibes_merchant,vm_p7,InfoWars,2026-04-01T20:45:00Z,radmo_post,government,Deep state operatives are still running this country regardless of who wins elections
+vm_p8_c1,vibes_merchant,vm_p8,Breitbart News,2026-04-09T21:30:00Z,radmo_post,health,Vaccine mandates are medical tyranny and the science has been fabricated
+vm_p8_c2,vibes_merchant,vm_p8,InfoWars,2026-04-09T21:30:00Z,radmo_post,health,Vaccine mandates are medical tyranny and the science has been fabricated
+mg_p1_c1,magpie,mg_p1,Reuters,2026-01-10T08:00:00Z,radmo_post,geopolitics,The regional security architecture in the Middle East is shifting faster than Western analysis acknowledges
+mg_p1_c2,magpie,mg_p1,Al Jazeera,2026-01-10T08:00:00Z,radmo_post,geopolitics,The regional security architecture in the Middle East is shifting faster than Western analysis acknowledges
+mg_p1_c3,magpie,mg_p1,BBC News,2026-01-10T08:00:00Z,radmo_post,geopolitics,The regional security architecture in the Middle East is shifting faster than Western analysis acknowledges
+mg_p2_c1,magpie,mg_p2,Bloomberg,2026-01-28T11:30:00Z,radmo_post,technology,AI chip export controls are creating a bifurcated global tech stack largely by accident
+mg_p2_c2,magpie,mg_p2,Financial Times,2026-01-28T11:30:00Z,radmo_post,technology,AI chip export controls are creating a bifurcated global tech stack largely by accident
+mg_p3_c1,magpie,mg_p3,The Economist,2026-02-10T14:00:00Z,radmo_post,democracy,The global democratic recession is real but its causes are more structural than cultural
+mg_p3_c2,magpie,mg_p3,Foreign Affairs,2026-02-10T14:00:00Z,radmo_post,democracy,The global democratic recession is real but its causes are more structural than cultural
+mg_p3_c3,magpie,mg_p3,FiveThirtyEight,2026-02-10T14:00:00Z,radmo_post,democracy,The global democratic recession is real but its causes are more structural than cultural
+mg_p4_c1,magpie,mg_p4,Scientific American,2026-02-25T09:45:00Z,radmo_post,health,Loneliness is now measurably a public health crisis with quantifiable mortality effects
+mg_p4_c2,magpie,mg_p4,NPR Online News,2026-02-25T09:45:00Z,radmo_post,health,Loneliness is now measurably a public health crisis with quantifiable mortality effects
+mg_p5_c1,magpie,mg_p5,Bloomberg,2026-03-12T10:15:00Z,radmo_post,economics,Deglobalization is happening but it looks nothing like economists predicted in 2020
+mg_p5_c2,magpie,mg_p5,The Economist,2026-03-12T10:15:00Z,radmo_post,economics,Deglobalization is happening but it looks nothing like economists predicted in 2020
+mg_p5_c3,magpie,mg_p5,Reuters,2026-03-12T10:15:00Z,radmo_post,economics,Deglobalization is happening but it looks nothing like economists predicted in 2020
+mg_p6_c1,magpie,mg_p6,The Guardian,2026-03-28T12:00:00Z,radmo_post,climate,The 1.5C threshold is functionally breached and the policy debate needs to catch up
+mg_p6_c2,magpie,mg_p6,BBC News,2026-03-28T12:00:00Z,radmo_post,climate,The 1.5C threshold is functionally breached and the policy debate needs to catch up
+mg_p6_c3,magpie,mg_p6,Scientific American,2026-03-28T12:00:00Z,radmo_post,climate,The 1.5C threshold is functionally breached and the policy debate needs to catch up
+mg_p7_c1,magpie,mg_p7,Politico,2026-04-03T15:30:00Z,radmo_post,us_politics,The realignment of suburban voters is more durable than either party wants to admit
+mg_p7_c2,magpie,mg_p7,The Hill,2026-04-03T15:30:00Z,radmo_post,us_politics,The realignment of suburban voters is more durable than either party wants to admit
+mg_p7_c3,magpie,mg_p7,FiveThirtyEight,2026-04-03T15:30:00Z,radmo_post,us_politics,The realignment of suburban voters is more durable than either party wants to admit
+mg_p8_c1,magpie,mg_p8,Al Jazeera,2026-04-11T07:45:00Z,radmo_post,geopolitics,The veto deadlock at the UN Security Council is producing a legitimacy crisis for international law
+mg_p8_c2,magpie,mg_p8,BBC News,2026-04-11T07:45:00Z,radmo_post,geopolitics,The veto deadlock at the UN Security Council is producing a legitimacy crisis for international law
+mg_p8_c3,magpie,mg_p8,Reuters,2026-04-11T07:45:00Z,radmo_post,geopolitics,The veto deadlock at the UN Security Council is producing a legitimacy crisis for international law
+mg_p8_c4,magpie,mg_p8,The Economist,2026-04-11T07:45:00Z,radmo_post,geopolitics,The veto deadlock at the UN Security Council is producing a legitimacy crisis for international law
+pe_p1_c1,persuader,pe_p1,CNN (Web News),2026-01-12T16:00:00Z,radmo_post,fiscal_policy,Both parties are failing on fiscal responsibility and someone needs to say it
+pe_p1_c2,persuader,pe_p1,Fox Online News,2026-01-12T16:00:00Z,radmo_post,fiscal_policy,Both parties are failing on fiscal responsibility and someone needs to say it
+pe_p1_c3,persuader,pe_p1,Wall Street Journal - News,2026-01-12T16:00:00Z,radmo_post,fiscal_policy,Both parties are failing on fiscal responsibility and someone needs to say it
+pe_p2_c1,persuader,pe_p2,NPR Online News,2026-01-30T11:00:00Z,radmo_post,immigration,Immigration reform needs pragmatists not ideologues on either side
+pe_p2_c2,persuader,pe_p2,Fox Online News,2026-01-30T11:00:00Z,radmo_post,immigration,Immigration reform needs pragmatists not ideologues on either side
+pe_p2_c3,persuader,pe_p2,The Hill,2026-01-30T11:00:00Z,radmo_post,immigration,Immigration reform needs pragmatists not ideologues on either side
+pe_p3_c1,persuader,pe_p3,CNN (Web News),2026-02-14T13:30:00Z,radmo_post,national_security,National security consensus is eroding and both parties share blame
+pe_p3_c2,persuader,pe_p3,Wall Street Journal - News,2026-02-14T13:30:00Z,radmo_post,national_security,National security consensus is eroding and both parties share blame
+pe_p4_c1,persuader,pe_p4,CNN (Web News),2026-02-28T10:00:00Z,radmo_post,healthcare,Healthcare is broken and the solutions exist if we stop letting the perfect be the enemy of the good
+pe_p4_c2,persuader,pe_p4,NPR Online News,2026-02-28T10:00:00Z,radmo_post,healthcare,Healthcare is broken and the solutions exist if we stop letting the perfect be the enemy of the good
+pe_p4_c3,persuader,pe_p4,Fox Online News,2026-02-28T10:00:00Z,radmo_post,healthcare,Healthcare is broken and the solutions exist if we stop letting the perfect be the enemy of the good
+pe_p5_c1,persuader,pe_p5,Wall Street Journal - News,2026-03-15T14:15:00Z,radmo_post,foreign_policy,Americas credibility abroad requires bipartisan discipline we currently lack
+pe_p5_c2,persuader,pe_p5,CNN (Web News),2026-03-15T14:15:00Z,radmo_post,foreign_policy,Americas credibility abroad requires bipartisan discipline we currently lack
+pe_p5_c3,persuader,pe_p5,NPR Online News,2026-03-15T14:15:00Z,radmo_post,foreign_policy,Americas credibility abroad requires bipartisan discipline we currently lack
+pe_p6_c1,persuader,pe_p6,Fox Online News,2026-03-30T09:30:00Z,radmo_post,energy,Energy policy that ignores economic reality is not serious policy
+pe_p6_c2,persuader,pe_p6,NPR Online News,2026-03-30T09:30:00Z,radmo_post,energy,Energy policy that ignores economic reality is not serious policy
+pe_p6_c3,persuader,pe_p6,The Hill,2026-03-30T09:30:00Z,radmo_post,energy,Energy policy that ignores economic reality is not serious policy
+pe_p7_c1,persuader,pe_p7,CNN (Web News),2026-04-06T11:45:00Z,radmo_post,criminal_justice,Criminal justice reform requires honesty about both systemic bias and public safety trade-offs
+pe_p7_c2,persuader,pe_p7,Washington Examiner,2026-04-06T11:45:00Z,radmo_post,criminal_justice,Criminal justice reform requires honesty about both systemic bias and public safety trade-offs
+pe_p7_c3,persuader,pe_p7,NPR Online News,2026-04-06T11:45:00Z,radmo_post,criminal_justice,Criminal justice reform requires honesty about both systemic bias and public safety trade-offs
+pe_p8_c1,persuader,pe_p8,Wall Street Journal - News,2026-04-12T08:00:00Z,radmo_post,trade,Trade policy is being driven by politics not economics and we all pay the price
+pe_p8_c2,persuader,pe_p8,Bloomberg,2026-04-12T08:00:00Z,radmo_post,trade,Trade policy is being driven by politics not economics and we all pay the price
+pe_p8_c3,persuader,pe_p8,Fox Online News,2026-04-12T08:00:00Z,radmo_post,trade,Trade policy is being driven by politics not economics and we all pay the price
+rm_p1_c1,radical_moderate,rm_p1,Reuters,2026-01-15T10:00:00Z,radmo_post,climate_policy,Climate policy needs to price carbon honestly and stop pretending renewables alone are sufficient
+rm_p1_c2,radical_moderate,rm_p1,National Review,2026-01-15T10:00:00Z,radmo_post,climate_policy,Climate policy needs to price carbon honestly and stop pretending renewables alone are sufficient
+rm_p1_c3,radical_moderate,rm_p1,Vox,2026-01-15T10:00:00Z,radmo_post,climate_policy,Climate policy needs to price carbon honestly and stop pretending renewables alone are sufficient
+rm_p1_c4,radical_moderate,rm_p1,The Economist,2026-01-15T10:00:00Z,radmo_post,climate_policy,Climate policy needs to price carbon honestly and stop pretending renewables alone are sufficient
+rm_p2_c1,radical_moderate,rm_p2,Wall Street Journal - News,2026-02-01T13:00:00Z,radmo_post,healthcare,Healthcare reform requires acknowledging both the market failures and the government failures
+rm_p2_c2,radical_moderate,rm_p2,NPR Online News,2026-02-01T13:00:00Z,radmo_post,healthcare,Healthcare reform requires acknowledging both the market failures and the government failures
+rm_p2_c3,radical_moderate,rm_p2,Brookings Institution,2026-02-01T13:00:00Z,radmo_post,healthcare,Healthcare reform requires acknowledging both the market failures and the government failures
+rm_p2_c4,radical_moderate,rm_p2,The Atlantic,2026-02-01T13:00:00Z,radmo_post,healthcare,Healthcare reform requires acknowledging both the market failures and the government failures
+rm_p3_c1,radical_moderate,rm_p3,BBC News,2026-02-16T08:30:00Z,radmo_post,immigration,Immigration is an economic asset and a genuine political challenge — both things are true
+rm_p3_c2,radical_moderate,rm_p3,National Review,2026-02-16T08:30:00Z,radmo_post,immigration,Immigration is an economic asset and a genuine political challenge — both things are true
+rm_p3_c3,radical_moderate,rm_p3,Politico,2026-02-16T08:30:00Z,radmo_post,immigration,Immigration is an economic asset and a genuine political challenge — both things are true
+rm_p3_c4,radical_moderate,rm_p3,Al Jazeera,2026-02-16T08:30:00Z,radmo_post,immigration,Immigration is an economic asset and a genuine political challenge — both things are true
+rm_p4_c1,radical_moderate,rm_p4,Financial Times,2026-03-04T11:15:00Z,radmo_post,fiscal_policy,The debt debate requires honest accounting of both spending and revenue — not tribal posturing
+rm_p4_c2,radical_moderate,rm_p4,Brookings Institution,2026-03-04T11:15:00Z,radmo_post,fiscal_policy,The debt debate requires honest accounting of both spending and revenue — not tribal posturing
+rm_p4_c3,radical_moderate,rm_p4,Reason,2026-03-04T11:15:00Z,radmo_post,fiscal_policy,The debt debate requires honest accounting of both spending and revenue — not tribal posturing
+rm_p4_c4,radical_moderate,rm_p4,The Economist,2026-03-04T11:15:00Z,radmo_post,fiscal_policy,The debt debate requires honest accounting of both spending and revenue — not tribal posturing
+rm_p5_c1,radical_moderate,rm_p5,ProPublica,2026-03-20T14:30:00Z,radmo_post,criminal_justice,Criminal justice reform is stalled because reformers and skeptics are arguing past each other
+rm_p5_c2,radical_moderate,rm_p5,Washington Examiner,2026-03-20T14:30:00Z,radmo_post,criminal_justice,Criminal justice reform is stalled because reformers and skeptics are arguing past each other
+rm_p5_c3,radical_moderate,rm_p5,The Atlantic,2026-03-20T14:30:00Z,radmo_post,criminal_justice,Criminal justice reform is stalled because reformers and skeptics are arguing past each other
+rm_p5_c4,radical_moderate,rm_p5,Reuters,2026-03-20T14:30:00Z,radmo_post,criminal_justice,Criminal justice reform is stalled because reformers and skeptics are arguing past each other
+rm_p6_c1,radical_moderate,rm_p6,Foreign Affairs,2026-04-02T09:00:00Z,radmo_post,foreign_policy,US foreign policy needs strategic clarity not the swings between overcommitment and withdrawal
+rm_p6_c2,radical_moderate,rm_p6,BBC News,2026-04-02T09:00:00Z,radmo_post,foreign_policy,US foreign policy needs strategic clarity not the swings between overcommitment and withdrawal
+rm_p6_c3,radical_moderate,rm_p6,The Hill,2026-04-02T09:00:00Z,radmo_post,foreign_policy,US foreign policy needs strategic clarity not the swings between overcommitment and withdrawal
+rm_p6_c4,radical_moderate,rm_p6,National Review,2026-04-02T09:00:00Z,radmo_post,foreign_policy,US foreign policy needs strategic clarity not the swings between overcommitment and withdrawal
+rm_p7_c1,radical_moderate,rm_p7,Bloomberg,2026-04-07T12:00:00Z,radmo_post,technology,AI regulation needs to move faster than the lobbying cycle allows
+rm_p7_c2,radical_moderate,rm_p7,The Guardian,2026-04-07T12:00:00Z,radmo_post,technology,AI regulation needs to move faster than the lobbying cycle allows
+rm_p7_c3,radical_moderate,rm_p7,Reason,2026-04-07T12:00:00Z,radmo_post,technology,AI regulation needs to move faster than the lobbying cycle allows
+rm_p7_c4,radical_moderate,rm_p7,New York Times - News,2026-04-07T12:00:00Z,radmo_post,technology,AI regulation needs to move faster than the lobbying cycle allows
+rm_p8_c1,radical_moderate,rm_p8,Brookings Institution,2026-04-13T10:30:00Z,radmo_post,education,Education reform requires evidence not ideology — and both sides are guilty of ignoring the data
+rm_p8_c2,radical_moderate,rm_p8,Vox,2026-04-13T10:30:00Z,radmo_post,education,Education reform requires evidence not ideology — and both sides are guilty of ignoring the data
+rm_p8_c3,radical_moderate,rm_p8,Wall Street Journal - News,2026-04-13T10:30:00Z,radmo_post,education,Education reform requires evidence not ideology — and both sides are guilty of ignoring the data
+rm_p8_c4,radical_moderate,rm_p8,Scientific American,2026-04-13T10:30:00Z,radmo_post,education,Education reform requires evidence not ideology — and both sides are guilty of ignoring the data
