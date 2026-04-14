@@ -23,6 +23,22 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 
 ---
 
+## Source Diversity — Active Work
+
+- [ ] **Add domain column to AllSides CSV** — `data/allsides_bias_ratings.csv` has display names only; manual mapping required for production use; start with top 100 outlets by citation likelihood
+- [ ] **Pull and commit GDELT source-country dataset** — 13,155 English-language outlets mapped to country of origin; free download from GDELT blog; solves geography dimension
+- [ ] **Join AllSides + GDELT on domain** — produces combined political lean + geography table; foundation for `outlets` DB
+- [ ] **Define 7-tier format taxonomy** — no public dataset exists; manual tagging required; top 200 outlets covers ~80% of expected citations
+- [ ] **Pull Ad Fontes reliability data** — bias + reliability for 3,400+ outlets; older CSV on GitHub for prototyping; consider licensing for production
+- [ ] **Pull MBFC ratings** — bias + factual accuracy + credibility for 2,000+ outlets; CMU scraper available (requires paid MBFC account)
+- [ ] **Build outlet_tagging_queue logic** — unknown domains at post submission → queue for manual tagging; prioritize by citation_count
+- [ ] **Implement Shannon entropy scoring** — format_entropy + geo_entropy sub-scores for `user_source_diversity_scores`
+- [ ] **Implement lean_spread calculation** — variance of political_lean across cited outlets
+- [ ] **Build materialized score update job** — nightly or per citation threshold; not per page load
+- [ ] **Scoring window decision — PARKED** — all-time vs. rolling 90 days vs. weighted recency; schema supports any approach; revisit when scoring pipeline is being built
+
+---
+
 ## Design Decisions Needed
 
 - [ ] **Factual Grounding scoring operationalization** — requires argument structure parsing (NLP/argument mining) to link normative claims to factual support across non-adjacent text; harder than order-detection; needs tech spec
@@ -150,4 +166,4 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 
 ---
 
-*Last updated: 2026-04-13*
+*Last updated: 2026-04-14*

@@ -163,13 +163,61 @@ New TODO section created. Partners identified: CHT, Ground News (dual framing: c
 
 ---
 
+## Session Findings — 2026-04-14
+
+### Source Diversity — Schema Locked
+Four-table schema confirmed (see activeContext.md for full field list):
+- `outlets` — master outlet database; domain as primary key; political lean as float (-1.0 to 1.0) for continuous math
+- `citations` — one row per URL; `source` ENUM distinguishes radmo_post vs. imported history; `post_id` nullable for imports
+- `user_source_diversity_scores` — materialized score; separate native/imported citation counts; updated on schedule not per page load
+- `outlet_tagging_queue` — unknown domains; `citation_count` as prioritization signal
+
+**Key decisions:**
+- Scoring unit is user-level behavioral history, not per-post
+- `citations.source` field future-proofs imported history path without requiring it now
+- Scoring window (all-time vs. rolling vs. weighted recency) **parked** — schema supports any approach
+
+### Source Diversity — Dataset Landscape Assessed
+Three tiers of available data identified:
+
+**Political lean (well-covered):**
+- AllSides: ~547 sources, political lean + confidence; CSV accessible via GitHub MCP; **no domain field** — display name mapping required
+- Ad Fontes: 3,400+ sources, bias + reliability (two-axis); full data behind subscription; older CSV snapshots on GitHub
+- MBFC: 2,000+ sources, bias + factual accuracy + credibility; CMU scraper available (requires paid account)
+
+**Geographic origin (well-covered):**
+- GDELT: 13,155 English-language outlets mapped to country of origin; free download; infers geography from coverage patterns (solves the .com domain problem); **next dataset to pull**
+- Wikidata: structured outlet metadata including country; queryable via SPARQL; good for gap-filling
+
+**Format tier (not covered — must build):**
+- No pre-existing public dataset for outlet format classification
+- MBFC reliability scores are a proxy but not a direct format taxonomy
+- Top ~200 outlets manually taggable in a day; covers majority of real-world citations
+
+### AllSides CSV Committed
+- Location: `data/allsides_bias_ratings.csv`
+- News Media subset only (~120 outlets); full 547-row dataset available from AllSideR repo
+- Key gap: no domain field; requires display-name-to-domain mapping step before production use
+- Data is ~2019-2020 vintage; some ratings may be stale
+
+---
+
 ## What's Left to Build
 
 ### Fundamental Blockers (resolve before building)
 See TODO.md — Fundamental Blockers section. All ten items are pre-implementation.
 
+### Source Diversity v1 — Active Next Steps
+1. Add domain column to AllSides CSV (manual mapping, top outlets first)
+2. Pull and commit GDELT source-country dataset
+3. Join AllSides + GDELT on domain → political lean + geography in one table
+4. Define 7-tier format taxonomy; manually tag top 200 outlets
+5. Build outlet_tagging_queue logic for unknown domains at post submission
+6. Implement Shannon entropy scoring for format + geo sub-scores
+7. Implement lean_spread (variance) calculation
+8. Build materialized score update job
+
 ### Critical Path (MVP Readiness)
-- [ ] **Source Diversity v1** — next technical milestone; outlet DB + scoring math
 - [ ] **Factual Grounding scoring operationalization** — argument structure parsing / NLP argument mining
 - [ ] **Badge earn conditions** — thresholds, visual design, loss mechanics
 - [ ] **Viewpoint diversity reach display** — tabled; Option 1 vs. Option 3 decision deferred
@@ -214,7 +262,7 @@ See TODO.md — Fundamental Blockers section. All ten items are pre-implementati
 
 ## Current Status
 
-**Phase:** Design & Prototyping
+**Phase:** Design & Prototyping → early technical implementation (Source Diversity)
 **Blockers:** Ten investor-level fundamental blockers identified 2026-04-13; see TODO.md
 
 **Execution Risk: Low–Medium** — nothing identified is technically impossible; Source Diversity is buildable now; Claim Integrity is tractable with LLMs; Factual Grounding is hard but has a clear research path; the build is complex but not blocked. Rises to Medium only because technical co-founder and ML expertise are not yet in place.
@@ -282,5 +330,5 @@ See TODO.md — Fundamental Blockers section. All ten items are pre-implementati
 
 ---
 
-**Last Updated:** 2026-04-13
+**Last Updated:** 2026-04-14
 **Next Review:** Start of next session

@@ -2,11 +2,11 @@
 
 ## Current Work Focus
 
-**Primary (2026-04-13):** Preparing for technical implementation starting with Source Diversity. However, session identified ten investor-level fundamental blockers that must be prioritized above technical build work. See TODO.md — Fundamental Blockers section.
+**Primary (2026-04-14):** Source Diversity v1 implementation underway. Schema designed, first dataset (AllSides) committed to repo. Next step: add domain column to AllSides data, pull GDELT source-country dataset, join on domain.
+
+**Previous session focus (2026-04-13):** Investor red flags audit, spider profile privacy model, technical build order, LLM integration architecture, partners & collaborators section established.
 
 **Previous session (2026-04-10):** GTM strategy thought experiment — investor narrative, browser extension economics, mobile/PWA sequencing, citation graphs, public-facing URI architecture.
-
-**This session (2026-04-13):** GTM deep dive — extension absorption risk, account-analysis beachhead, Grok/fact-checking landscape, technical build order for dimensions, LLM integration architecture, legal exposure from user scoring, spider profile privacy model, investor red flags audit, partners & collaborators.
 
 ## What's Committed & Current
 
@@ -27,6 +27,10 @@
 - `research/research.md` — primary research reference
 - `strategy/strategy.md`, `strategy/evolution.md`, `strategy/gtm.md`, `strategy/what-to-build-now.md`, `strategy/information-environment.md`
 - `memory-bank/TODO.md` — live running to-do list
+
+### Datasets
+- `data/README.md` — documents all datasets, fields, known gaps, planned additions
+- `data/allsides_bias_ratings.csv` — AllSides bias ratings; News Media subset; ~120 outlets; political lean (1–5), confidence, methodology flags; **no domain field** — display name mapping required
 
 ## Locked Design Decisions
 
@@ -98,27 +102,77 @@ RAG pipeline architecture:
 - Asymmetric rigor requires batch job across post history, not single-post analysis
 - Grok is doing the easy stateless version of this (single-post, user-initiated, no behavioral history); RadMo's version is fundamentally different — behavioral history across hundreds of posts is the moat
 
+### Source Diversity — Database Schema (confirmed 2026-04-14)
+Four tables:
+
+**`outlets`** — master outlet database
+```
+outlet_id        UUID, primary key
+domain           VARCHAR, unique (e.g. "nytimes.com")
+display_name     VARCHAR
+political_lean   FLOAT (-1.0 to 1.0, null if unknown)
+lean_confidence  FLOAT (0.0 to 1.0 — AllSides % agreement)
+reliability      FLOAT (0.0 to 1.0 — Ad Fontes reliability score)
+format_tier      INT (1–7, null if untagged)
+country_code     VARCHAR (ISO 3166)
+institutional_type VARCHAR
+is_tagged        BOOLEAN
+created_at / updated_at TIMESTAMP
+```
+
+**`citations`** — one row per URL extracted from a post
+```
+citation_id      UUID, primary key
+post_id          UUID, FK → posts (null if imported)
+user_id          UUID, FK → users
+outlet_id        UUID, FK → outlets (null if unknown)
+raw_url          TEXT
+resolved_domain  VARCHAR
+source           ENUM (radmo_post / imported_twitter / imported_reddit / imported_other)
+cited_at         TIMESTAMP
+```
+`post_id` nullable for imported records. `cited_at` = original post date for imports.
+
+**`user_source_diversity_scores`** — materialized dimension score per user
+```
+score_id              UUID, primary key
+user_id               UUID, FK → users
+format_entropy        FLOAT
+geo_entropy           FLOAT
+lean_spread           FLOAT
+dimension_score       FLOAT (0–100)
+native_citation_count INT
+imported_citation_count INT
+calculated_at         TIMESTAMP
+```
+Updates on schedule (nightly or per citation threshold), not per page load.
+
+**`outlet_tagging_queue`** — unknown domains awaiting classification
+```
+queue_id       UUID, primary key
+domain         VARCHAR, unique
+first_seen_at  TIMESTAMP
+citation_count INT (prioritization signal)
+status         ENUM (pending / in_review / tagged / rejected)
+```
+
+**Scoring window decision: PARKED** — all-time vs. rolling 90 days vs. weighted recency unresolved; schema supports any approach; revisit when scoring pipeline is being built.
+
+**Data source decisions:**
+- `radmo_post` citations: primary long-term signal
+- Imported citations (`imported_twitter` etc.): bootstrap initial score, decays as native history grows; imported path not built yet — field reserved
+- Scoring unit is user-level (behavioral history), not per-post
+
 ## Open To-Dos (priority order)
 
 See TODO.md — Fundamental Blockers section for current top priorities.
 
-Previous priority list preserved for reference:
-1. Avatar legibility at 44px
-2. Persona illustrations
-3. News outlet incentive mechanic
-4. Factual Grounding scoring
-5. Cross-viewpoint composite weighting
-6. Source classification infrastructure
-7. Repost intent qualifier
-8. Cred score delta rules
-9. Badge earn conditions
-10. Dopamine gap
-11. Perspective panel identification speed
-12. Post-feed mockup updates
-13. CrossViewpoint weight
-14. PWA design
-15. Poster-facing UI
-16. Hot take spectrum visual
+**Immediate next steps for Source Diversity:**
+1. Add domain column to AllSides CSV (manual mapping for top outlets)
+2. Pull and commit GDELT source-country dataset
+3. Join AllSides + GDELT on domain → combined political lean + geography
+4. Define 7-tier format taxonomy and manually tag top 200 outlets
+5. Build outlet_tagging_queue logic for unknown domains
 
 ## Active Preferences & Patterns
 
@@ -142,6 +196,8 @@ Previous priority list preserved for reference:
 - CHT (Center for Humane Technology) = potential legitimizing partner; advocacy not product; currently pivoting to AI focus
 - Extension absorption risk flagged — surface-level feed overlay is replicable by browser/platform players; moat is compounding citation graph + spider profile depth; strategy still under construction
 - Account-analysis beachhead (ingest social history → generate initial spider chart) — explored, still under construction; constrained by API access hostility
+- AllSides data gap: display names only, no domain field — manual domain mapping required before production use
+- GDELT source-country dataset (13,155 outlets → country of origin) identified as next data pull
 
-**Last Updated:** 2026-04-13
+**Last Updated:** 2026-04-14
 **Next Review:** Start of next session
