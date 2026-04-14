@@ -2,7 +2,7 @@
 
 ## Current Work Focus
 
-**Primary (2026-04-14):** Source Diversity v1 implementation underway. Schema designed, first dataset (AllSides) committed to repo. Next step: add domain column to AllSides data, pull GDELT source-country dataset, join on domain.
+**Primary (2026-04-14):** Source Diversity v1 implementation underway. Schema designed, test datasets committed. Next step: write scoring math against test data, then add domain column to AllSides data and pull GDELT.
 
 **Previous session focus (2026-04-13):** Investor red flags audit, spider profile privacy model, technical build order, LLM integration architecture, partners & collaborators section established.
 
@@ -31,6 +31,15 @@
 ### Datasets
 - `data/README.md` — documents all datasets, fields, known gaps, planned additions
 - `data/allsides_bias_ratings.csv` — AllSides bias ratings; News Media subset; ~120 outlets; political lean (1–5), confidence, methodology flags; **no domain field** — display name mapping required
+- `data/test_outlets_extended.csv` — 29 outlets from AllSides manually extended with `format_tier` (1–7), `format_tier_label`, `country_code`; reference table for test scoring
+- `data/test_post_citations.csv` — **111 rows**; 5 personas × 8 posts each; fields: `citation_id`, `user_id`, `post_id`, `news_source`, `cited_at`, `source`, `post_topic`, `post_summary`; Jan–Apr 2026 timestamps; designed to produce distinct scores across all three SD sub-scores
+
+**Test dataset persona fingerprints:**
+- `bubble_scholar` — 21 citations; all US; all left/left-center (rating_num 1–2); tiers 2–6; tight lean cluster; high quality, zero viewpoint diversity
+- `vibes_merchant` — 11 citations; all US; all right tier 7 only; zero format or geo diversity
+- `magpie` — 23 citations; US/GB/QA; tiers 3–6; wide source variety; moderate lean spread
+- `persuader` — 23 citations; mostly US; left-center to right-center; tiers 5–6 only; cross-lean but narrow format range
+- `radical_moderate` — 32 citations; US/GB/QA; tiers 2–6; lean spread 1–5; highest diversity on all three sub-scores
 
 ## Locked Design Decisions
 
@@ -168,11 +177,12 @@ status         ENUM (pending / in_review / tagged / rejected)
 See TODO.md — Fundamental Blockers section for current top priorities.
 
 **Immediate next steps for Source Diversity:**
-1. Add domain column to AllSides CSV (manual mapping for top outlets)
-2. Pull and commit GDELT source-country dataset
-3. Join AllSides + GDELT on domain → combined political lean + geography
-4. Define 7-tier format taxonomy and manually tag top 200 outlets
-5. Build outlet_tagging_queue logic for unknown domains
+1. Write scoring math against test data (Shannon entropy for format + geo, variance for lean spread, weighted composite → 0–100)
+2. Add domain column to AllSides CSV (manual mapping for top outlets)
+3. Pull and commit GDELT source-country dataset
+4. Join AllSides + GDELT on domain → combined political lean + geography
+5. Define 7-tier format taxonomy and manually tag top 200 outlets
+6. Build outlet_tagging_queue logic for unknown domains
 
 ## Active Preferences & Patterns
 
