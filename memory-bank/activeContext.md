@@ -2,9 +2,11 @@
 
 ## Current Work Focus
 
-**Primary (2026-04-14):** Source Diversity v1 implementation underway. Schema designed, test datasets committed. Next step: write scoring math against test data, then add domain column to AllSides data and pull GDELT.
+**Primary (2026-04-18):** Built working fact/opinion spectrum analyzer as standalone local HTML demo. Live, tested, working. Delivered as `fact-opinion-analyzer.html`.
 
-**Previous session focus (2026-04-13):** Investor red flags audit, spider profile privacy model, technical build order, LLM integration architecture, partners & collaborators section established.
+**Previous session (2026-04-14):** Source Diversity v1 implementation underway. Schema designed, test datasets committed. Next step: write scoring math against test data, then add domain column to AllSides data and pull GDELT.
+
+**Previous session (2026-04-13):** Investor red flags audit, spider profile privacy model, technical build order, LLM integration architecture, partners & collaborators section established.
 
 **Previous session (2026-04-10):** GTM strategy thought experiment — investor narrative, browser extension economics, mobile/PWA sequencing, citation graphs, public-facing URI architecture.
 
@@ -18,6 +20,9 @@
 - `product/mockups/rm-expert-post.jsx` — expert post variant (13.7KB)
 - `product/mockups/post-feed.jsx` — v3 reader view (superseded for now — see below)
 - `product/mockups/persona-feed-2026-04-10.jsx` — **v6 persona feed (current)** — spider avatars, cred progress rings, fact/opinion coloring, avg reposter cred ring, full hover tooltip system
+
+### Prototypes (local, not committed)
+- `fact-opinion-analyzer.html` — **working live demo** built 2026-04-18; self-contained HTML file; takes API key in browser; calls Claude Haiku via Anthropic API; segments text into spans scored 0.0–1.0 (fact→opinion); renders blue→amber spectrum inline; hover reveals label + description + score; tested and confirmed working
 
 ### Documentation
 - `product/features.md` — updated 2026-04-10
@@ -46,6 +51,7 @@
 ### Visual / UX
 - **Is/ought color spectrum:** Blue (fact) → amber (opinion). Red/yellow/green is exclusively credibility score language.
 - **User-facing language:** "Fact / Opinion" replaces "Is / Normative". "Is/Ought" stays as internal/technical term.
+- **Ambiguous/mixed claims:** Rendered as intermediate color on the blue→amber spectrum (confirmed via demo 2026-04-18); no third category needed.
 - **Cred score display:** Circular progress ring, clockwise from 12 o'clock, proportional to score; faint full-circle track; ring color matches persona color
 - **Avg reposter cred:** Same ring treatment at smaller size; label "avg reposter cred" confirmed
 - **Score interaction:** Clicking the score ring swaps it in-place with the spider chart. Click again to restore.
@@ -110,6 +116,14 @@ RAG pipeline architecture:
 - LLM used as reasoning engine, not trained classifier; structured prompts return categorical judgments (supported / partially supported / unsupported / misrepresented)
 - Asymmetric rigor requires batch job across post history, not single-post analysis
 - Grok is doing the easy stateless version of this (single-post, user-initiated, no behavioral history); RadMo's version is fundamentally different — behavioral history across hundreds of posts is the moat
+
+### Fact/Opinion Demo — Technical Notes (2026-04-18)
+- Model: `claude-haiku-4-5-20251001` — cheap, fast, sufficient for span classification
+- Prompt: segment text → return JSON array of `{text, score}` spans; score 0.0–1.0
+- Required header for direct browser calls: `anthropic-dangerous-direct-browser-access: true`
+- Cost: ~$0.0001–0.0003 per analysis; negligible
+- Span coloring: linear interpolation between `rgb(55,138,221)` (fact) and `rgb(239,159,39)` (opinion)
+- Hover interaction: fades other spans to 0.3 opacity; shows label + description + raw score
 
 ### Source Diversity — Database Schema (confirmed 2026-04-14)
 Four tables:
@@ -208,6 +222,7 @@ See TODO.md — Fundamental Blockers section for current top priorities.
 - Account-analysis beachhead (ingest social history → generate initial spider chart) — explored, still under construction; constrained by API access hostility
 - AllSides data gap: display names only, no domain field — manual domain mapping required before production use
 - GDELT source-country dataset (13,155 outlets → country of origin) identified as next data pull
+- `anthropic-dangerous-direct-browser-access: true` header required for any direct browser → Anthropic API calls
 
-**Last Updated:** 2026-04-14
+**Last Updated:** 2026-04-18
 **Next Review:** Start of next session
