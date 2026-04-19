@@ -2,7 +2,9 @@
 
 ## Current Work Focus
 
-**Primary (2026-04-18):** Built working fact/opinion spectrum analyzer as standalone local HTML demo. Live, tested, working. Delivered as `fact-opinion-analyzer.html`.
+**Primary (2026-04-19):** Algorithm capture narrative explored. Personas shifting from identity descriptors to capture archetypes. Onboarding self-perception → reality gap mechanic identified as core hook and research dataset opportunity. Villain framing (engagement optimization as enemy) identified as acquisition mechanism — not retention.
+
+**Previous session (2026-04-18):** Built working fact/opinion spectrum analyzer as standalone local HTML demo. Live, tested, working. Delivered as `fact-opinion-analyzer.html`.
 
 **Previous session (2026-04-14):** Source Diversity v1 implementation underway. Schema designed, test datasets committed. Next step: write scoring math against test data, then add domain column to AllSides data and pull GDELT.
 
@@ -27,7 +29,7 @@
 ### Documentation
 - `product/features.md` — updated 2026-04-10
 - `product/badges.md` — Bridge Builder, First Principles, Wide Lens
-- `product/personas.md` — five spider shape archetypes with real-world examples
+- `product/personas.md` — five spider shape archetypes with real-world examples; v1 + v2 framing as of 2026-04-19
 - `product/steelmanning-spec.md` — **updated 2026-04-10** — compounding mechanic (Option B) added
 - `research/research.md` — primary research reference
 - `strategy/strategy.md`, `strategy/evolution.md`, `strategy/gtm.md`, `strategy/what-to-build-now.md`, `strategy/information-environment.md`
@@ -47,6 +49,21 @@
 - `radical_moderate` — 32 citations; US/GB/QA; tiers 2–6; lean spread 1–5; highest diversity on all three sub-scores
 
 ## Locked Design Decisions
+
+### Algorithm Capture Narrative (2026-04-19)
+- Core reframe: spider chart = capture map, not personality profile
+- Preferred wording: "here's how the algorithm sees you" (present tense, activating) over "here's what it turned you into" (past tense, victimizing)
+- User = protagonist arguing back at the machine; algorithm has a model of you that may be wrong — that framing invites engagement not shame
+- Villain = the incentive structure (engagement optimization), not any specific platform; survives platform churn; inoculates against "RadMo is just another engagement optimizer" attack
+- Two-step messaging architecture:
+  - Acquisition: villain narrative gets them in the door
+  - Activation/retention: something else entirely; villain narrative doesn't sustain
+- Tribal judo: shared external threat (engagement optimization) as in-group cohesion mechanism for RadMo's user base; well-documented psych mechanism (Tajfel, Robbers Cave); has a shelf life if over-indexed
+- Persona names may shift from personality traits to capture/pattern language — under construction
+- Onboarding: self-perception first, reveal second; gap is the hook
+- Self-reported feed agency (spectrum slider, not binary) + actual scores = built-in research dataset from day one; correlation between self-perception and score is a product insight
+- Group comparison mechanic (your score vs. tribe average) becomes load-bearing under this frame; expand beyond political groups TBD
+- Forced binary onboarding risk: feels reductive; spectrum slider proposed as mitigation; both ends unlabeled until after user commits position
 
 ### Visual / UX
 - **Is/ought color spectrum:** Blue (fact) → amber (opinion). Red/yellow/green is exclusively credibility score language.
@@ -224,5 +241,5 @@ See TODO.md — Fundamental Blockers section for current top priorities.
 - GDELT source-country dataset (13,155 outlets → country of origin) identified as next data pull
 - `anthropic-dangerous-direct-browser-access: true` header required for any direct browser → Anthropic API calls
 
-**Last Updated:** 2026-04-18
+**Last Updated:** 2026-04-19
 **Next Review:** Start of next session

@@ -41,6 +41,11 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 
 ## Design Decisions Needed
 
+- [ ] **Persona naming pass** — shift from personality traits to capture/pattern language (The Echo, The Aggregator, etc.); under construction from 2026-04-19 session
+- [ ] **Onboarding mechanic spec** — self-perception slider → reality reveal; binary vs. spectrum decision: spectrum slider preferred (neither end labeled until user commits); wording must avoid tribal tripwires on both ends; neither answer should feel like an admission
+- [ ] **Group comparison mechanic** — political group averages vs. user score confirmed interesting; expand to other identity groups TBD; needs data model spec
+- [ ] **Vibes Merchant reframe** — honest/flattering tension unresolved; underlying behavior is genuinely low-quality; "your instincts are fast" risks flattering rather than naming; flagged for dedicated workshop
+- [ ] **Activation/retention mechanic post-acquisition** — villain narrative gets users in the door but doesn't sustain; what converts "I hate engagement optimization" into "I want to think better"? Needs dedicated design work
 - [ ] **Factual Grounding scoring operationalization** — requires argument structure parsing (NLP/argument mining) to link normative claims to factual support across non-adjacent text; harder than order-detection; needs tech spec
 - [ ] **Cross-viewpoint validation composite weighting** — how to weight political lean vs. epistemic tribe vs. geographic/cultural vs. information diet distance across the four axes; TBD
 - [ ] **Source classification infrastructure** — shared dependency for Source Diversity scoring AND information diet distance (cross-viewpoint); needs outlet tagging system: format tier, geography, political lean (where available), institutional type; also a B2B product candidate
@@ -63,6 +68,7 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 
 ## Messaging / Positioning
 
+- [ ] **"Algorithm capture" as acquisition narrative** — "here's how the algorithm sees you" as opening hook; villain = engagement optimization incentive structure (not specific platforms); two-step architecture: villain for acquisition, epistemic agency for retention; needs copy development and consistency check against existing strategy docs
 - [ ] **"Platform you'd want your kids to use" tagline** — contrast with well-documented knowledge by social media insiders that their own products were harmful (Facebook execs not letting kids use Facebook, etc.); RadMo as the platform built with that awareness baked in from day one; exact copy TBD but direction: "a platform we'd let our own kids use" / "designed for humans, not engagement metrics"; workshop as part of broader brand voice development
 
 ---
@@ -166,4 +172,4 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 
 ---
 
-*Last updated: 2026-04-14*
+*Last updated: 2026-04-19*
