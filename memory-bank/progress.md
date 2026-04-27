@@ -102,6 +102,98 @@ RadMo is the only platform where outlets can observe genuine cross-aisle readers
 - Component patterns: radar chart, arc gauge, rater cards, perspective panels, swappable cred displays, circular progress rings
 - Dark UI design system established (Palatino, #0a0a0a bg, color-coded credibility, blue/amber is/ought)
 - Persona feed mockup v6 current: `product/mockups/persona-feed-2026-04-10.jsx`
+- **Chrome extension v0.1 working locally** — manifest v3; content script + MutationObserver + SPA nav fix + result cache; colorizes first ~5 tweets on X correctly
+
+---
+
+## Session Findings — 2026-04-27
+
+### Chrome Extension v0.1 — Built and Running
+- Fact/opinion analyzer ported from standalone HTML demo (`fact-opinion-analyzer.html`) to Chrome extension
+- Four files: `manifest.json`, `content.js`, `popup.html`, `popup.js`
+- Confirmed: content script reads X's DOM directly — no X API or auth needed
+- `article[data-testid="tweet"]` is stable tweet selector; `[data-testid="tweetText"]` for text content
+- MutationObserver watches for new tweets loaded by infinite scroll
+- SPA navigation fix: 500ms URL polling + observer restart with 1s delay
+- React virtual DOM wipe fix: `[data-radmo-spans]` presence check on every scan; re-queues wiped tweets
+- Result caching via Map keyed by tweet text — scroll-back is instant and free
+- **Known bug:** queue stalls after ~5 tweets. Suspected cause: Haiku rate limiting. Fix: exponential backoff + retry logic. Next session priority.
+- Local install: load unpacked via `chrome://extensions` developer mode
+
+### Marketing Concepts Documented
+- **`_ButWhy` accounts** — platform-native social accounts exposing the absurdity of the platforms they live on; WaitButWhy voice baked into the handle; strongest asset = AI slop feed video (visceral, apolitical); trademark risk on platform-name handles (GrokButWhy etc.); safer alternatives: TheAlgorithmButWhy, YourFeedButWhy; platform-specific separate accounts preferred over one general account
+- **`@grok is this true` tagline** — best tagline to date; culturally legible now; implies value prop without stating it; slightly platform-specific; durable variant: "You shouldn't need to ask a bot if the post is real"
+- Both are execution layer of villain narrative (engagement optimization as enemy) — concrete shareable proof points rather than abstract claims
+- Who runs the accounts is an open question: faceless brand has a ceiling; identifiable human voice compounds faster
+
+---
+
+## Session Findings — 2026-04-19
+
+### Algorithm Capture Narrative Locked
+- Core reframe confirmed: spider chart = capture map, not personality profile
+- "Here's how the algorithm sees you" preferred over "here's what it turned you into"
+- Villain = incentive structure (engagement optimization), not specific platforms
+- Two-step messaging: acquisition (villain narrative) vs. retention (something else — unresolved)
+- Tribal judo mechanic documented
+- Onboarding: self-perception first → reality reveal; gap is the hook
+- Self-perception slider + actual scores = built-in research dataset from day one
+
+### Persona Naming Under Construction
+- Shifting from personality traits to capture/pattern language
+- `product/personas.md` has v1 + v2 framing
+- Vibes Merchant honest/flattering tension flagged for dedicated workshop
+
+---
+
+## Session Findings — 2026-04-18
+
+### Fact/Opinion Analyzer Demo — Built
+- Working standalone HTML file: `fact-opinion-analyzer.html`
+- Self-contained; takes API key in browser; calls Claude Haiku
+- Segments text into spans scored 0.0–1.0 (fact→opinion)
+- Renders blue→amber spectrum inline; hover reveals label + description + score
+- Tested and confirmed working
+- Model: `claude-haiku-4-5-20251001`; required header: `anthropic-dangerous-direct-browser-access: true`
+
+---
+
+## Session Findings — 2026-04-14
+
+### Source Diversity — Schema Locked
+Four-table schema confirmed (see activeContext.md for full field list):
+- `outlets` — master outlet database; domain as primary key; political lean as float (-1.0 to 1.0) for continuous math
+- `citations` — one row per URL; `source` ENUM distinguishes radmo_post vs. imported history; `post_id` nullable for imports
+- `user_source_diversity_scores` — materialized score; separate native/imported citation counts; updated on schedule not per page load
+- `outlet_tagging_queue` — unknown domains; `citation_count` as prioritization signal
+
+**Key decisions:**
+- Scoring unit is user-level behavioral history, not per-post
+- `citations.source` field future-proofs imported history path without requiring it now
+- Scoring window (all-time vs. rolling vs. weighted recency) **parked** — schema supports any approach
+
+### Source Diversity — Dataset Landscape Assessed
+Three tiers of available data identified:
+
+**Political lean (well-covered):**
+- AllSides: ~547 sources, political lean + confidence; CSV accessible via GitHub MCP; **no domain field** — display name mapping required
+- Ad Fontes: 3,400+ sources, bias + reliability (two-axis); full data behind subscription; older CSV snapshots on GitHub
+- MBFC: 2,000+ sources, bias + factual accuracy + credibility; CMU scraper available (requires paid account)
+
+**Geographic origin (well-covered):**
+- GDELT: 13,155 English-language outlets mapped to country of origin; free download; infers geography from coverage patterns (solves the .com domain problem); **next dataset to pull**
+- Wikidata: structured outlet metadata including country; queryable via SPARQL; good for gap-filling
+
+**Format tier (not covered — must build):**
+- No pre-existing public dataset for outlet format classification
+- MBFC reliability scores are a proxy but not a direct format taxonomy
+- Top ~200 outlets manually taggable in a day; covers majority of real-world citations
+
+### AllSides CSV Committed
+- Location: `data/allsides_bias_ratings.csv`
+- News Media subset only (~120 outlets); full 547-row dataset available from AllSideR repo
+- Key gap: no domain field; requires display-name-to-domain mapping step before production use
+- Data is ~2019-2020 vintage; some ratings may be stale
 
 ---
 
@@ -163,49 +255,16 @@ New TODO section created. Partners identified: CHT, Ground News (dual framing: c
 
 ---
 
-## Session Findings — 2026-04-14
-
-### Source Diversity — Schema Locked
-Four-table schema confirmed (see activeContext.md for full field list):
-- `outlets` — master outlet database; domain as primary key; political lean as float (-1.0 to 1.0) for continuous math
-- `citations` — one row per URL; `source` ENUM distinguishes radmo_post vs. imported history; `post_id` nullable for imports
-- `user_source_diversity_scores` — materialized score; separate native/imported citation counts; updated on schedule not per page load
-- `outlet_tagging_queue` — unknown domains; `citation_count` as prioritization signal
-
-**Key decisions:**
-- Scoring unit is user-level behavioral history, not per-post
-- `citations.source` field future-proofs imported history path without requiring it now
-- Scoring window (all-time vs. rolling vs. weighted recency) **parked** — schema supports any approach
-
-### Source Diversity — Dataset Landscape Assessed
-Three tiers of available data identified:
-
-**Political lean (well-covered):**
-- AllSides: ~547 sources, political lean + confidence; CSV accessible via GitHub MCP; **no domain field** — display name mapping required
-- Ad Fontes: 3,400+ sources, bias + reliability (two-axis); full data behind subscription; older CSV snapshots on GitHub
-- MBFC: 2,000+ sources, bias + factual accuracy + credibility; CMU scraper available (requires paid account)
-
-**Geographic origin (well-covered):**
-- GDELT: 13,155 English-language outlets mapped to country of origin; free download; infers geography from coverage patterns (solves the .com domain problem); **next dataset to pull**
-- Wikidata: structured outlet metadata including country; queryable via SPARQL; good for gap-filling
-
-**Format tier (not covered — must build):**
-- No pre-existing public dataset for outlet format classification
-- MBFC reliability scores are a proxy but not a direct format taxonomy
-- Top ~200 outlets manually taggable in a day; covers majority of real-world citations
-
-### AllSides CSV Committed
-- Location: `data/allsides_bias_ratings.csv`
-- News Media subset only (~120 outlets); full 547-row dataset available from AllSideR repo
-- Key gap: no domain field; requires display-name-to-domain mapping step before production use
-- Data is ~2019-2020 vintage; some ratings may be stale
-
----
-
 ## What's Left to Build
 
 ### Fundamental Blockers (resolve before building)
 See TODO.md — Fundamental Blockers section. All ten items are pre-implementation.
+
+### Extension — Active Next Steps
+1. Add exponential backoff + retry to queue drain (fix rate limit stall after ~5 tweets)
+2. Confirm rate limit as root cause (check Chrome DevTools console for 429 errors)
+3. Source Diversity layer in extension — domain lookup against AllSides CSV as first proprietary signal
+4. Beta version: proxy server, opt-in telemetry, waitlist CTA, Chrome Web Store submission
 
 ### Source Diversity v1 — Active Next Steps
 1. Add domain column to AllSides CSV (manual mapping, top outlets first)
@@ -262,7 +321,7 @@ See TODO.md — Fundamental Blockers section. All ten items are pre-implementati
 
 ## Current Status
 
-**Phase:** Design & Prototyping → early technical implementation (Source Diversity)
+**Phase:** Design & Prototyping → early technical implementation (Extension v0.1 + Source Diversity)
 **Blockers:** Ten investor-level fundamental blockers identified 2026-04-13; see TODO.md
 
 **Execution Risk: Low–Medium** — nothing identified is technically impossible; Source Diversity is buildable now; Claim Integrity is tractable with LLMs; Factual Grounding is hard but has a clear research path; the build is complex but not blocked. Rises to Medium only because technical co-founder and ML expertise are not yet in place.
@@ -285,14 +344,19 @@ See TODO.md — Fundamental Blockers section. All ten items are pre-implementati
 9. **No team** — technical co-founder and ML expertise needed
 10. **Cold start deferred** — platform cold start unsolved; extension defers it to Phase 3
 
+### Extension-Specific (added 2026-04-27)
+11. **Rate limit stall** — queue stops after ~5 tweets; fix: exponential backoff + retry
+12. **React virtual DOM churn** — handled in v0.2 via spans presence check; monitor for regressions
+13. **X selector fragility** — `data-testid` values are stable but not guaranteed; monitor for breakage
+
 ### High Priority (pre-existing)
-11. **Asymmetric Rigor Detection** — significant infrastructure requirement
-12. **Audience Capture Decay Function** — gaming risk if rules are legible
-13. **Demographic Skew** — credibility system may miscalibrate against emotional/communal communication styles
+14. **Asymmetric Rigor Detection** — significant infrastructure requirement
+15. **Audience Capture Decay Function** — gaming risk if rules are legible
+16. **Demographic Skew** — credibility system may miscalibrate against emotional/communal communication styles
 
 ### Medium Priority
-14. **Prediction Market Incentives** — real money vs. reputation
-15. **Scale & Moderation** — quality at scale without biased central rater
+17. **Prediction Market Incentives** — real money vs. reputation
+18. **Scale & Moderation** — quality at scale without biased central rater
 
 ## Evolution of Key Decisions
 
@@ -330,5 +394,5 @@ See TODO.md — Fundamental Blockers section. All ten items are pre-implementati
 
 ---
 
-**Last Updated:** 2026-04-14
+**Last Updated:** 2026-04-27
 **Next Review:** Start of next session

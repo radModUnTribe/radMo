@@ -23,6 +23,16 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 
 ---
 
+## Extension — Active Work (added 2026-04-27)
+
+- [ ] **Rate limit fix** — queue stalls after ~5 tweets in v0.1; add exponential backoff + retry logic to `drain()` function; check Chrome DevTools console for 429 errors to confirm hypothesis
+- [ ] **Source Diversity layer in extension** — domain lookup against AllSides CSV per tweet; display lean indicator per post; first proprietary signal beyond Haiku overlay
+- [ ] **Beta version scope:** proxy server for API key handling (no user-provided key friction), opt-in telemetry (anonymized domain + session data), waitlist CTA in popup, Chrome Web Store submission (~1–2 week review)
+- [ ] **Waitlist landing page** — `_ButWhy` content drives to it; extension popup CTA hooks into it
+- [ ] **Shareable epistemic fingerprint output** — even a simple version starts the viral loop; placeholder in popup for now
+
+---
+
 ## Source Diversity — Active Work
 
 - [ ] **Add domain column to AllSides CSV** — `data/allsides_bias_ratings.csv` has display names only; manual mapping required for production use; start with top 100 outlets by citation likelihood
@@ -69,6 +79,8 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 ## Messaging / Positioning
 
 - [ ] **"Algorithm capture" as acquisition narrative** — "here's how the algorithm sees you" as opening hook; villain = engagement optimization incentive structure (not specific platforms); two-step architecture: villain for acquisition, epistemic agency for retention; needs copy development and consistency check against existing strategy docs
+- [ ] **`@grok is this true` tagline** — best tagline to date; document in `strategy/gtm.md`; durable variant: "You shouldn't need to ask a bot if the post is real"; culturally legible now but slightly platform-specific — monitor shelf life
+- [ ] **`_ButWhy` social accounts** — platform-native accounts exposing the absurdity of the platforms they live on; document full concept in `strategy/gtm.md`; **legal risk:** avoid trademark-adjacent handles (GrokButWhy, FacebookButWhy etc.); safer alternatives: TheAlgorithmButWhy, YourFeedButWhy; AI slop feed video is strongest content asset; who runs these accounts is an open question (faceless brand has a ceiling; identifiable human voice compounds faster)
 - [ ] **"Platform you'd want your kids to use" tagline** — contrast with well-documented knowledge by social media insiders that their own products were harmful (Facebook execs not letting kids use Facebook, etc.); RadMo as the platform built with that awareness baked in from day one; exact copy TBD but direction: "a platform we'd let our own kids use" / "designed for humans, not engagement metrics"; workshop as part of broader brand voice development
 
 ---
@@ -172,4 +184,4 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 
 ---
 
-*Last updated: 2026-04-19*
+*Last updated: 2026-04-27*

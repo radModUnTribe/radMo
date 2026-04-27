@@ -2,7 +2,9 @@
 
 ## Current Work Focus
 
-**Primary (2026-04-19):** Algorithm capture narrative explored. Personas shifting from identity descriptors to capture archetypes. Onboarding self-perception → reality gap mechanic identified as core hook and research dataset opportunity. Villain framing (engagement optimization as enemy) identified as acquisition mechanism — not retention.
+**Primary (2026-04-27):** Chrome extension v0.1 built and running locally on X. Fact/opinion analyzer ported from standalone HTML demo to manifest v3 extension. First 5 tweets colorize correctly; queue stalls after that — suspected API rate limiting; retry/backoff logic is the immediate next step. Marketing concepts documented: `_ButWhy` social accounts and `@grok is this true` tagline.
+
+**Previous session (2026-04-19):** Algorithm capture narrative explored. Personas shifting from identity descriptors to capture archetypes. Onboarding self-perception → reality gap mechanic identified as core hook and research dataset opportunity. Villain framing (engagement optimization as enemy) identified as acquisition mechanism — not retention.
 
 **Previous session (2026-04-18):** Built working fact/opinion spectrum analyzer as standalone local HTML demo. Live, tested, working. Delivered as `fact-opinion-analyzer.html`.
 
@@ -25,6 +27,7 @@
 
 ### Prototypes (local, not committed)
 - `fact-opinion-analyzer.html` — **working live demo** built 2026-04-18; self-contained HTML file; takes API key in browser; calls Claude Haiku via Anthropic API; segments text into spans scored 0.0–1.0 (fact→opinion); renders blue→amber spectrum inline; hover reveals label + description + score; tested and confirmed working
+- `radmo-extension/` — **Chrome extension v0.1** built 2026-04-27; manifest v3; content script reads DOM directly on x.com; MutationObserver for infinite scroll; SPA navigation fix via URL polling; result caching via Map; first 5 tweets colorize correctly; known bug: queue stalls after ~5 tweets (suspected rate limiting)
 
 ### Documentation
 - `product/features.md` — updated 2026-04-10
@@ -64,6 +67,14 @@
 - Self-reported feed agency (spectrum slider, not binary) + actual scores = built-in research dataset from day one; correlation between self-perception and score is a product insight
 - Group comparison mechanic (your score vs. tribe average) becomes load-bearing under this frame; expand beyond political groups TBD
 - Forced binary onboarding risk: feels reductive; spectrum slider proposed as mitigation; both ends unlabeled until after user commits position
+
+### Marketing — Taglines & Concepts (2026-04-27)
+- **Best tagline to date:** `'@grok is this true' shouldn't be the top comment` — culturally legible now; implies RadMo's value prop without stating it; subtle Grok/Musk jab; slightly platform-specific and may age. Durable variant: "You shouldn't need to ask a bot if the post is real."
+- **`_ButWhy` social accounts concept** — platform-native accounts (TikTokButWhy, XButWhy etc.) in WaitButWhy style; expose platform absurdity via memes and posts; strongest content asset = AI slop feed video (visceral, apolitical, undeniable); inflammatory/misinformation examples are riskier (partisan perception risk); platform-specific separate accounts preferred over one general account
+  - **Legal risk:** handle names like GrokButWhy, FacebookButWhy are trademark-adjacent; likely face suspension or C&D at traction; safer alternatives: TheAlgorithmButWhy, YourFeedButWhy
+  - These are the execution layer of the villain narrative — concrete shareable proof points, not abstract claims
+  - Connects to acquisition strategy: accounts build top-of-funnel; extension is the conversion mechanism
+- Document full GTM concept in `strategy/gtm.md`
 
 ### Visual / UX
 - **Is/ought color spectrum:** Blue (fact) → amber (opinion). Red/yellow/green is exclusively credibility score language.
@@ -142,6 +153,18 @@ RAG pipeline architecture:
 - Span coloring: linear interpolation between `rgb(55,138,221)` (fact) and `rgb(239,159,39)` (opinion)
 - Hover interaction: fades other spans to 0.3 opacity; shows label + description + raw score
 
+### Chrome Extension — Technical Notes (2026-04-27)
+- **Architecture:** manifest v3; content script + popup only (no background service worker needed for v0.1)
+- **DOM reading:** content script reads X's DOM directly — zero X API dependency; no auth needed
+- **Tweet selector:** `article[data-testid="tweet"]` confirmed stable; tweet text via `[data-testid="tweetText"]`
+- **SPA navigation:** X does not reload on navigation; handled via 500ms URL polling + observer restart with 1s delay
+- **React virtual DOM:** X unmounts/remounts tweet elements on scroll; handled by checking `[data-radmo-spans]` presence on every scan; re-queues wiped tweets
+- **Result caching:** Map keyed by tweet text; re-appearing tweets re-colored instantly from cache; no repeat API calls
+- **Queue:** serial processing with 300ms gap between calls; try/catch per item prevents stall on error
+- **Known bug (v0.1):** queue stalls after ~5 tweets; suspected Haiku rate limiting; fix = exponential backoff + retry logic
+- **Local dev install:** load unpacked via `chrome://extensions` developer mode; reload extension after any file change
+- **Beta version (planned):** proxy server for API key handling; opt-in telemetry; waitlist CTA in popup; Chrome Web Store submission
+
 ### Source Diversity — Database Schema (confirmed 2026-04-14)
 Four tables:
 
@@ -207,6 +230,11 @@ status         ENUM (pending / in_review / tagged / rejected)
 
 See TODO.md — Fundamental Blockers section for current top priorities.
 
+**Immediate next steps for extension:**
+1. Add exponential backoff + retry logic to queue drain (fix rate limit stall)
+2. Test on a slower scroll pace to confirm rate limit hypothesis
+3. Then: Source Diversity layer — domain lookup against AllSides CSV as first proprietary signal
+
 **Immediate next steps for Source Diversity:**
 1. Write scoring math against test data (Shannon entropy for format + geo, variance for lean spread, weighted composite → 0–100)
 2. Add domain column to AllSides CSV (manual mapping for top outlets)
@@ -240,6 +268,8 @@ See TODO.md — Fundamental Blockers section for current top priorities.
 - AllSides data gap: display names only, no domain field — manual domain mapping required before production use
 - GDELT source-country dataset (13,155 outlets → country of origin) identified as next data pull
 - `anthropic-dangerous-direct-browser-access: true` header required for any direct browser → Anthropic API calls
+- `_ButWhy` accounts: trademark risk on platform-name handles; AI slop feed video is strongest content asset; platform-specific accounts preferred
+- `@grok is this true` tagline: best to date; slightly platform-specific; durable variant: "You shouldn't need to ask a bot if the post is real"
 
-**Last Updated:** 2026-04-19
+**Last Updated:** 2026-04-27
 **Next Review:** Start of next session
