@@ -106,6 +106,40 @@ RadMo is the only platform where outlets can observe genuine cross-aisle readers
 
 ---
 
+## Session Findings — 2026-05-03
+
+### Source Diversity Entropy Scoring — First Run Complete
+
+Shannon entropy + lean spread variance computed across all 5 personas using `test_post_citations.csv` and `test_outlets_extended.csv`.
+
+**Formula used:** `SD = 0.35 × format_entropy_norm + 0.35 × geo_entropy_norm + 0.30 × lean_spread_norm`
+
+| Persona | n | Format | Geo | Lean | SD Score |
+|---|---|---|---|---|---|
+| Bubble Scholar | 21 | 0.553 | 0.174 | 0.102 | 28.5 |
+| Vibes Merchant | 11 | 0.000 | 0.000 | 0.000 | 0.0 |
+| Magpie | 23 | 0.670 | 0.844 | 0.053 | 54.6 |
+| Persuader | 23 | 0.423 | 0.000 | 0.119 | 18.4 |
+| Radical Moderate | 32 | 0.740 | 0.630 | 0.240 | 55.1 |
+
+**Validations:**
+- Vibes Merchant floors at 0 — all tier-7 US right-only sources; perfect floor behavior confirmed
+- Bubble Scholar correctly mid-low: format diversity is real (tiers 2–6) but geo and lean are both near-zero
+- Persuader correctly penalized: cross-lean citations but 100% US sources → geo = 0; math picks up the gap
+- Radical Moderate correctly highest overall lean spread (0.240) and strong across all three sub-scores
+
+**Known issue — Magpie/RM convergence:**
+Magpie scores 54.6, Radical Moderate 55.1 — nearly identical despite different profiles. Magpie's diversity is almost entirely geographic (geo=0.844); lean spread is near-zero (0.053). RM is more balanced across all three sub-scores. The 35/35/30 weighting doesn't sufficiently penalize Magpie's lean clustering. Bumping lean spread to ~40% weight is the hypothesis. **Weight sensitivity analysis required before finalizing formula.**
+
+**Shannon entropy mechanics confirmed:**
+- `H = -Σ p(x) · log₂(p(x))` across category counts
+- Normalized by `log₂(N_categories)` to produce 0–1 score regardless of how many categories exist
+- Format: normalized against log₂(7) = 7 tiers
+- Geo: normalized against log₂(3) = 3 countries present in test data (US, GB, QA) — will need to normalize against full dataset country count in production
+- Lean spread: variance of `rating_num` (1–5 scale), normalized against theoretical max variance of 4.0
+
+---
+
 ## Session Findings — 2026-04-27
 
 ### Chrome Extension v0.1 — Built and Running
@@ -267,14 +301,16 @@ See TODO.md — Fundamental Blockers section. All ten items are pre-implementati
 4. Beta version: proxy server, opt-in telemetry, waitlist CTA, Chrome Web Store submission
 
 ### Source Diversity v1 — Active Next Steps
-1. Add domain column to AllSides CSV (manual mapping, top outlets first)
-2. Pull and commit GDELT source-country dataset
-3. Join AllSides + GDELT on domain → political lean + geography in one table
-4. Define 7-tier format taxonomy; manually tag top 200 outlets
-5. Build outlet_tagging_queue logic for unknown domains at post submission
-6. Implement Shannon entropy scoring for format + geo sub-scores
-7. Implement lean_spread (variance) calculation
-8. Build materialized score update job
+1. **Weight sensitivity analysis** — test lean spread at 30% vs. 35% vs. 40% (reducing format or geo); goal: correctly separate Magpie from Radical Moderate
+2. Finalize sub-score weights
+3. Add domain column to AllSides CSV (manual mapping, top outlets first)
+4. Pull and commit GDELT source-country dataset
+5. Join AllSides + GDELT on domain → political lean + geography in one table
+6. Define 7-tier format taxonomy; manually tag top 200 outlets
+7. Build outlet_tagging_queue logic for unknown domains at post submission
+8. Implement Shannon entropy scoring for format + geo sub-scores
+9. Implement lean_spread (variance) calculation
+10. Build materialized score update job
 
 ### Critical Path (MVP Readiness)
 - [ ] **Factual Grounding scoring operationalization** — argument structure parsing / NLP argument mining
@@ -349,14 +385,18 @@ See TODO.md — Fundamental Blockers section. All ten items are pre-implementati
 12. **React virtual DOM churn** — handled in v0.2 via spans presence check; monitor for regressions
 13. **X selector fragility** — `data-testid` values are stable but not guaranteed; monitor for breakage
 
+### Source Diversity Scoring (added 2026-05-03)
+14. **Magpie/RM score convergence** — 35/35/30 weights produce nearly identical scores (54.6 vs 55.1) despite different profiles; lean spread weight likely needs to increase; sensitivity analysis pending
+15. **Geo normalization will change in production** — test data has 3 countries (US/GB/QA); production normalization denominator must reflect actual dataset country count, not test count
+
 ### High Priority (pre-existing)
-14. **Asymmetric Rigor Detection** — significant infrastructure requirement
-15. **Audience Capture Decay Function** — gaming risk if rules are legible
-16. **Demographic Skew** — credibility system may miscalibrate against emotional/communal communication styles
+16. **Asymmetric Rigor Detection** — significant infrastructure requirement
+17. **Audience Capture Decay Function** — gaming risk if rules are legible
+18. **Demographic Skew** — credibility system may miscalibrate against emotional/communal communication styles
 
 ### Medium Priority
-17. **Prediction Market Incentives** — real money vs. reputation
-18. **Scale & Moderation** — quality at scale without biased central rater
+19. **Prediction Market Incentives** — real money vs. reputation
+20. **Scale & Moderation** — quality at scale without biased central rater
 
 ## Evolution of Key Decisions
 
@@ -392,7 +432,12 @@ See TODO.md — Fundamental Blockers section. All ten items are pre-implementati
 - Revised (2026-04-13): three delineated dimensions — Execution (Low–Medium), Investment (High), Product (Medium)
 - Note: this is a passion project at design/prototyping stage; Investment Risk: High reflects honest pre-seed assessment, not project distress
 
+### Source Diversity Sub-score Weights
+- First run (2026-05-03): 35/35/30 (format/geo/lean)
+- Known issue: Magpie and RM converge; lean spread likely underweighted
+- Next: sensitivity analysis at multiple weight configs before finalizing
+
 ---
 
-**Last Updated:** 2026-04-27
+**Last Updated:** 2026-05-03
 **Next Review:** Start of next session

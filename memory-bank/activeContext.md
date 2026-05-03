@@ -2,7 +2,9 @@
 
 ## Current Work Focus
 
-**Primary (2026-04-27):** Chrome extension v0.1 built and running locally on X. Fact/opinion analyzer ported from standalone HTML demo to manifest v3 extension. First 5 tweets colorize correctly; queue stalls after that — suspected API rate limiting; retry/backoff logic is the immediate next step. Marketing concepts documented: `_ButWhy` social accounts and `@grok is this true` tagline.
+**Primary (2026-05-03):** Source Diversity entropy scoring validated against test dataset. Shannon entropy (format + geo) and lean spread variance computed for all 5 personas. Scores differentiate personas correctly with one exception: Magpie and Radical Moderate score nearly identically (54.6 vs 55.1) despite meaningfully different lean profiles. Weight sensitivity analysis identified as next step before finalizing scoring formula.
+
+**Previous session (2026-04-27):** Chrome extension v0.1 built and running locally on X. Fact/opinion analyzer ported from standalone HTML demo to manifest v3 extension. First 5 tweets colorize correctly; queue stalls after that — suspected API rate limiting; retry/backoff logic is the immediate next step. Marketing concepts documented: `_ButWhy` social accounts and `@grok is this true` tagline.
 
 **Previous session (2026-04-19):** Algorithm capture narrative explored. Personas shifting from identity descriptors to capture archetypes. Onboarding self-perception → reality gap mechanic identified as core hook and research dataset opportunity. Villain framing (engagement optimization as enemy) identified as acquisition mechanism — not retention.
 
@@ -52,6 +54,27 @@
 - `radical_moderate` — 32 citations; US/GB/QA; tiers 2–6; lean spread 1–5; highest diversity on all three sub-scores
 
 ## Locked Design Decisions
+
+### Source Diversity Scoring — First Run Results (2026-05-03)
+
+Scoring formula: `SD = 0.35 × format_entropy_norm + 0.35 × geo_entropy_norm + 0.30 × lean_spread_norm`
+
+| Persona | n | Format | Geo | Lean | SD Score |
+|---|---|---|---|---|---|
+| Bubble Scholar | 21 | 0.553 | 0.174 | 0.102 | 28.5 |
+| Vibes Merchant | 11 | 0.000 | 0.000 | 0.000 | 0.0 |
+| Magpie | 23 | 0.670 | 0.844 | 0.053 | 54.6 |
+| Persuader | 23 | 0.423 | 0.000 | 0.119 | 18.4 |
+| Radical Moderate | 32 | 0.740 | 0.630 | 0.240 | 55.1 |
+
+**What validated correctly:**
+- Vibes Merchant = 0.0 on all sub-scores (100% US tier-7 right-only) — perfect floor
+- Bubble Scholar (28.5) has real format diversity but near-zero geo and lean spread — scores appropriately mid-low
+- Persuader (18.4) correctly penalized: genuinely cross-lean citations but 100% US sources → geo = 0
+- Radical Moderate highest lean spread (0.240), broadest format range, strong geo → highest overall SD
+
+**Known issue — Magpie/RM convergence:**
+Magpie and Radical Moderate score nearly identically (54.6 vs 55.1) despite meaningfully different profiles. Magpie's diversity is almost entirely geographic (geo=0.844 vs RM's 0.630) with near-zero lean spread (0.053 vs RM's 0.240). Current 35/35/30 weighting doesn't sufficiently differentiate them. Hypothesis: increasing lean spread weight to ~40% (dropping format or geo slightly) would correctly separate them. **Weight sensitivity analysis needed before finalizing formula.**
 
 ### Algorithm Capture Narrative (2026-04-19)
 - Core reframe: spider chart = capture map, not personality profile
@@ -236,12 +259,14 @@ See TODO.md — Fundamental Blockers section for current top priorities.
 3. Then: Source Diversity layer — domain lookup against AllSides CSV as first proprietary signal
 
 **Immediate next steps for Source Diversity:**
-1. Write scoring math against test data (Shannon entropy for format + geo, variance for lean spread, weighted composite → 0–100)
-2. Add domain column to AllSides CSV (manual mapping for top outlets)
-3. Pull and commit GDELT source-country dataset
-4. Join AllSides + GDELT on domain → combined political lean + geography
-5. Define 7-tier format taxonomy and manually tag top 200 outlets
-6. Build outlet_tagging_queue logic for unknown domains
+1. **Weight sensitivity analysis** — run SD formula across personas at multiple weight configs (especially lean spread 30% vs. 40%) to find weights that correctly separate Magpie from Radical Moderate
+2. Finalize SD sub-score weights based on sensitivity analysis
+3. Write scoring math against production data path (Shannon entropy for format + geo, variance for lean spread, weighted composite → 0–100)
+4. Add domain column to AllSides CSV (manual mapping for top outlets)
+5. Pull and commit GDELT source-country dataset
+6. Join AllSides + GDELT on domain → combined political lean + geography
+7. Define 7-tier format taxonomy and manually tag top 200 outlets
+8. Build outlet_tagging_queue logic for unknown domains
 
 ## Active Preferences & Patterns
 
@@ -270,6 +295,7 @@ See TODO.md — Fundamental Blockers section for current top priorities.
 - `anthropic-dangerous-direct-browser-access: true` header required for any direct browser → Anthropic API calls
 - `_ButWhy` accounts: trademark risk on platform-name handles; AI slop feed video is strongest content asset; platform-specific accounts preferred
 - `@grok is this true` tagline: best to date; slightly platform-specific; durable variant: "You shouldn't need to ask a bot if the post is real"
+- **SD scoring note:** Magpie and Radical Moderate converge at current 35/35/30 weights; lean spread weight likely needs to increase to ~40% to correctly differentiate them; sensitivity analysis pending
 
-**Last Updated:** 2026-04-27
+**Last Updated:** 2026-05-03
 **Next Review:** Start of next session

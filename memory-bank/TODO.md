@@ -35,6 +35,7 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 
 ## Source Diversity — Active Work
 
+- [ ] **SD sub-score weight sensitivity analysis** *(added 2026-05-03)* — first scoring run (35/35/30 format/geo/lean) produces near-identical scores for Magpie (54.6) and Radical Moderate (55.1) despite meaningfully different lean profiles; hypothesis: lean spread is underweighted; run scoring at multiple weight configs (e.g. 30/30/40, 35/25/40, 25/35/40) against test personas and evaluate which config best separates them; finalize weights before building production scoring pipeline
 - [ ] **Add domain column to AllSides CSV** — `data/allsides_bias_ratings.csv` has display names only; manual mapping required for production use; start with top 100 outlets by citation likelihood
 - [ ] **Pull and commit GDELT source-country dataset** — 13,155 English-language outlets mapped to country of origin; free download from GDELT blog; solves geography dimension
 - [ ] **Join AllSides + GDELT on domain** — produces combined political lean + geography table; foundation for `outlets` DB
@@ -46,6 +47,7 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 - [ ] **Implement lean_spread calculation** — variance of political_lean across cited outlets
 - [ ] **Build materialized score update job** — nightly or per citation threshold; not per page load
 - [ ] **Scoring window decision — PARKED** — all-time vs. rolling 90 days vs. weighted recency; schema supports any approach; revisit when scoring pipeline is being built
+- [ ] **Geo normalization denominator** — test data normalized against 3 countries (US/GB/QA); production denominator must reflect actual dataset country count; document this as a calibration parameter
 
 ---
 
@@ -184,4 +186,4 @@ These are pre-implementation blockers. Nothing in the technical build queue shou
 
 ---
 
-*Last updated: 2026-04-27*
+*Last updated: 2026-05-03*
