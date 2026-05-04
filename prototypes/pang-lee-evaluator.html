@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pang & Lee — Subjectivity Evaluator</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface2: #1c1c1c;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --muted: #888;
+    --fact: rgb(55,138,221);
+    --opinion: rgb(239,159,39);
+    --match: #1d9e75;
+    --miss: #d85a30;
+    --font: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 40px 24px;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; }
+
+  header { margin-bottom: 40px; }
+  h1 { font-size: 26px; font-weight: normal; letter-spacing: -0.3px; margin-bottom: 6px; }
+  .subtitle { font-size: 13px; color: var(--muted); font-family: var(--mono); }
+
+  .card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-label {
+    font-size: 11px;
+    font-family: var(--mono);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  input[type="password"], input[type="text"] {
+    width: 100%;
+    background: var(--surface2);
+    border: 0.5px solid var(--border2);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input:focus { border-color: rgba(255,255,255,0.3); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .paste-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tag {
+    font-size: 10px;
+    font-family: var(--mono);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .tag-obj  { background: rgba(55,138,221,0.15); color: #7ab8f0; }
+  .tag-subj { background: rgba(239,159,39,0.15);  color: #f0b86a; }
+
+  textarea {
+    width: 100%;
+    height: 160px;
+    background: var(--surface2);
+    border: 0.5px solid var(--border2);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    padding: 10px 12px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  textarea:focus { border-color: rgba(255,255,255,0.3); }
+
+  .line-count {
+    font-size: 11px;
+    font-family: var(--mono);
+    color: var(--muted);
+    margin-top: 5px;
+  }
+
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 4px;
+  }
+  input[type="range"] {
+    flex: 1;
+    accent-color: var(--fact);
+    cursor: pointer;
+  }
+  .slider-val {
+    font-size: 18px;
+    font-weight: normal;
+    min-width: 28px;
+  }
+  .slider-note { font-size: 12px; color: var(--muted); }
+
+  .run-btn {
+    background: var(--fact);
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    cursor: pointer;
+    font-family: var(--font);
+    font-size: 15px;
+    padding: 11px 28px;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .run-btn:hover { opacity: 0.88; }
+  .run-btn:active { transform: scale(0.98); }
+  .run-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .stop-btn {
+    background: transparent;
+    border: 0.5px solid var(--border2);
+    border-radius: 7px;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: var(--font);
+    font-size: 15px;
+    padding: 11px 20px;
+    margin-left: 10px;
+    display: none;
+    transition: border-color 0.15s;
+  }
+  .stop-btn:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
+
+  .progress-track {
+    height: 3px;
+    background: var(--surface2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 14px 0 8px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--fact);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.2s;
+  }
+  .status { font-size: 12px; font-family: var(--mono); color: var(--muted); min-height: 18px; }
+
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  .metric {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .metric-lbl { font-size: 11px; font-family: var(--mono); color: var(--muted); margin-bottom: 6px; }
+  .metric-val { font-size: 24px; }
+
+  .results-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-size: 10px;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 0.5px solid var(--border);
+    font-weight: normal;
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 0.5px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .sentence-col { max-width: 340px; color: #ccc; font-size: 13px; }
+
+  .score-wrap { display: flex; align-items: center; gap: 8px; }
+  .score-bar { height: 7px; border-radius: 4px; }
+  .score-num { font-family: var(--mono); font-size: 12px; font-weight: 500; min-width: 32px; }
+
+  .bucket {
+    font-size: 10px;
+    font-family: var(--mono);
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .b-fact       { background: rgba(55,138,221,0.15);  color: #7ab8f0; }
+  .b-mixed-fact { background: rgba(99,180,80,0.15);   color: #88c87a; }
+  .b-mixed-norm { background: rgba(239,159,39,0.15);  color: #f0b86a; }
+  .b-norm       { background: rgba(216,90,48,0.15);   color: #e89070; }
+
+  .match-yes { color: var(--match); font-family: var(--mono); font-size: 12px; }
+  .match-no  { color: var(--miss);  font-family: var(--mono); font-size: 12px; }
+  .match-err { color: var(--muted); font-family: var(--mono); font-size: 12px; }
+
+  #results-wrap { display: none; }
+
+  .export-btn {
+    background: transparent;
+    border: 0.5px solid var(--border2);
+    border-radius: 7px;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: var(--font);
+    font-size: 14px;
+    padding: 8px 18px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .export-btn:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
+
+  a { color: var(--fact); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .hint {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Pang &amp; Lee — Subjectivity Evaluator</h1>
+    <div class="subtitle">Claude Haiku vs. human-labeled is/ought classification</div>
+  </header>
+
+  <div class="card">
+    <div class="card-label">Anthropic API key</div>
+    <input type="password" id="api-key" placeholder="sk-ant-...">
+    <div class="hint">Get your key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>. Not stored anywhere — only used for this session.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Dataset — <a href="https://github.com/jperla/sentiment-data/tree/master/pang_lee_movie_reviews/rotten_imdb" target="_blank">download from GitHub ↗</a></div>
+    <div class="hint" style="margin-bottom:14px;">Paste any number of lines from each file. The evaluator randomly samples from what you give it.</div>
+    <div class="two-col">
+      <div>
+        <div class="paste-label">Objective <span class="tag tag-obj">plot.tok.gt9.5000</span></div>
+        <textarea id="obj-paste" placeholder="Paste lines here — one sentence per line."></textarea>
+        <div class="line-count" id="obj-count">0 lines</div>
+      </div>
+      <div>
+        <div class="paste-label">Subjective <span class="tag tag-subj">quote.tok.gt9.5000</span></div>
+        <textarea id="subj-paste" placeholder="Paste lines here — one sentence per line."></textarea>
+        <div class="line-count" id="subj-count">0 lines</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Sample size</div>
+    <div class="slider-row">
+      <input type="range" min="5" max="50" value="20" id="sample-n">
+      <span class="slider-val" id="sample-n-out">20</span>
+      <span class="slider-note">sentences per class</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <button class="run-btn" id="run-btn" onclick="runEval()">Run evaluation</button>
+    <button class="stop-btn" id="stop-btn" onclick="stopEval()">Stop</button>
+  </div>
+
+  <div id="progress-wrap" style="display:none; margin-bottom:20px;">
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="status" id="status-text"></div>
+  </div>
+
+  <div id="results-wrap">
+    <div class="metrics">
+      <div class="metric"><div class="metric-lbl">Agreement</div><div class="metric-val" id="m-agree">—</div></div>
+      <div class="metric"><div class="metric-lbl">Avg objective score</div><div class="metric-val" id="m-obj">—</div></div>
+      <div class="metric"><div class="metric-lbl">Avg subjective score</div><div class="metric-val" id="m-subj">—</div></div>
+      <div class="metric"><div class="metric-lbl">Separation gap</div><div class="metric-val" id="m-gap">—</div></div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+    </div>
+
+    <div class="results-card">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:40%;">Sentence</th>
+            <th>Human label</th>
+            <th>Score</th>
+            <th>Bucket</th>
+            <th>Match</th>
+          </tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var stopFlag = false;
+  var allResults = [];
+
+  function exportCSV() {
+    if (!allResults.length) { alert('No results to export yet.'); return; }
+    var rows = [['sentence', 'human_label', 'claude_score', 'bucket', 'match']];
+    allResults.forEach(function(r) {
+      var bucket = r.score !== null ? getBucket(r.score).label : 'error';
+      var score  = r.score !== null ? r.score.toFixed(4) : '';
+      var cell   = '"' + r.text.replace(/"/g, '""') + '"';
+      rows.push([cell, r.label, score, bucket, r.match]);
+    });
+    var csv = rows.map(function(r) { return r.join(','); }).join('\n');
+    var blob = new Blob([csv], { type: 'text/csv' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'pang-lee-results.csv';
+    a.click();
+  }
+
+  document.getElementById('sample-n').addEventListener('input', function() {
+    document.getElementById('sample-n-out').textContent = this.value;
+  });
+
+  function wireCount(taId, countId) {
+    document.getElementById(taId).addEventListener('input', function() {
+      var n = this.value.split('\n').filter(function(l) { return l.trim().length > 0; }).length;
+      document.getElementById(countId).textContent = n + ' lines';
+    });
+  }
+  wireCount('obj-paste', 'obj-count');
+  wireCount('subj-paste', 'subj-count');
+
+  function sample(arr, n) {
+    return arr.slice().sort(function() { return Math.random() - 0.5; }).slice(0, n);
+  }
+
+  function scoreColor(s) {
+    var r = Math.round(55  + (239 - 55)  * s);
+    var g = Math.round(138 + (159 - 138) * s);
+    var b = Math.round(221 + (39  - 221) * s);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+
+  function getBucket(s) {
+    if (s <= 0.25) return { label: 'factual',        cls: 'b-fact' };
+    if (s <= 0.50) return { label: 'mixed-factual',  cls: 'b-mixed-fact' };
+    if (s <= 0.75) return { label: 'mixed-normative',cls: 'b-mixed-norm' };
+    return              { label: 'normative',        cls: 'b-norm' };
+  }
+
+  async function scoreText(text, apiKey) {
+    var prompt = 'Segment the following text into spans. Return ONLY a JSON array of objects with keys "text" and "score". '
+      + 'Score: 0.0 = purely factual/descriptive (empirically verifiable), 1.0 = purely normative/opinion (value judgment). '
+      + 'No other text, no markdown fences.\n\nText: ' + text;
+
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 400,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    if (!resp.ok) {
+      var err = await resp.json().catch(function() { return {}; });
+      throw new Error((err.error && err.error.message) || 'HTTP ' + resp.status);
+    }
+
+    var data = await resp.json();
+    var raw = data.content[0].text.trim().replace(/```json|```/g, '').trim();
+    var spans = JSON.parse(raw);
+    var totalLen = spans.reduce(function(s, sp) { return s + sp.text.length; }, 0);
+    if (!totalLen) return 0.5;
+    var weighted = spans.reduce(function(s, sp) { return s + sp.score * sp.text.length; }, 0) / totalLen;
+    return Math.min(1, Math.max(0, weighted));
+  }
+
+  function updateMetrics(rows) {
+    var obj  = rows.filter(function(r) { return r.label === 'objective'; });
+    var subj = rows.filter(function(r) { return r.label === 'subjective'; });
+    var nMatch = rows.filter(function(r) { return r.match === 'yes'; }).length;
+    var agree = rows.length ? (nMatch / rows.length * 100).toFixed(1) + '%' : '—';
+    var aObj  = obj.length  ? (obj.reduce(function(s,r)  { return s + r.score; }, 0) / obj.length).toFixed(2)  : '—';
+    var aSubj = subj.length ? (subj.reduce(function(s,r) { return s + r.score; }, 0) / subj.length).toFixed(2) : '—';
+    var gap   = (aObj !== '—' && aSubj !== '—') ? (parseFloat(aSubj) - parseFloat(aObj)).toFixed(2) : '—';
+    document.getElementById('m-agree').textContent = agree;
+    document.getElementById('m-obj').textContent   = aObj;
+    document.getElementById('m-subj').textContent  = aSubj;
+    document.getElementById('m-gap').textContent   = gap;
+  }
+
+  async function runEval() {
+    stopFlag = false;
+    var apiKey = document.getElementById('api-key').value.trim();
+    if (!apiKey) { alert('Enter your Anthropic API key.'); return; }
+
+    var objLines  = document.getElementById('obj-paste').value.split('\n').filter(function(l) { return l.trim().length > 5; });
+    var subjLines = document.getElementById('subj-paste').value.split('\n').filter(function(l) { return l.trim().length > 5; });
+    if (objLines.length < 2 || subjLines.length < 2) {
+      alert('Paste lines into both text areas first.');
+      return;
+    }
+
+    var n = parseInt(document.getElementById('sample-n').value);
+    var items = sample(objLines,  Math.min(n, objLines.length)).map(function(t)  { return { text: t.trim(), label: 'objective' };  })
+      .concat(  sample(subjLines, Math.min(n, subjLines.length)).map(function(t) { return { text: t.trim(), label: 'subjective' }; }))
+      .sort(function() { return Math.random() - 0.5; });
+
+    var total = items.length;
+    document.getElementById('progress-wrap').style.display  = 'block';
+    document.getElementById('results-wrap').style.display   = 'block';
+    document.getElementById('results-body').innerHTML = '';
+    document.getElementById('run-btn').disabled = true;
+    document.getElementById('stop-btn').style.display = 'inline-block';
+
+    var allRows = [];
+    allResults = [];
+
+    for (var i = 0; i < items.length; i++) {
+      if (stopFlag) {
+        document.getElementById('status-text').textContent = 'Stopped at ' + i + ' of ' + total + '.';
+        break;
+      }
+
+      var item = items[i];
+      document.getElementById('status-text').textContent = 'Scoring ' + (i + 1) + ' of ' + total + ' — "' + item.text.slice(0, 55) + '\u2026"';
+      document.getElementById('progress-fill').style.width = Math.round(i / total * 100) + '%';
+
+      var score = null, errMsg = null;
+      try { score = await scoreText(item.text, apiKey); }
+      catch(e) { errMsg = e.message; }
+
+      var match = score === null ? 'error' : ((item.label === 'subjective') === (score > 0.5) ? 'yes' : 'no');
+      allRows.push({ label: item.label, score: score, match: match });
+      allResults.push({ text: item.text, label: item.label, score: score, match: match });
+
+      var bucket = score !== null ? getBucket(score) : null;
+      var color  = score !== null ? scoreColor(score) : '#555';
+
+      var scoreCell = score !== null
+        ? '<div class="score-wrap"><div class="score-bar" style="width:' + Math.round(score * 72) + 'px;background:' + color + ';"></div>'
+          + '<span class="score-num" style="color:' + color + '">' + score.toFixed(2) + '</span></div>'
+        : '<span class="match-err">' + (errMsg || 'error') + '</span>';
+
+      var bucketCell = bucket ? '<span class="bucket ' + bucket.cls + '">' + bucket.label + '</span>' : '\u2014';
+      var matchCell  = match === 'yes' ? '<span class="match-yes">match</span>'
+                     : match === 'no'  ? '<span class="match-no">miss</span>'
+                     : '<span class="match-err">error</span>';
+      var labelCell  = item.label === 'objective'
+        ? '<span class="tag tag-obj">obj</span>'
+        : '<span class="tag tag-subj">subj</span>';
+
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td class="sentence-col">' + item.text.replace(/</g, '&lt;') + '</td>'
+        + '<td>' + labelCell + '</td>'
+        + '<td>' + scoreCell + '</td>'
+        + '<td>' + bucketCell + '</td>'
+        + '<td>' + matchCell + '</td>';
+      document.getElementById('results-body').appendChild(tr);
+
+      updateMetrics(allRows.filter(function(r) { return r.score !== null; }));
+      await new Promise(function(res) { setTimeout(res, 300); });
+    }
+
+    document.getElementById('progress-fill').style.width = '100%';
+    var scored = allRows.filter(function(r) { return r.score !== null; }).length;
+    document.getElementById('status-text').textContent = 'Done \u2014 ' + scored + ' sentences scored.';
+    document.getElementById('run-btn').disabled = false;
+    document.getElementById('stop-btn').style.display = 'none';
+  }
+
+  function stopEval() { stopFlag = true; }
+</script>
+</body>
+</html>

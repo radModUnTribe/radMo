@@ -2,7 +2,9 @@
 
 ## Current Work Focus
 
-**Primary (2026-05-03):** Source Diversity entropy scoring validated against test dataset. Shannon entropy (format + geo) and lean spread variance computed for all 5 personas. Scores differentiate personas correctly with one exception: Magpie and Radical Moderate score nearly identically (54.6 vs 55.1) despite meaningfully different lean profiles. Weight sensitivity analysis identified as next step before finalizing scoring formula.
+**Primary (2026-05-04):** Fact/opinion analyzer validated against Pang & Lee subjectivity dataset. 85% agreement with human annotators, .38 separation gap, .491 avg miss score. Validation confirms blue→amber spectrum is grounded in real signal. Evaluator tool built as `prototypes/pang-lee-evaluator.html`.
+
+**Previous session (2026-05-03):** Source Diversity entropy scoring validated against test dataset. Shannon entropy (format + geo) and lean spread variance computed for all 5 personas. Scores differentiate personas correctly with one exception: Magpie and Radical Moderate score nearly identically (54.6 vs 55.1) despite meaningfully different lean profiles. Weight sensitivity analysis identified as next step before finalizing scoring formula.
 
 **Previous session (2026-04-27):** Chrome extension v0.1 built and running locally on X. Fact/opinion analyzer ported from standalone HTML demo to manifest v3 extension. First 5 tweets colorize correctly; queue stalls after that — suspected API rate limiting; retry/backoff logic is the immediate next step. Marketing concepts documented: `_ButWhy` social accounts and `@grok is this true` tagline.
 
@@ -31,6 +33,9 @@
 - `fact-opinion-analyzer.html` — **working live demo** built 2026-04-18; self-contained HTML file; takes API key in browser; calls Claude Haiku via Anthropic API; segments text into spans scored 0.0–1.0 (fact→opinion); renders blue→amber spectrum inline; hover reveals label + description + score; tested and confirmed working
 - `radmo-extension/` — **Chrome extension v0.1** built 2026-04-27; manifest v3; content script reads DOM directly on x.com; MutationObserver for infinite scroll; SPA navigation fix via URL polling; result caching via Map; first 5 tweets colorize correctly; known bug: queue stalls after ~5 tweets (suspected rate limiting)
 
+### Prototypes (committed)
+- `prototypes/pang-lee-evaluator.html` — **validation tool** built 2026-05-04; tests fact/opinion analyzer against Pang & Lee subjectivity dataset; pastes objective (plot.tok) and subjective (quote.tok) sentences; calls Haiku; computes agreement rate, avg scores per class, separation gap; exports CSV; confirmed working locally
+
 ### Documentation
 - `product/features.md` — updated 2026-04-10
 - `product/badges.md` — Bridge Builder, First Principles, Wide Lens
@@ -54,6 +59,25 @@
 - `radical_moderate` — 32 citations; US/GB/QA; tiers 2–6; lean spread 1–5; highest diversity on all three sub-scores
 
 ## Locked Design Decisions
+
+### Fact/Opinion Analyzer — Validation Results (2026-05-04)
+
+Dataset: Pang & Lee subjectivity corpus (Pang & Lee, 2004). 50 sentences sampled per class (100 total) from `plot.tok.gt9.5000` (objective) and `quote.tok.gt9.5000` (subjective).
+
+| Metric | Value | Interpretation |
+|---|---|---|
+| Agreement rate | 85% | Claude matches human binary label 85/100 sentences |
+| Avg score — objective | 0.25 | Correctly low; sits at factual bucket boundary |
+| Avg score — subjective | 0.63 | Mixed-normative range; expected for critic quotes |
+| Separation gap | 0.38 | Meaningful real-world signal; not guessing |
+| Avg miss score | 0.491 | Misses cluster at 0.5 boundary — calibrated uncertainty |
+
+**Key interpretations:**
+- 85% agreement with human annotators on zero-shot task = meaningful signal
+- Misses averaging 0.491 means Claude is not confidently wrong — it's uncertain on genuinely ambiguous sentences
+- .38 separation gap validates blue→amber spectrum as grounded in something real (ordinal, not precise)
+- Subjective avg of 0.63 (not 0.8+) reflects that critic quotes blend normative judgment with descriptive anchors — model is correctly hedging
+- Score should be treated as ordinal signal, not a precise float — consistent within run, noisy across runs
 
 ### Source Diversity Scoring — First Run Results (2026-05-03)
 
@@ -175,6 +199,7 @@ RAG pipeline architecture:
 - Cost: ~$0.0001–0.0003 per analysis; negligible
 - Span coloring: linear interpolation between `rgb(55,138,221)` (fact) and `rgb(239,159,39)` (opinion)
 - Hover interaction: fades other spans to 0.3 opacity; shows label + description + raw score
+- **Validated 2026-05-04:** 85% agreement vs. Pang & Lee human labels; .38 separation gap; misses cluster at .491 (boundary cases only)
 
 ### Chrome Extension — Technical Notes (2026-04-27)
 - **Architecture:** manifest v3; content script + popup only (no background service worker needed for v0.1)
@@ -296,6 +321,7 @@ See TODO.md — Fundamental Blockers section for current top priorities.
 - `_ButWhy` accounts: trademark risk on platform-name handles; AI slop feed video is strongest content asset; platform-specific accounts preferred
 - `@grok is this true` tagline: best to date; slightly platform-specific; durable variant: "You shouldn't need to ask a bot if the post is real"
 - **SD scoring note:** Magpie and Radical Moderate converge at current 35/35/30 weights; lean spread weight likely needs to increase to ~40% to correctly differentiate them; sensitivity analysis pending
+- **Fact/opinion validation note:** Pang & Lee eval run 2026-05-04; 85% agreement, .38 gap, .491 miss avg; score is ordinal signal not precise float; treat bucket (0–0.25 / 0.25–0.5 / 0.5–0.75 / 0.75–1.0) as meaningful unit downstream
 
-**Last Updated:** 2026-05-03
+**Last Updated:** 2026-05-04
 **Next Review:** Start of next session
